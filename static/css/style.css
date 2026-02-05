@@ -514,6 +514,16 @@ img {
   }
 }
 
+@media screen and (max-width: 700px) {
+  .mag-section .image {
+    display: none;
+  }
+
+  .mag-section .text {
+    border-radius: 22px;
+  }
+}
+
 /* -------------------- FEATURED KITTENS -------------------- */
 .featured-kittens {
   padding: 80px 10% 110px;
