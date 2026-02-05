@@ -2,6 +2,8 @@
 {% block content %}
 
 <section class="kitten-details" data-reservation-deposit="{{ reservation_deposit }}">
+    {% set availability = kitten.availability or "Available" %}
+    {% set availability_key = availability|lower %}
     <div class="details-grid">
         <div class="image-carousel">
             <div class="gallery-main">
@@ -29,52 +31,13 @@
                 {% endif %}
             </div>
 
-            <div class="parents-card">
-                <div class="panel-header">
-                    <h3>Parents</h3>
-                    <p>Lineage details from our pairing records.</p>
-                </div>
-                <div class="parents-grid">
-                    <div class="parent-card">
-                        <div class="parent-avatar">
-                            {% if kitten.sire_image %}
-                            <img src="{{ media_url(kitten.sire_image) }}" alt="{{ kitten.sire_name or 'Sire' }}">
-                            {% else %}
-                            <span>{{ (kitten.sire_name or 'S')[:1] }}</span>
-                            {% endif %}
-                        </div>
-                        <div>
-                            <h4>{{ kitten.sire_name or "Sire" }}</h4>
-                            <p>{{ kitten.sire_color or "—" }} • {{ kitten.sire_weight or "—" }}</p>
-                        </div>
-                    </div>
-                    <div class="parent-card">
-                        <div class="parent-avatar">
-                            {% if kitten.dam_image %}
-                            <img src="{{ media_url(kitten.dam_image) }}" alt="{{ kitten.dam_name or 'Dam' }}">
-                            {% else %}
-                            <span>{{ (kitten.dam_name or 'D')[:1] }}</span>
-                            {% endif %}
-                        </div>
-                        <div>
-                            <h4>{{ kitten.dam_name or "Dam" }}</h4>
-                            <p>{{ kitten.dam_color or "—" }} • {{ kitten.dam_weight or "—" }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="kitten-form-section">
-                <div id="kittenFormContainer" class="kitten-form-container">
-                    <form id="kittenForm"></form>
-                </div>
-            </div>
         </div>
 
         <div class="kitten-info">
             <div class="kitten-header">
                 <h2>{{ kitten.name }}</h2>
                 <div class="kitten-price">${{ kitten.price }}</div>
+                <span class="status-pill {{ availability_key }}">{{ availability }}</span>
             </div>
 
             <p class="kitten-bio">{{ kitten.bio }}</p>
@@ -112,6 +75,10 @@
                     <span>Energy</span>
                     <strong>{{ kitten.energy }}</strong>
                 </div>
+                <div class="meta-item">
+                    <span>Status</span>
+                    <strong>{{ availability }}</strong>
+                </div>
             </div>
 
             <div class="kitten-chips">
@@ -127,8 +94,12 @@
             </ul>
 
             <div class="kitten-buttons">
-                <button class="buy-btn" data-kit="{{ kitten.id }}" data-name="{{ kitten.name }}" data-price="{{ kitten.price }}">Buy</button>
-                <button class="reserve-btn" data-kit="{{ kitten.id }}" data-name="{{ kitten.name }}" data-price="{{ kitten.price }}">Reserve</button>
+                {% if availability_key == "available" %}
+                <button class="buy-btn" data-status="{{ availability_key }}" data-kit="{{ kitten.id }}" data-name="{{ kitten.name }}" data-price="{{ kitten.price }}">Buy</button>
+                <button class="reserve-btn" data-status="{{ availability_key }}" data-kit="{{ kitten.id }}" data-name="{{ kitten.name }}" data-price="{{ kitten.price }}">Reserve</button>
+                {% else %}
+                <button class="unavailable-btn" disabled>Currently {{ availability }}</button>
+                {% endif %}
             </div>
 
             <div class="kitten-health">
@@ -137,6 +108,43 @@
             </div>
         </div>
     </div>
+
+    {% if kitten.sire_name or kitten.dam_name or kitten.sire_image or kitten.dam_image %}
+    <div class="parents-section">
+        <div class="panel-header">
+            <h3>Parents</h3>
+            <p>Lineage details from our pairing records.</p>
+        </div>
+        <div class="parents-grid">
+            <div class="parent-card">
+                <div class="parent-avatar">
+                    {% if kitten.sire_image %}
+                    <img src="{{ media_url(kitten.sire_image) }}" alt="{{ kitten.sire_name or 'Sire' }}">
+                    {% else %}
+                    <span>{{ (kitten.sire_name or 'S')[:1] }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <h4>{{ kitten.sire_name or "Sire" }}</h4>
+                    <p>{{ kitten.sire_color or "—" }} • {{ kitten.sire_weight or "—" }}</p>
+                </div>
+            </div>
+            <div class="parent-card">
+                <div class="parent-avatar">
+                    {% if kitten.dam_image %}
+                    <img src="{{ media_url(kitten.dam_image) }}" alt="{{ kitten.dam_name or 'Dam' }}">
+                    {% else %}
+                    <span>{{ (kitten.dam_name or 'D')[:1] }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <h4>{{ kitten.dam_name or "Dam" }}</h4>
+                    <p>{{ kitten.dam_color or "—" }} • {{ kitten.dam_weight or "—" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
     <div class="kitten-extras">
         {% set travel = sections.get('travel') %}
@@ -198,6 +206,12 @@
             </div>
         </div>
         {% endif %}
+    </div>
+
+    <div id="kitten-form-section" class="kitten-form-bottom">
+        <div id="kittenFormContainer" class="kitten-form-container">
+            <form id="kittenForm"></form>
+        </div>
     </div>
 </section>
 

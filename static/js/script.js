@@ -3,11 +3,11 @@ document.addEventListener("click", function (e) {
   const buyBtn = e.target.closest(".buy-btn");
   const reserveBtn = e.target.closest(".reserve-btn");
 
-  if (buyBtn) {
+  if (buyBtn && !buyBtn.disabled && (buyBtn.dataset.status || "available") === "available") {
     openKittenForm("buy", buyBtn.dataset.kit, buyBtn.dataset.name, buyBtn.dataset.price);
   }
 
-  if (reserveBtn) {
+  if (reserveBtn && !reserveBtn.disabled && (reserveBtn.dataset.status || "available") === "available") {
     openKittenForm("reserve", reserveBtn.dataset.kit, reserveBtn.dataset.name, reserveBtn.dataset.price);
   }
 });

@@ -32,6 +32,12 @@
       <span class="badge price">
         ${{ kitten.price }}
       </span>
+
+      {% if kitten.availability|lower != 'available' %}
+      <span class="badge status {{ kitten.availability|lower }}">
+        {{ kitten.availability }}
+      </span>
+      {% endif %}
     </div>
 
     <div class="kitten-card-body">

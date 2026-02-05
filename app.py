@@ -1700,6 +1700,8 @@ def kitten_row_to_dict(row):
     kitten["dam_image"] = kitten.get("dam_image") or ""
     kitten["image_count"] = int(kitten.get("image_count") or 0)
     kitten["featured"] = bool(kitten.get("featured"))
+    availability = kitten.get("availability") or "Available"
+    kitten["availability"] = availability.title()
     kitten["good_with"] = decode_list(kitten.get("good_with"))
     kitten["highlights"] = decode_list(kitten.get("highlights"))
     kitten["bio"] = kitten.get("bio") or kitten.get("description") or ""
@@ -1953,6 +1955,10 @@ def save_kitten(kitten_id=None):
     if image_files:
         image_count = len(image_files)
 
+    availability = request.form.get("availability", "").strip().title()
+    if availability not in {"Available", "Reserved", "Sold"}:
+        availability = "Available"
+
     payload = {
         "name": name,
         "age": int(request.form.get("age") or 0),
@@ -1979,7 +1985,7 @@ def save_kitten(kitten_id=None):
         "good_with": json.dumps(parse_list_text(request.form.get("good_with", ""))),
         "bio": request.form.get("bio", "").strip(),
         "highlights": json.dumps(parse_list_text(request.form.get("highlights", ""))),
-        "availability": request.form.get("availability", "").strip() or "Available"
+        "availability": availability
     }
 
     conn = get_db()
@@ -2484,6 +2490,8 @@ def submit_inquiry():
     kitten = fetch_kitten(int(kitten_id))
     if not kitten:
         return {"ok": False, "error": "Kitten not found."}, 404
+    if (kitten.get("availability") or "").lower() != "available":
+        return {"ok": False, "error": "This kitten is no longer available."}, 400
 
     price = float(kitten.get("price") or 0)
     if inquiry_type == "reserve":

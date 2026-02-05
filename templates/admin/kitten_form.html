@@ -48,7 +48,12 @@
         </div>
         <div>
             <label>Availability</label>
-            <input type="text" name="availability" value="{{ kitten.availability if kitten else 'Available' }}">
+            <select name="availability">
+                {% set current = kitten.availability if kitten else 'Available' %}
+                <option value="Available" {% if current == 'Available' %}selected{% endif %}>Available</option>
+                <option value="Reserved" {% if current == 'Reserved' %}selected{% endif %}>Reserved</option>
+                <option value="Sold" {% if current == 'Sold' %}selected{% endif %}>Sold</option>
+            </select>
         </div>
         <div>
             <label>Folder (image folder)</label>

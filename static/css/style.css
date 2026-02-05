@@ -654,7 +654,7 @@ img {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 54px;
-  align-items: start;
+  align-items: stretch;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -752,13 +752,16 @@ img {
   border: 1px solid rgba(44, 42, 40, 0.08);
   box-shadow: 0 28px 70px rgba(0,0,0,0.12);
   backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
 }
 
 .kitten-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .kitten-header h2 {
@@ -773,6 +776,25 @@ img {
   color: #f5f5f5;
   font-weight: 700;
   letter-spacing: 0.02em;
+}
+
+.status-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(44,42,40,0.12);
+  color: #2c2a28;
+}
+
+.status-pill.reserved {
+  background: rgba(201, 178, 155, 0.9);
+  color: #2c2a28;
+}
+
+.status-pill.sold {
+  background: rgba(166, 84, 84, 0.9);
+  color: #fff;
 }
 
 .kitten-bio {
@@ -872,6 +894,22 @@ img {
   transform: translateY(-2px);
 }
 
+.kitten-buttons button:disabled {
+  transform: none;
+  cursor: not-allowed;
+}
+
+.unavailable-btn {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(44, 42, 40, 0.2);
+  background: #f0ebe3;
+  color: #5a544d;
+  font-weight: 700;
+  cursor: not-allowed;
+}
+
 .kitten-health {
   margin-top: 22px;
   padding: 16px;
@@ -880,13 +918,14 @@ img {
   border: 1px solid rgba(44, 42, 40, 0.12);
 }
 
-.parents-card {
-  margin-top: 16px;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255,255,255,0.7);
+.parents-section {
+  margin: 28px auto 0;
+  max-width: 1200px;
+  padding: 24px;
+  border-radius: 26px;
+  background: rgba(255,255,255,0.84);
   border: 1px solid rgba(44, 42, 40, 0.08);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.1);
 }
 
 .parents-grid {
@@ -943,6 +982,20 @@ img {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.kitten-form-bottom {
+  margin-top: 80px;
+}
+
+@media screen and (min-width: 900px) {
+  .kitten-extras {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .journey-panel {
+    grid-column: 1 / -1;
+  }
 }
 
 .kitten-panel {
@@ -1057,6 +1110,14 @@ img {
   .gallery-main img {
     height: 320px;
   }
+
+  .image-carousel {
+    order: 1;
+  }
+
+  .kitten-info {
+    order: 2;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -1084,22 +1145,17 @@ img {
 
 /* -------------------- FORM -------------------- */
 #kitten-form-section {
-  padding: 120px 10%;
+  padding: 80px 10% 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  scroll-margin-top: 90px;
 }
 
 .kitten-form-container {
-  max-width: 650px;
-  margin: auto;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
-.image-carousel #kitten-form-section {
-  padding: 18px 0 0;
-}
-
-.image-carousel .kitten-form-container {
-  max-width: 100%;
-  margin: 0;
-}
 
 .form-inner {
   background: #e8dfd2;
@@ -1802,6 +1858,22 @@ footer .footer-links a:hover {
   top: 12px;
   right: 12px;
   background: rgba(44, 42, 40, 0.85);
+}
+
+.badge.status {
+  bottom: 12px;
+  left: 12px;
+  background: rgba(44, 42, 40, 0.6);
+}
+
+.badge.status.reserved {
+  background: rgba(201, 178, 155, 0.9);
+  color: #2c2a28;
+}
+
+.badge.status.sold {
+  background: rgba(166, 84, 84, 0.9);
+  color: #fff;
 }
 
 .view-btn {
