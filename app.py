@@ -32,7 +32,7 @@ app.config["SMTP_USE_SSL"] = os.environ.get("SMTP_USE_SSL", "false").lower() == 
 app.config["SMTP_FROM"] = os.environ.get("SMTP_FROM", "info@frostlinecoons.com")
 app.config["SMTP_TO"] = os.environ.get("SMTP_TO", "info@frostlinecoons.com")
 app.config["RESERVATION_DEPOSIT"] = float(os.environ.get("RESERVATION_DEPOSIT", "300"))
-app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
+app.config["MAX_CONTENT_LENGTH"] = 80 * 1024 * 1024
 app.config["UPLOADS_PATH"] = os.environ.get(
     "UPLOADS_PATH", os.path.join(app.root_path, "static", "uploads")
 )
@@ -42,6 +42,7 @@ DATABASE = os.environ.get(
 )
 ALLOWED_KITTEN_IMAGE_EXTS = {".jpg", ".jpeg"}
 ALLOWED_IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp"}
+ALLOWED_VIDEO_EXTS = {".mp4", ".webm", ".mov"}
 
 # -------------------- DEFAULT CONTENT --------------------
 DEFAULT_KITTENS = [
@@ -1324,10 +1325,13 @@ def init_db():
             sire_weight TEXT,
             sire_color TEXT,
             sire_image TEXT,
+            sire_about TEXT,
             dam_name TEXT,
             dam_weight TEXT,
             dam_color TEXT,
             dam_image TEXT,
+            dam_about TEXT,
+            video_url TEXT,
             folder TEXT,
             image_count INTEGER DEFAULT 0,
             featured INTEGER DEFAULT 0,
@@ -1360,10 +1364,13 @@ def init_db():
             "sire_weight": "TEXT",
             "sire_color": "TEXT",
             "sire_image": "TEXT",
+            "sire_about": "TEXT",
             "dam_name": "TEXT",
             "dam_weight": "TEXT",
             "dam_color": "TEXT",
             "dam_image": "TEXT",
+            "dam_about": "TEXT",
+            "video_url": "TEXT",
             "folder": "TEXT",
             "image_count": "INTEGER DEFAULT 0",
             "featured": "INTEGER DEFAULT 0",
@@ -1717,10 +1724,13 @@ def kitten_row_to_dict(row):
     kitten["sire_weight"] = kitten.get("sire_weight") or ""
     kitten["sire_color"] = kitten.get("sire_color") or ""
     kitten["sire_image"] = kitten.get("sire_image") or ""
+    kitten["sire_about"] = kitten.get("sire_about") or ""
     kitten["dam_name"] = kitten.get("dam_name") or ""
     kitten["dam_weight"] = kitten.get("dam_weight") or ""
     kitten["dam_color"] = kitten.get("dam_color") or ""
     kitten["dam_image"] = kitten.get("dam_image") or ""
+    kitten["dam_about"] = kitten.get("dam_about") or ""
+    kitten["video_url"] = kitten.get("video_url") or ""
     kitten["image_count"] = int(kitten.get("image_count") or 0)
     kitten["featured"] = bool(kitten.get("featured"))
     availability = kitten.get("availability") or "Available"
@@ -1735,14 +1745,47 @@ def kitten_row_to_dict(row):
     kitten["color"] = kitten.get("color") or ""
     kitten["folder"] = kitten.get("folder") or ""
 
-    images = list_kitten_images(kitten["folder"])
-    if images:
-        kitten["images"] = images
-        kitten["image_count"] = len(images)
-        kitten["main_image"] = "1.jpg" if "1.jpg" in images else images[0]
+    local_images = list_kitten_images(kitten["folder"])
+    extra_images = [item.strip() for item in decode_list(kitten.get("images")) if item.strip()]
+    kitten["image_urls"] = extra_images
+
+    if local_images:
+        kitten["images"] = local_images
+        kitten["image_count"] = len(local_images)
+        kitten["main_image"] = "1.jpg" if "1.jpg" in local_images else local_images[0]
     else:
         kitten["images"] = []
         kitten["main_image"] = "1.jpg"
+
+    default_image = url_for("static", filename="images/hero_kitten.jpg")
+    if local_images:
+        main_image_url = kitten_image_url(kitten["folder"], kitten["main_image"])
+    elif extra_images:
+        main_image_url = media_url(extra_images[0])
+    else:
+        main_image_url = default_image
+
+    gallery = [
+        {"type": "image", "src": kitten_image_url(kitten["folder"], img)}
+        for img in local_images
+    ]
+    gallery += [{"type": "image", "src": media_url(img)} for img in extra_images]
+
+    video_src = media_url(kitten["video_url"]) if kitten["video_url"] else ""
+    if video_src:
+        gallery.append({"type": "video", "src": video_src})
+
+    main_media_type = "image"
+    main_media_src = main_image_url
+    if not local_images and not extra_images and video_src:
+        main_media_type = "video"
+        main_media_src = video_src
+
+    kitten["gallery"] = gallery
+    kitten["main_media_type"] = main_media_type
+    kitten["main_media_src"] = main_media_src
+    kitten["card_image_url"] = main_image_url if main_image_url else default_image
+    kitten["video_src"] = video_src
     return kitten
 
 
@@ -1943,6 +1986,11 @@ def save_kitten(kitten_id=None):
     sire_image = request.form.get("sire_image", "").strip() or (existing.get("sire_image") if existing else "")
     dam_image = request.form.get("dam_image", "").strip() or (existing.get("dam_image") if existing else "")
 
+    video_url = request.form.get("video_url", "").strip() or (existing.get("video_url") if existing else "")
+    remove_video = request.form.get("remove_video") == "on"
+
+    image_urls = [item.strip() for item in parse_list_text(request.form.get("image_urls", "")) if item.strip()]
+
     for parent_key in ("sire", "dam"):
         upload = request.files.get(f"{parent_key}_image_upload")
         if upload and upload.filename:
@@ -1970,13 +2018,28 @@ def save_kitten(kitten_id=None):
         except ValueError as exc:
             flash(str(exc), "error")
             return redirect(request.url)
-    elif kitten_id is None and image_count == 0:
-        flash("Please upload at least one JPG image.", "error")
+    elif kitten_id is None and image_count == 0 and not image_urls:
+        flash("Please upload at least one JPG image or add an image URL.", "error")
         return redirect(request.url)
 
     image_files = list_kitten_images(folder)
     if image_files:
         image_count = len(image_files)
+
+    video_upload = request.files.get("video_upload")
+    if video_upload and video_upload.filename:
+        ext = os.path.splitext(video_upload.filename)[1].lower()
+        if ext not in ALLOWED_VIDEO_EXTS:
+            flash("Unsupported video type. Please upload MP4, WebM, or MOV.", "error")
+            return redirect(request.url)
+        folder_path = os.path.join(app.config["UPLOADS_PATH"], "videos")
+        os.makedirs(folder_path, exist_ok=True)
+        filename = f"{slugify(name) or 'kitten'}-video{ext}"
+        video_upload.save(os.path.join(folder_path, filename))
+        video_url = f"uploads/videos/{filename}"
+
+    if remove_video and not (video_upload and video_upload.filename):
+        video_url = ""
 
     availability = request.form.get("availability", "").strip().title()
     if availability not in {"Available", "Reserved", "Sold"}:
@@ -1994,10 +2057,13 @@ def save_kitten(kitten_id=None):
         "sire_weight": request.form.get("sire_weight", "").strip(),
         "sire_color": request.form.get("sire_color", "").strip(),
         "sire_image": sire_image,
+        "sire_about": request.form.get("sire_about", "").strip(),
         "dam_name": request.form.get("dam_name", "").strip(),
         "dam_weight": request.form.get("dam_weight", "").strip(),
         "dam_color": request.form.get("dam_color", "").strip(),
         "dam_image": dam_image,
+        "dam_about": request.form.get("dam_about", "").strip(),
+        "video_url": video_url,
         "folder": folder,
         "image_count": image_count,
         "featured": 1 if request.form.get("featured") == "on" else 0,
@@ -2008,7 +2074,8 @@ def save_kitten(kitten_id=None):
         "good_with": json.dumps(parse_list_text(request.form.get("good_with", ""))),
         "bio": request.form.get("bio", "").strip(),
         "highlights": json.dumps(parse_list_text(request.form.get("highlights", ""))),
-        "availability": availability
+        "availability": availability,
+        "images": json.dumps(image_urls)
     }
 
     conn = get_db()
@@ -2455,18 +2522,13 @@ def index():
 @app.route("/available_kittens")
 def available_kittens():
     kittens = fetch_kittens()[:12]
-    meta_image = "images/hero_kitten.jpg"
-    if kittens:
-        first = kittens[0]
-        main_image = first.get("main_image") or "1.jpg"
-        if first.get("folder"):
-            meta_image = kitten_image_url(first["folder"], main_image)
+    meta_image = kittens[0].get("card_image_url") if kittens else media_url("images/hero_kitten.jpg")
     return render_template(
         "available_kittens.html",
         kittens=kittens,
         meta_title="Available Maine Coon Kittens | Frostline Coons",
         meta_description="View available Maine Coon kittens, pricing, and details. Reserve or inquire today.",
-        meta_image=meta_image if meta_image.startswith("/") else media_url(meta_image),
+        meta_image=meta_image,
     )
 
 
@@ -2476,12 +2538,7 @@ def kitten_details(kitten_id):
     if not kitten:
         abort(404)
     sections = fetch_sections()
-    main_image = kitten.get("main_image") or "1.jpg"
-    meta_image = (
-        kitten_image_url(kitten["folder"], main_image)
-        if kitten.get("folder")
-        else media_url("images/hero_kitten.jpg")
-    )
+    meta_image = kitten.get("card_image_url") or media_url("images/hero_kitten.jpg")
     return render_template(
         "kitten_details.html",
         kitten=kitten,

@@ -303,9 +303,10 @@ if (adminToggle && adminLinks) {
 
 /* -------------------- KITTEN GALLERY -------------------- */
 const mainImage = document.getElementById("mainImage");
+const mainVideo = document.getElementById("mainVideo");
 const galleryThumbs = document.querySelectorAll(".gallery-thumb");
 const galleryMain = document.querySelector(".gallery-main");
-if (mainImage && galleryThumbs.length) {
+if ((mainImage || mainVideo) && galleryThumbs.length) {
   let currentIndex = 0;
 
   const setActiveThumb = button => {
@@ -313,13 +314,46 @@ if (mainImage && galleryThumbs.length) {
     button.classList.add("active");
   };
 
-  const setImageByIndex = index => {
+  const showImage = src => {
+    if (mainVideo) {
+      mainVideo.pause();
+      mainVideo.style.display = "none";
+    }
+    if (mainImage) {
+      mainImage.style.display = "block";
+      mainImage.src = src;
+    }
+  };
+
+  const showVideo = src => {
+    if (mainImage) {
+      mainImage.style.display = "none";
+    }
+    if (mainVideo) {
+      mainVideo.style.display = "block";
+      if (src) {
+        mainVideo.src = src;
+        mainVideo.load();
+        const playPromise = mainVideo.play();
+        if (playPromise && typeof playPromise.catch === "function") {
+          playPromise.catch(() => {});
+        }
+      }
+    }
+  };
+
+  const setMediaByIndex = index => {
     const total = galleryThumbs.length;
     const safeIndex = (index + total) % total;
     const button = galleryThumbs[safeIndex];
     const full = button.getAttribute("data-full");
+    const type = button.getAttribute("data-type") || "image";
     if (full) {
-      mainImage.src = full;
+      if (type === "video") {
+        showVideo(full);
+      } else {
+        showImage(full);
+      }
       currentIndex = safeIndex;
       setActiveThumb(button);
     }
@@ -327,10 +361,10 @@ if (mainImage && galleryThumbs.length) {
 
   galleryThumbs.forEach((button, index) => {
     if (index === 0) setActiveThumb(button);
-    button.addEventListener("click", () => setImageByIndex(index));
+    button.addEventListener("click", () => setMediaByIndex(index));
   });
 
-  setImageByIndex(0);
+  setMediaByIndex(0);
 
   if (galleryMain) {
     let startX = 0;
@@ -354,13 +388,25 @@ if (mainImage && galleryThumbs.length) {
 
       if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY)) {
         if (deltaX < 0) {
-          setImageByIndex(currentIndex + 1);
+          setMediaByIndex(currentIndex + 1);
         } else {
-          setImageByIndex(currentIndex - 1);
+          setMediaByIndex(currentIndex - 1);
         }
       }
     });
   }
+}
+
+/* -------------------- PARENTS TOGGLE -------------------- */
+const parentsSection = document.querySelector(".parents-section[data-expandable]");
+const parentsToggle = document.querySelector(".parents-toggle");
+if (parentsSection && parentsToggle) {
+  parentsToggle.addEventListener("click", () => {
+    parentsSection.classList.toggle("expanded");
+    parentsToggle.textContent = parentsSection.classList.contains("expanded")
+      ? "Collapse"
+      : "Expand";
+  });
 }
 
 /* Expose reservation deposit from page when available */

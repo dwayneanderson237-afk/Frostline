@@ -22,7 +22,7 @@
     {% for kitten in kittens %}
     <div class="admin-row">
         <div>
-            <img class="admin-thumb" src="{{ kitten_image_url(kitten.folder, kitten.main_image or '1.jpg') }}" alt="{{ kitten.name }}">
+            <img class="admin-thumb" src="{{ kitten.card_image_url }}" alt="{{ kitten.name }}">
         </div>
         <div>{{ kitten.name }}</div>
         <div>{{ kitten.gender }}</div>

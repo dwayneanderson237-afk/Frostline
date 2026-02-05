@@ -7,25 +7,33 @@
     <div class="details-grid">
         <div class="image-carousel">
             <div class="gallery-main">
+                {% set show_video = kitten.main_media_type == 'video' %}
                 <img id="mainImage"
-                     src="{{ kitten_image_url(kitten.folder, kitten.main_image or '1.jpg') }}"
-                     alt="{{ kitten.name }}">
+                     src="{{ kitten.main_media_src }}"
+                     alt="{{ kitten.name }}"
+                     {% if show_video %}style="display:none;"{% endif %}>
+                <video id="mainVideo"
+                       class="gallery-video"
+                       src="{{ kitten.video_src }}"
+                       poster="{{ kitten.card_image_url }}"
+                       controls
+                       playsinline
+                       {% if not show_video %}style="display:none;"{% endif %}></video>
             </div>
             <div class="gallery-thumbs">
-                {% if kitten.images %}
-                {% for img in kitten.images %}
-                <button class="gallery-thumb" type="button"
-                        data-full="{{ kitten_image_url(kitten.folder, img) }}">
-                    <img src="{{ kitten_image_url(kitten.folder, img) }}"
-                         alt="{{ kitten.name }} thumbnail">
-                </button>
-                {% endfor %}
-                {% else %}
-                {% for i in range(1, kitten.image_count + 1) %}
-                <button class="gallery-thumb" type="button"
-                        data-full="{{ kitten_image_url(kitten.folder, i ~ '.jpg') }}">
-                    <img src="{{ kitten_image_url(kitten.folder, i ~ '.jpg') }}"
-                         alt="{{ kitten.name }} thumbnail {{ i }}">
+                {% if kitten.gallery %}
+                {% for item in kitten.gallery %}
+                <button class="gallery-thumb{% if item.type == 'video' %} is-video{% endif %}" type="button"
+                        data-type="{{ item.type }}"
+                        data-full="{{ item.src }}">
+                    {% if item.type == 'video' %}
+                    <div class="thumb-video">
+                        <video src="{{ item.src }}" muted playsinline preload="metadata" poster="{{ kitten.card_image_url }}"></video>
+                        <span class="thumb-play">Play</span>
+                    </div>
+                    {% else %}
+                    <img src="{{ item.src }}" alt="{{ kitten.name }} thumbnail">
+                    {% endif %}
                 </button>
                 {% endfor %}
                 {% endif %}
@@ -110,38 +118,49 @@
     </div>
 
     {% if kitten.sire_name or kitten.dam_name or kitten.sire_image or kitten.dam_image %}
-    <div class="parents-section">
+    <div class="parents-section" data-expandable="true">
         <div class="panel-header">
-            <h3>Parents</h3>
-            <p>Lineage details from our pairing records.</p>
+            <div>
+                <h3>Parents</h3>
+                <p>Lineage details from our pairing records.</p>
+            </div>
+            <button class="parents-toggle" type="button">Expand</button>
         </div>
         <div class="parents-grid">
-            <div class="parent-card">
-                <div class="parent-avatar">
+            <article class="parent-card">
+                <div class="parent-media">
                     {% if kitten.sire_image %}
                     <img src="{{ media_url(kitten.sire_image) }}" alt="{{ kitten.sire_name or 'Sire' }}">
                     {% else %}
                     <span>{{ (kitten.sire_name or 'S')[:1] }}</span>
                     {% endif %}
                 </div>
-                <div>
+                <div class="parent-details">
+                    <span class="parent-label">Sire</span>
                     <h4>{{ kitten.sire_name or "Sire" }}</h4>
-                    <p>{{ kitten.sire_color or "—" }} • {{ kitten.sire_weight or "—" }}</p>
+                    <p class="parent-meta">{{ kitten.sire_color or "—" }} • {{ kitten.sire_weight or "—" }}</p>
+                    {% if kitten.sire_about %}
+                    <p class="parent-about">{{ kitten.sire_about }}</p>
+                    {% endif %}
                 </div>
-            </div>
-            <div class="parent-card">
-                <div class="parent-avatar">
+            </article>
+            <article class="parent-card">
+                <div class="parent-media">
                     {% if kitten.dam_image %}
                     <img src="{{ media_url(kitten.dam_image) }}" alt="{{ kitten.dam_name or 'Dam' }}">
                     {% else %}
                     <span>{{ (kitten.dam_name or 'D')[:1] }}</span>
                     {% endif %}
                 </div>
-                <div>
+                <div class="parent-details">
+                    <span class="parent-label">Dam</span>
                     <h4>{{ kitten.dam_name or "Dam" }}</h4>
-                    <p>{{ kitten.dam_color or "—" }} • {{ kitten.dam_weight or "—" }}</p>
+                    <p class="parent-meta">{{ kitten.dam_color or "—" }} • {{ kitten.dam_weight or "—" }}</p>
+                    {% if kitten.dam_about %}
+                    <p class="parent-about">{{ kitten.dam_about }}</p>
+                    {% endif %}
                 </div>
-            </div>
+            </article>
         </div>
     </div>
     {% endif %}

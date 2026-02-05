@@ -26,11 +26,12 @@
 
   <div class="horizontal-scroll">
   {% for kitten in featured %}
-  <div class="kitten-card clickable"
+  {% set availability_key = kitten.availability|lower %}
+  <div class="kitten-card clickable{% if availability_key != 'available' %} status-{{ availability_key }}{% endif %}"
        onclick="window.location.href='{{ url_for('kitten_details', kitten_id=kitten.id) }}'">
 
     <div class="kitten-image-wrap">
-      <img src="{{ kitten_image_url(kitten.folder, kitten.main_image or '1.jpg') }}" alt="{{ kitten.name }}">
+      <img src="{{ kitten.card_image_url }}" alt="{{ kitten.name }}">
 
       <span class="badge gender {{ kitten.gender|lower }}">
         {{ kitten.gender }}
@@ -40,8 +41,8 @@
         ${{ kitten.price }}
       </span>
 
-      {% if kitten.availability|lower != 'available' %}
-      <span class="badge status {{ kitten.availability|lower }}">
+      {% if availability_key != 'available' %}
+      <span class="badge status {{ availability_key }}">
         {{ kitten.availability }}
       </span>
       {% endif %}

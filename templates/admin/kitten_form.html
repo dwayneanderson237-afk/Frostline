@@ -92,6 +92,22 @@
     <label>Upload Gallery Images (JPG only)</label>
     <input type="file" name="images" multiple accept=".jpg,.jpeg">
 
+    <label>Gallery Image URLs (one per line)</label>
+    <textarea name="image_urls" rows="3" placeholder="https://...">{% if kitten %}{{ kitten.image_urls|join('\n') }}{% endif %}</textarea>
+
+    <label>Video URL (optional)</label>
+    <input type="text" name="video_url" value="{{ kitten.video_url if kitten else '' }}" placeholder="https://... or uploads/videos/...">
+
+    <label>Upload Video (MP4, WebM, MOV)</label>
+    <input type="file" name="video_upload" accept=".mp4,.webm,.mov">
+
+    {% if kitten and kitten.video_url %}
+    <label class="admin-checkbox">
+        <input type="checkbox" name="remove_video">
+        Remove current video
+    </label>
+    {% endif %}
+
     <h2>Parents</h2>
     <div class="admin-grid">
         <div>
@@ -111,6 +127,8 @@
             <input type="text" name="sire_image" value="{{ kitten.sire_image if kitten else '' }}" placeholder="uploads/parents/...">
         </div>
     </div>
+    <label>Sire About</label>
+    <textarea name="sire_about" rows="3" placeholder="Short profile for the sire.">{{ kitten.sire_about if kitten else '' }}</textarea>
     <label>Upload Sire Image</label>
     <input type="file" name="sire_image_upload" accept=".jpg,.jpeg,.png,.webp">
 
@@ -132,6 +150,8 @@
             <input type="text" name="dam_image" value="{{ kitten.dam_image if kitten else '' }}" placeholder="uploads/parents/...">
         </div>
     </div>
+    <label>Dam About</label>
+    <textarea name="dam_about" rows="3" placeholder="Short profile for the dam.">{{ kitten.dam_about if kitten else '' }}</textarea>
     <label>Upload Dam Image</label>
     <input type="file" name="dam_image_upload" accept=".jpg,.jpeg,.png,.webp">
 
