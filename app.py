@@ -1302,6 +1302,14 @@ def init_db():
             price REAL DEFAULT 0,
             weight TEXT,
             registration TEXT,
+            sire_name TEXT,
+            sire_weight TEXT,
+            sire_color TEXT,
+            sire_image TEXT,
+            dam_name TEXT,
+            dam_weight TEXT,
+            dam_color TEXT,
+            dam_image TEXT,
             folder TEXT,
             image_count INTEGER DEFAULT 0,
             featured INTEGER DEFAULT 0,
@@ -1330,6 +1338,14 @@ def init_db():
             "price": "REAL DEFAULT 0",
             "weight": "TEXT",
             "registration": "TEXT",
+            "sire_name": "TEXT",
+            "sire_weight": "TEXT",
+            "sire_color": "TEXT",
+            "sire_image": "TEXT",
+            "dam_name": "TEXT",
+            "dam_weight": "TEXT",
+            "dam_color": "TEXT",
+            "dam_image": "TEXT",
             "folder": "TEXT",
             "image_count": "INTEGER DEFAULT 0",
             "featured": "INTEGER DEFAULT 0",
@@ -1464,6 +1480,14 @@ def seed_defaults(conn):
             "price": kitten["price"],
             "weight": kitten.get("weight", ""),
             "registration": kitten.get("registration", ""),
+            "sire_name": kitten.get("sire_name", ""),
+            "sire_weight": kitten.get("sire_weight", ""),
+            "sire_color": kitten.get("sire_color", ""),
+            "sire_image": kitten.get("sire_image", ""),
+            "dam_name": kitten.get("dam_name", ""),
+            "dam_weight": kitten.get("dam_weight", ""),
+            "dam_color": kitten.get("dam_color", ""),
+            "dam_image": kitten.get("dam_image", ""),
             "folder": kitten["folder"],
             "image_count": kitten["image_count"],
             "featured": 1 if kitten["featured"] else 0,
@@ -1666,6 +1690,14 @@ def kitten_row_to_dict(row):
     kitten["price"] = float(kitten.get("price") or 0)
     kitten["weight"] = kitten.get("weight") or ""
     kitten["registration"] = kitten.get("registration") or ""
+    kitten["sire_name"] = kitten.get("sire_name") or ""
+    kitten["sire_weight"] = kitten.get("sire_weight") or ""
+    kitten["sire_color"] = kitten.get("sire_color") or ""
+    kitten["sire_image"] = kitten.get("sire_image") or ""
+    kitten["dam_name"] = kitten.get("dam_name") or ""
+    kitten["dam_weight"] = kitten.get("dam_weight") or ""
+    kitten["dam_color"] = kitten.get("dam_color") or ""
+    kitten["dam_image"] = kitten.get("dam_image") or ""
     kitten["image_count"] = int(kitten.get("image_count") or 0)
     kitten["featured"] = bool(kitten.get("featured"))
     kitten["good_with"] = decode_list(kitten.get("good_with"))
@@ -1883,6 +1915,25 @@ def save_kitten(kitten_id=None):
     if not folder:
         folder = slugify(name) or "kitten"
 
+    sire_image = request.form.get("sire_image", "").strip() or (existing.get("sire_image") if existing else "")
+    dam_image = request.form.get("dam_image", "").strip() or (existing.get("dam_image") if existing else "")
+
+    for parent_key in ("sire", "dam"):
+        upload = request.files.get(f"{parent_key}_image_upload")
+        if upload and upload.filename:
+            ext = os.path.splitext(upload.filename)[1].lower()
+            if ext not in ALLOWED_IMAGE_EXTS:
+                flash("Unsupported parent image type.", "error")
+                return redirect(request.url)
+            folder_path = os.path.join(app.config["UPLOADS_PATH"], "parents")
+            os.makedirs(folder_path, exist_ok=True)
+            filename = f"{slugify(name)}-{parent_key}{ext}"
+            upload.save(os.path.join(folder_path, filename))
+            if parent_key == "sire":
+                sire_image = f"uploads/parents/{filename}"
+            else:
+                dam_image = f"uploads/parents/{filename}"
+
     images = [f for f in request.files.getlist("images") if f and f.filename]
     image_count = int(request.form.get("image_count") or (existing["image_count"] if existing else 0))
 
@@ -1910,6 +1961,14 @@ def save_kitten(kitten_id=None):
         "price": float(request.form.get("price") or 0),
         "weight": request.form.get("weight", "").strip(),
         "registration": request.form.get("registration", "").strip(),
+        "sire_name": request.form.get("sire_name", "").strip(),
+        "sire_weight": request.form.get("sire_weight", "").strip(),
+        "sire_color": request.form.get("sire_color", "").strip(),
+        "sire_image": sire_image,
+        "dam_name": request.form.get("dam_name", "").strip(),
+        "dam_weight": request.form.get("dam_weight", "").strip(),
+        "dam_color": request.form.get("dam_color", "").strip(),
+        "dam_image": dam_image,
         "folder": folder,
         "image_count": image_count,
         "featured": 1 if request.form.get("featured") == "on" else 0,

@@ -29,6 +29,41 @@
                 {% endif %}
             </div>
 
+            <div class="parents-card">
+                <div class="panel-header">
+                    <h3>Parents</h3>
+                    <p>Lineage details from our pairing records.</p>
+                </div>
+                <div class="parents-grid">
+                    <div class="parent-card">
+                        <div class="parent-avatar">
+                            {% if kitten.sire_image %}
+                            <img src="{{ media_url(kitten.sire_image) }}" alt="{{ kitten.sire_name or 'Sire' }}">
+                            {% else %}
+                            <span>{{ (kitten.sire_name or 'S')[:1] }}</span>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h4>{{ kitten.sire_name or "Sire" }}</h4>
+                            <p>{{ kitten.sire_color or "—" }} • {{ kitten.sire_weight or "—" }}</p>
+                        </div>
+                    </div>
+                    <div class="parent-card">
+                        <div class="parent-avatar">
+                            {% if kitten.dam_image %}
+                            <img src="{{ media_url(kitten.dam_image) }}" alt="{{ kitten.dam_name or 'Dam' }}">
+                            {% else %}
+                            <span>{{ (kitten.dam_name or 'D')[:1] }}</span>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <h4>{{ kitten.dam_name or "Dam" }}</h4>
+                            <p>{{ kitten.dam_color or "—" }} • {{ kitten.dam_weight or "—" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="kitten-form-section">
                 <div id="kittenFormContainer" class="kitten-form-container">
                     <form id="kittenForm"></form>

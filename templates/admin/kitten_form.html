@@ -87,6 +87,49 @@
     <label>Upload Gallery Images (JPG only)</label>
     <input type="file" name="images" multiple accept=".jpg,.jpeg">
 
+    <h2>Parents</h2>
+    <div class="admin-grid">
+        <div>
+            <label>Sire Name</label>
+            <input type="text" name="sire_name" value="{{ kitten.sire_name if kitten else '' }}">
+        </div>
+        <div>
+            <label>Sire Weight</label>
+            <input type="text" name="sire_weight" value="{{ kitten.sire_weight if kitten else '' }}" placeholder="e.g., 18 lbs">
+        </div>
+        <div>
+            <label>Sire Color</label>
+            <input type="text" name="sire_color" value="{{ kitten.sire_color if kitten else '' }}">
+        </div>
+        <div>
+            <label>Sire Image Path</label>
+            <input type="text" name="sire_image" value="{{ kitten.sire_image if kitten else '' }}" placeholder="uploads/parents/...">
+        </div>
+    </div>
+    <label>Upload Sire Image</label>
+    <input type="file" name="sire_image_upload" accept=".jpg,.jpeg,.png,.webp">
+
+    <div class="admin-grid" style="margin-top: 18px;">
+        <div>
+            <label>Dam Name</label>
+            <input type="text" name="dam_name" value="{{ kitten.dam_name if kitten else '' }}">
+        </div>
+        <div>
+            <label>Dam Weight</label>
+            <input type="text" name="dam_weight" value="{{ kitten.dam_weight if kitten else '' }}" placeholder="e.g., 14 lbs">
+        </div>
+        <div>
+            <label>Dam Color</label>
+            <input type="text" name="dam_color" value="{{ kitten.dam_color if kitten else '' }}">
+        </div>
+        <div>
+            <label>Dam Image Path</label>
+            <input type="text" name="dam_image" value="{{ kitten.dam_image if kitten else '' }}" placeholder="uploads/parents/...">
+        </div>
+    </div>
+    <label>Upload Dam Image</label>
+    <input type="file" name="dam_image_upload" accept=".jpg,.jpeg,.png,.webp">
+
     <button type="submit" class="admin-btn primary">
         {{ "Create Kitten" if mode == "new" else "Save Changes" }}
     </button>
