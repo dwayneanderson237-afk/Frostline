@@ -444,6 +444,12 @@ DEFAULT_TESTIMONIALS = [
 
 DEFAULT_SECTIONS = [
     {
+        "key": "logo",
+        "title": "Frostline Coons",
+        "body": "",
+        "image": ""
+    },
+    {
         "key": "hero",
         "title": "Frostline Coons",
         "body": (
@@ -451,6 +457,18 @@ DEFAULT_SECTIONS = [
             "We don’t rush kittens into the world — we raise companions for life."
         ),
         "image": "images/hero_kitten.jpg"
+    },
+    {
+        "key": "hero_slide_2",
+        "title": "Raised for Real Homes",
+        "body": "Daily handling, gentle routines, and confident temperaments built from the very start.",
+        "image": "images/hero_home.jpg"
+    },
+    {
+        "key": "hero_slide_3",
+        "title": "Safe Travel, Calm Arrivals",
+        "body": "Thoughtful travel planning by ground or air, with comfort and communication throughout.",
+        "image": "images/hero_delivery.jpg"
     },
     {
         "key": "story",
@@ -1681,7 +1699,12 @@ def kitten_image_url(folder, filename):
 
 @app.context_processor
 def inject_media_helpers():
-    return {"media_url": media_url, "kitten_image_url": kitten_image_url}
+    sections = fetch_sections()
+    return {
+        "media_url": media_url,
+        "kitten_image_url": kitten_image_url,
+        "site_sections": sections,
+    }
 
 
 def kitten_row_to_dict(row):

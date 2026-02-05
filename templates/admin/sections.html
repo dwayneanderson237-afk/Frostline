@@ -4,7 +4,7 @@
 <div class="admin-header">
     <div>
         <h1>Site Content</h1>
-        <p>Edit homepage sections plus kitten detail content blocks.</p>
+        <p>Edit logo, hero slides, homepage sections, and kitten detail content blocks.</p>
     </div>
 </div>
 
@@ -13,18 +13,28 @@
     {% set key = section.section_key %}
     <div class="admin-section-card">
         <h2>{{ section.title }}</h2>
+        {% if key == "logo" %}
+        <label>Logo Alt Text</label>
+        <input type="text" name="{{ key }}_title" value="{{ section.title }}">
+        <input type="hidden" name="{{ key }}_body" value="{{ section.body }}">
+        {% else %}
         <label>Title</label>
         <input type="text" name="{{ key }}_title" value="{{ section.title }}">
+        {% endif %}
 
         {% if key in ["travel", "health_check", "adoption_journey"] %}
         <label>Body (one item per line — use "Title | Description" for cards/steps)</label>
         {% else %}
+        {% if key != "logo" %}
         <label>Body (separate paragraphs with a blank line)</label>
         {% endif %}
+        {% endif %}
+        {% if key != "logo" %}
         <textarea name="{{ key }}_body" rows="6">{{ section.body }}</textarea>
+        {% endif %}
 
         {% if key not in ["travel", "health_check", "adoption_journey"] %}
-        <label>Image Path</label>
+        <label>{% if key == "logo" %}Logo Image Path{% else %}Image Path{% endif %}</label>
         <input type="text" name="{{ key }}_image" value="{{ section.image }}">
 
         <label>Upload New Image</label>

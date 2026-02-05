@@ -27,7 +27,16 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo"><a href="{{ url_for('index') }}">Frostline Coons</a></div>
+        {% set logo = site_sections.get('logo') if site_sections else None %}
+        <div class="logo">
+            <a href="{{ url_for('index') }}" class="logo-link" aria-label="Frostline Coons Home">
+                {% if logo and logo.image %}
+                <img src="{{ media_url(logo.image) }}" alt="{{ logo.title or 'Frostline Coons' }}">
+                {% else %}
+                <span>Frostline Coons</span>
+                {% endif %}
+            </a>
+        </div>
         <ul class="nav-links">
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('available_kittens') }}">Available Kittens</a></li>

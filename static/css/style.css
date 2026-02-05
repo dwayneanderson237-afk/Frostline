@@ -51,6 +51,19 @@ img {
   opacity: 0.85;
 }
 
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-link img {
+  height: 36px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
 .navbar ul.nav-links {
   list-style: none;
   display: flex;

@@ -2,29 +2,15 @@
 {% block content %}
 
 {% set hero = sections.get('hero') %}
-{% set hero_slides = [
-  {
-    'image': hero.image if hero and hero.image else 'images/hero_kitten.jpg',
-    'title': hero.title if hero else 'Frostline Coons',
-    'body': hero.body if hero else 'A cattery built on patience, ethics, and devotion. We don’t rush kittens into the world — we raise companions for life.'
-  },
-  {
-    'image': 'images/hero_home.jpg',
-    'title': 'Raised for Real Homes',
-    'body': 'Daily handling, gentle routines, and confident temperaments built from the very start.'
-  },
-  {
-    'image': 'images/hero_delivery.jpg',
-    'title': 'Safe Travel, Calm Arrivals',
-    'body': 'Thoughtful travel planning by ground or air, with comfort and communication throughout.'
-  }
-] %}
+{% set slide_two = sections.get('hero_slide_2') %}
+{% set slide_three = sections.get('hero_slide_3') %}
+{% set hero_slides = [hero, slide_two, slide_three] %}
 <section class="hero hero-slider">
   <div class="hero-slides">
-    {% for slide in hero_slides %}
+    {% for slide in hero_slides if slide %}
     <div class="hero-slide{% if loop.first %} is-active{% endif %}"
-         style="background-image: linear-gradient(to bottom, rgba(44,42,40,0.35), rgba(240,235,227,0.82)),
-                url('{{ media_url(slide.image) }}');">
+         style="background-image: linear-gradient(to bottom, rgba(44,42,40,0.28), rgba(240,235,227,0.68)),
+                url('{{ media_url(slide.image or 'images/hero_kitten.jpg') }}');">
       <div class="hero-text">
         <h1>{{ slide.title }}</h1>
         <p>{{ slide.body }}</p>
