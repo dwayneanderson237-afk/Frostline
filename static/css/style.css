@@ -159,12 +159,40 @@ img {
 
 /* -------------------- HERO -------------------- */
 .hero {
-  height: 85vh;
+  min-height: 85vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slides {
+  position: relative;
+  min-height: 85vh;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   padding: 0 10%;
-  background: linear-gradient(to bottom, rgba(44,42,40,0.5), #f0ebe3),
-              url("/static/images/hero_kitten.jpg") center/cover no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  pointer-events: none;
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.hero-slide .hero-text {
+  max-width: 640px;
+  color: #f5f0e8;
+  text-shadow: 0 12px 30px rgba(0,0,0,0.35);
 }
 
 .hero-text h1 {
@@ -175,6 +203,17 @@ img {
 .hero-text p {
   max-width: 600px;
   font-size: 1.2rem;
+}
+
+@media screen and (max-width: 800px) {
+  .hero,
+  .hero-slides {
+    min-height: 70vh;
+  }
+
+  .hero-slide {
+    padding: 0 7%;
+  }
 }
 
 .cta-btn {

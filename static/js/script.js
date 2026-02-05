@@ -12,6 +12,17 @@ document.addEventListener("click", function (e) {
   }
 });
 
+/* -------------------- HERO SLIDER -------------------- */
+const heroSlides = document.querySelectorAll(".hero-slide");
+if (heroSlides.length > 1 && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  let heroIndex = 0;
+  setInterval(() => {
+    heroSlides[heroIndex].classList.remove("is-active");
+    heroIndex = (heroIndex + 1) % heroSlides.length;
+    heroSlides[heroIndex].classList.add("is-active");
+  }, 6500);
+}
+
 /* -------------------- FORM LOGIC -------------------- */
 function openKittenForm(type, kittenId, kittenName, kittenPrice) {
   const container = document.getElementById("kittenForm");

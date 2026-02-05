@@ -2,15 +2,36 @@
 {% block content %}
 
 {% set hero = sections.get('hero') %}
-{% set hero_image = hero.image if hero and hero.image else 'images/hero_kitten.jpg' %}
-<section class="hero" style="background: linear-gradient(to bottom, rgba(44,42,40,0.5), #f0ebe3),
-              url('{{ media_url(hero_image) }}') center/cover no-repeat;">
-  <div class="hero-text">
-    <h1>{{ hero.title if hero else "Frostline Coons" }}</h1>
-    <p>
-      {{ hero.body if hero else "A cattery built on patience, ethics, and devotion. We don’t rush kittens into the world — we raise companions for life." }}
-    </p>
-    <a href="/available_kittens" class="cta-btn">View Available Kittens</a>
+{% set hero_slides = [
+  {
+    'image': hero.image if hero and hero.image else 'images/hero_kitten.jpg',
+    'title': hero.title if hero else 'Frostline Coons',
+    'body': hero.body if hero else 'A cattery built on patience, ethics, and devotion. We don’t rush kittens into the world — we raise companions for life.'
+  },
+  {
+    'image': 'images/hero_home.jpg',
+    'title': 'Raised for Real Homes',
+    'body': 'Daily handling, gentle routines, and confident temperaments built from the very start.'
+  },
+  {
+    'image': 'images/hero_delivery.jpg',
+    'title': 'Safe Travel, Calm Arrivals',
+    'body': 'Thoughtful travel planning by ground or air, with comfort and communication throughout.'
+  }
+] %}
+<section class="hero hero-slider">
+  <div class="hero-slides">
+    {% for slide in hero_slides %}
+    <div class="hero-slide{% if loop.first %} is-active{% endif %}"
+         style="background-image: linear-gradient(to bottom, rgba(44,42,40,0.35), rgba(240,235,227,0.82)),
+                url('{{ media_url(slide.image) }}');">
+      <div class="hero-text">
+        <h1>{{ slide.title }}</h1>
+        <p>{{ slide.body }}</p>
+        <a href="/available_kittens" class="cta-btn">View Available Kittens</a>
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </section>
 

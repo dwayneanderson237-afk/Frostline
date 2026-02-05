@@ -2431,7 +2431,7 @@ def index():
 
 @app.route("/available_kittens")
 def available_kittens():
-    kittens = fetch_kittens()
+    kittens = fetch_kittens()[:12]
     meta_image = "images/hero_kitten.jpg"
     if kittens:
         first = kittens[0]
