@@ -13,7 +13,7 @@
     {% for post in posts %}
     <article class="blog-card">
       <a href="{{ url_for('blog_post', slug=post.slug) }}">
-        <img src="{{ url_for('static', filename=post.cover_image or 'images/hero_kitten.jpg') }}" alt="{{ post.title }}">
+        <img src="{{ media_url(post.cover_image or 'images/hero_kitten.jpg') }}" alt="{{ post.title }}">
       </a>
       <div class="blog-card-body">
         <span class="blog-date">{{ post.published_at }}</span>

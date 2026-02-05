@@ -7,7 +7,7 @@
         {% for kitten in kittens %}
         <div class="kitten-card">
           <div class="kitten-image-wrap">
-            <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ (kitten.main_image or '1.jpg')) }}" alt="{{ kitten.name }}">
+            <img src="{{ kitten_image_url(kitten.folder, kitten.main_image or '1.jpg') }}" alt="{{ kitten.name }}">
 
             <span class="badge gender {{ kitten.gender|lower }}">
               {{ kitten.gender }}

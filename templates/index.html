@@ -4,7 +4,7 @@
 {% set hero = sections.get('hero') %}
 {% set hero_image = hero.image if hero and hero.image else 'images/hero_kitten.jpg' %}
 <section class="hero" style="background: linear-gradient(to bottom, rgba(44,42,40,0.5), #f0ebe3),
-              url('{{ url_for('static', filename=hero_image) }}') center/cover no-repeat;">
+              url('{{ media_url(hero_image) }}') center/cover no-repeat;">
   <div class="hero-text">
     <h1>{{ hero.title if hero else "Frostline Coons" }}</h1>
     <p>
@@ -23,7 +23,7 @@
        onclick="window.location.href='{{ url_for('kitten_details', kitten_id=kitten.id) }}'">
 
     <div class="kitten-image-wrap">
-      <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ (kitten.main_image or '1.jpg')) }}" alt="{{ kitten.name }}">
+      <img src="{{ kitten_image_url(kitten.folder, kitten.main_image or '1.jpg') }}" alt="{{ kitten.name }}">
 
       <span class="badge gender {{ kitten.gender|lower }}">
         {{ kitten.gender }}
@@ -61,7 +61,7 @@
       {% endfor %}
     </div>
     <div class="image">
-      <img src="{{ url_for('static', filename=story.image) }}" alt="{{ story.title }}">
+      <img src="{{ media_url(story.image) }}" alt="{{ story.title }}">
     </div>
   </div>
   {% endif %}
@@ -76,7 +76,7 @@
       {% endfor %}
     </div>
     <div class="image">
-      <img src="{{ url_for('static', filename=health.image) }}" alt="{{ health.title }}">
+      <img src="{{ media_url(health.image) }}" alt="{{ health.title }}">
     </div>
   </div>
   {% endif %}
@@ -91,7 +91,7 @@
       {% endfor %}
     </div>
     <div class="image">
-      <img src="{{ url_for('static', filename=mission.image) }}" alt="{{ mission.title }}">
+      <img src="{{ media_url(mission.image) }}" alt="{{ mission.title }}">
     </div>
   </div>
   {% endif %}
@@ -103,7 +103,7 @@
   <div class="testimonial-track">
     {% for t in testimonials %}
     <div class="testimonial-card">
-      <img src="{{ url_for('static', filename=t.image) }}" alt="{{ t.author }}">
+      <img src="{{ media_url(t.image) }}" alt="{{ t.author }}">
       <p>
         "{{ t.quote }}"
       </p>

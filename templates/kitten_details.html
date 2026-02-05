@@ -6,23 +6,23 @@
         <div class="image-carousel">
             <div class="gallery-main">
                 <img id="mainImage"
-                     src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ (kitten.main_image or '1.jpg')) }}"
+                     src="{{ kitten_image_url(kitten.folder, kitten.main_image or '1.jpg') }}"
                      alt="{{ kitten.name }}">
             </div>
             <div class="gallery-thumbs">
                 {% if kitten.images %}
                 {% for img in kitten.images %}
                 <button class="gallery-thumb" type="button"
-                        data-full="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ img) }}">
-                    <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ img) }}"
+                        data-full="{{ kitten_image_url(kitten.folder, img) }}">
+                    <img src="{{ kitten_image_url(kitten.folder, img) }}"
                          alt="{{ kitten.name }} thumbnail">
                 </button>
                 {% endfor %}
                 {% else %}
                 {% for i in range(1, kitten.image_count + 1) %}
                 <button class="gallery-thumb" type="button"
-                        data-full="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ i ~ '.jpg') }}">
-                    <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ i ~ '.jpg') }}"
+                        data-full="{{ kitten_image_url(kitten.folder, i ~ '.jpg') }}">
+                    <img src="{{ kitten_image_url(kitten.folder, i ~ '.jpg') }}"
                          alt="{{ kitten.name }} thumbnail {{ i }}">
                 </button>
                 {% endfor %}
@@ -52,6 +52,14 @@
                 <div class="meta-item">
                     <span>Gender</span>
                     <strong>{{ kitten.gender }}</strong>
+                </div>
+                <div class="meta-item">
+                    <span>Weight</span>
+                    <strong>{{ kitten.weight or "—" }}</strong>
+                </div>
+                <div class="meta-item">
+                    <span>Registration</span>
+                    <strong>{{ kitten.registration or "—" }}</strong>
                 </div>
                 <div class="meta-item">
                     <span>Personality</span>
@@ -93,6 +101,68 @@
                 <p>{{ kitten.health_details }}</p>
             </div>
         </div>
+    </div>
+
+    <div class="kitten-extras">
+        {% set travel = sections.get('travel') %}
+        {% if travel %}
+        <div class="kitten-panel travel-panel">
+            <div class="panel-header">
+                <h3>{{ travel.title }}</h3>
+                <p>Safe options tailored to your location and timeline.</p>
+            </div>
+            <div class="travel-grid">
+                {% for line in travel.body.splitlines() if line.strip() %}
+                {% set parts = line.split('|', 1) %}
+                <div class="travel-card">
+                    <h4>{{ parts[0].strip() }}</h4>
+                    {% if parts|length > 1 %}
+                    <p>{{ parts[1].strip() }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% set health_check = sections.get('health_check') %}
+        {% if health_check %}
+        <div class="kitten-panel health-panel">
+            <div class="panel-header">
+                <h3>{{ health_check.title }}</h3>
+                <p>Everything included for a confident, healthy start.</p>
+            </div>
+            <ul class="health-list">
+                {% for line in health_check.body.splitlines() if line.strip() %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% set journey = sections.get('adoption_journey') %}
+        {% if journey %}
+        <div class="kitten-panel journey-panel">
+            <div class="panel-header">
+                <h3>{{ journey.title }}</h3>
+                <p>A simple, guided path from reservation to home.</p>
+            </div>
+            <div class="journey-steps">
+                {% for line in journey.body.splitlines() if line.strip() %}
+                {% set parts = line.split('|', 1) %}
+                <div class="journey-step">
+                    <div class="step-number">{{ loop.index }}</div>
+                    <div>
+                        <h4>{{ parts[0].strip() }}</h4>
+                        {% if parts|length > 1 %}
+                        <p>{{ parts[1].strip() }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
     </div>
 </section>
 

@@ -872,6 +872,116 @@ img {
   border: 1px solid rgba(44, 42, 40, 0.12);
 }
 
+.kitten-extras {
+  margin-top: 70px;
+  display: grid;
+  gap: 28px;
+}
+
+.kitten-panel {
+  background: rgba(255,255,255,0.82);
+  border-radius: 26px;
+  padding: 28px;
+  border: 1px solid rgba(44, 42, 40, 0.08);
+  box-shadow: 0 28px 70px rgba(0,0,0,0.12);
+}
+
+.panel-header h3 {
+  margin: 0 0 6px;
+  font-size: 1.6rem;
+}
+
+.panel-header p {
+  margin: 0 0 20px;
+  color: #4a453f;
+}
+
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.travel-card {
+  background: rgba(232,223,210,0.75);
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid rgba(44, 42, 40, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.travel-card h4 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.travel-card p {
+  margin: 0;
+  color: #4a453f;
+  font-size: 0.95rem;
+}
+
+.health-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+}
+
+.health-list li {
+  position: relative;
+  padding-left: 28px;
+  color: #3f3a34;
+}
+
+.health-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 6px;
+  top: 0;
+  color: #c9b29b;
+  font-weight: 700;
+}
+
+.journey-steps {
+  display: grid;
+  gap: 14px;
+}
+
+.journey-step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: rgba(232,223,210,0.65);
+  border-radius: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(44, 42, 40, 0.1);
+}
+
+.journey-step h4 {
+  margin: 0 0 6px;
+}
+
+.journey-step p {
+  margin: 0;
+  color: #4a453f;
+}
+
+.step-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2c2a28;
+  color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
 @media screen and (max-width: 1000px) {
   .details-grid {
     grid-template-columns: 1fr;
@@ -889,6 +999,15 @@ img {
 
   .kitten-info {
     padding: 24px;
+  }
+
+  .travel-grid,
+  .health-list {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-step {
+    flex-direction: column;
   }
 }
 

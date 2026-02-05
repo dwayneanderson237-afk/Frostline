@@ -5,7 +5,18 @@ import smtplib
 from functools import wraps
 from email.message import EmailMessage
 
-from flask import Flask, render_template, abort, request, redirect, url_for, session, flash, Response
+from flask import (
+    Flask,
+    render_template,
+    abort,
+    request,
+    redirect,
+    url_for,
+    session,
+    flash,
+    Response,
+    send_from_directory,
+)
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -22,6 +33,9 @@ app.config["SMTP_FROM"] = os.environ.get("SMTP_FROM", "info@frostlinecoons.com")
 app.config["SMTP_TO"] = os.environ.get("SMTP_TO", "info@frostlinecoons.com")
 app.config["RESERVATION_DEPOSIT"] = float(os.environ.get("RESERVATION_DEPOSIT", "300"))
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
+app.config["UPLOADS_PATH"] = os.environ.get(
+    "UPLOADS_PATH", os.path.join(app.root_path, "static", "uploads")
+)
 
 DATABASE = os.environ.get(
     "DATABASE_PATH", os.path.join(app.root_path, "frostline_coons.db")
@@ -482,6 +496,43 @@ DEFAULT_SECTIONS = [
             "confident, and deeply social."
         ),
         "image": "images/mission.jpg"
+    },
+    {
+        "key": "travel",
+        "title": "How I Travel to You",
+        "body": (
+            "Flight Nanny | Hand-delivered in cabin with a dedicated caregiver.\n"
+            "Air Cargo | Climate-controlled travel with direct flights when possible.\n"
+            "Ground Nanny | Personal ground transport with comfort breaks built in.\n"
+            "Owner Pickup | Meet at our cattery or a nearby airport for handoff."
+        ),
+        "image": ""
+    },
+    {
+        "key": "health_check",
+        "title": "Health Check & Guarantees",
+        "body": (
+            "Veterinary health exam\n"
+            "Age-appropriate vaccinations\n"
+            "Deworming schedule completed\n"
+            "FIV/FeLV screening\n"
+            "Health certificate (when required)\n"
+            "Wellness records provided\n"
+            "Early socialization and handling\n"
+            "Nutrition plan and transition guide"
+        ),
+        "image": ""
+    },
+    {
+        "key": "adoption_journey",
+        "title": "Your Adoption Journey",
+        "body": (
+            "Choose & Reserve | Select your kitten and place a reservation.\n"
+            "Prepare & Plan | We confirm timing, care checklist, and travel plan.\n"
+            "Safe Delivery | Your kitten travels with updates and comfort care.\n"
+            "Homecoming Support | We guide you through the first days at home."
+        ),
+        "image": ""
     }
 ]
 
@@ -1249,6 +1300,8 @@ def init_db():
             gender TEXT,
             personality TEXT,
             price REAL DEFAULT 0,
+            weight TEXT,
+            registration TEXT,
             folder TEXT,
             image_count INTEGER DEFAULT 0,
             featured INTEGER DEFAULT 0,
@@ -1275,6 +1328,8 @@ def init_db():
             "gender": "TEXT",
             "personality": "TEXT",
             "price": "REAL DEFAULT 0",
+            "weight": "TEXT",
+            "registration": "TEXT",
             "folder": "TEXT",
             "image_count": "INTEGER DEFAULT 0",
             "featured": "INTEGER DEFAULT 0",
@@ -1407,6 +1462,8 @@ def seed_defaults(conn):
             "gender": kitten["gender"],
             "personality": kitten["personality"],
             "price": kitten["price"],
+            "weight": kitten.get("weight", ""),
+            "registration": kitten.get("registration", ""),
             "folder": kitten["folder"],
             "image_count": kitten["image_count"],
             "featured": 1 if kitten["featured"] else 0,
@@ -1558,10 +1615,57 @@ def parse_list_text(value):
     return [item.strip() for item in value.split(",") if item.strip()]
 
 
+def is_external_url(value):
+    return value.startswith("http://") or value.startswith("https://")
+
+
+def media_url(path):
+    if not path:
+        return ""
+    if is_external_url(path):
+        return path
+    if path.startswith("/uploads/"):
+        return path
+    if path.startswith("/static/"):
+        return path
+    if path.startswith("uploads/"):
+        return url_for("uploaded_file", filename=path[len("uploads/"):])
+    return url_for("static", filename=path)
+
+
+def kitten_folder_paths(folder):
+    upload_root = os.path.join(app.config["UPLOADS_PATH"], "kittens")
+    upload_path = os.path.join(upload_root, folder)
+    static_path = os.path.join(app.root_path, "static", "images", folder)
+    if os.path.isdir(upload_path):
+        return upload_path, True
+    if os.path.isdir(static_path):
+        return static_path, False
+    return upload_path, True
+
+
+def kitten_image_url(folder, filename):
+    if not folder:
+        return url_for("static", filename="images/hero_kitten.jpg")
+    folder_path, uses_uploads = kitten_folder_paths(folder)
+    if uses_uploads:
+        return url_for(
+            "uploaded_file", filename=f"kittens/{folder}/{filename}"
+        )
+    return url_for("static", filename=f"images/{folder}/{filename}")
+
+
+@app.context_processor
+def inject_media_helpers():
+    return {"media_url": media_url, "kitten_image_url": kitten_image_url}
+
+
 def kitten_row_to_dict(row):
     kitten = dict(row)
     kitten["age"] = int(kitten.get("age") or 0)
     kitten["price"] = float(kitten.get("price") or 0)
+    kitten["weight"] = kitten.get("weight") or ""
+    kitten["registration"] = kitten.get("registration") or ""
     kitten["image_count"] = int(kitten.get("image_count") or 0)
     kitten["featured"] = bool(kitten.get("featured"))
     kitten["good_with"] = decode_list(kitten.get("good_with"))
@@ -1728,7 +1832,7 @@ def slugify(value):
 def list_kitten_images(folder):
     if not folder:
         return []
-    folder_path = os.path.join(app.root_path, "static", "images", folder)
+    folder_path, _ = kitten_folder_paths(folder)
     if not os.path.isdir(folder_path):
         return []
     files = [
@@ -1749,7 +1853,7 @@ def list_kitten_images(folder):
 def set_main_image(folder, filename):
     if not folder or not filename:
         return
-    folder_path = os.path.join(app.root_path, "static", "images", folder)
+    folder_path, _ = kitten_folder_paths(folder)
     target = os.path.join(folder_path, filename)
     main = os.path.join(folder_path, "1.jpg")
     if not os.path.exists(target):
@@ -1784,7 +1888,7 @@ def save_kitten(kitten_id=None):
 
     if images:
         try:
-            folder_path = os.path.join(app.root_path, "static", "images", folder)
+            folder_path = os.path.join(app.config["UPLOADS_PATH"], "kittens", folder)
             saved = save_uploaded_files(images, folder_path, ALLOWED_KITTEN_IMAGE_EXTS)
             image_count = len(saved)
         except ValueError as exc:
@@ -1804,6 +1908,8 @@ def save_kitten(kitten_id=None):
         "gender": request.form.get("gender", "").strip(),
         "personality": request.form.get("personality", "").strip(),
         "price": float(request.form.get("price") or 0),
+        "weight": request.form.get("weight", "").strip(),
+        "registration": request.form.get("registration", "").strip(),
         "folder": folder,
         "image_count": image_count,
         "featured": 1 if request.form.get("featured") == "on" else 0,
@@ -1855,11 +1961,11 @@ def save_testimonial(testimonial_id=None):
         if ext not in ALLOWED_IMAGE_EXTS:
             flash("Unsupported image type.", "error")
             return redirect(request.url)
-        folder = os.path.join(app.root_path, "static", "images", "testimonials")
+        folder = os.path.join(app.config["UPLOADS_PATH"], "testimonials")
         os.makedirs(folder, exist_ok=True)
         filename = f"{slugify(author) or 'testimonial'}{ext}"
         upload.save(os.path.join(folder, filename))
-        image_path = f"images/testimonials/{filename}"
+        image_path = f"uploads/testimonials/{filename}"
 
     conn = get_db()
     if testimonial_id:
@@ -1910,11 +2016,11 @@ def save_blog_post(post_id=None):
         if ext not in ALLOWED_IMAGE_EXTS:
             flash("Unsupported image type.", "error")
             return redirect(request.url)
-        folder = os.path.join(app.root_path, "static", "images", "blog")
+        folder = os.path.join(app.config["UPLOADS_PATH"], "blog")
         os.makedirs(folder, exist_ok=True)
         filename = f"{base_slug}{ext}"
         upload.save(os.path.join(folder, filename))
-        cover_image = f"images/blog/{filename}"
+        cover_image = f"uploads/blog/{filename}"
 
     conn = get_db()
     slug = ensure_unique_slug(conn, base_slug, post_id)
@@ -1987,11 +2093,11 @@ def save_delivery_page():
         if ext not in ALLOWED_IMAGE_EXTS:
             flash("Unsupported hero image type.", "error")
             return redirect(request.url)
-        folder = os.path.join(app.root_path, "static", "images", "pages")
+        folder = os.path.join(app.config["UPLOADS_PATH"], "pages")
         os.makedirs(folder, exist_ok=True)
         filename = f"delivery-hero{ext}"
         hero_upload.save(os.path.join(folder, filename))
-        hero_image = f"images/pages/{filename}"
+        hero_image = f"uploads/pages/{filename}"
 
     steps = []
     for idx in range(1, 4):
@@ -2013,11 +2119,11 @@ def save_delivery_page():
             if ext not in ALLOWED_IMAGE_EXTS:
                 flash("Unsupported block image type.", "error")
                 return redirect(request.url)
-            folder = os.path.join(app.root_path, "static", "images", "pages")
+            folder = os.path.join(app.config["UPLOADS_PATH"], "pages")
             os.makedirs(folder, exist_ok=True)
             filename = f"delivery-block-{idx}{ext}"
             upload.save(os.path.join(folder, filename))
-            block_image = f"images/pages/{filename}"
+            block_image = f"uploads/pages/{filename}"
 
         if block_title or block_body or block_image:
             blocks.append(
@@ -2077,11 +2183,11 @@ def save_generic_page(slug):
         if ext not in ALLOWED_IMAGE_EXTS:
             flash("Unsupported hero image type.", "error")
             return redirect(request.url)
-        folder = os.path.join(app.root_path, "static", "images", "pages")
+        folder = os.path.join(app.config["UPLOADS_PATH"], "pages")
         os.makedirs(folder, exist_ok=True)
         filename = f"{slug}-hero{ext}"
         hero_upload.save(os.path.join(folder, filename))
-        hero_image = f"images/pages/{filename}"
+        hero_image = f"uploads/pages/{filename}"
 
     blocks = []
     for idx in range(1, 5):
@@ -2096,11 +2202,11 @@ def save_generic_page(slug):
             if ext not in ALLOWED_IMAGE_EXTS:
                 flash("Unsupported block image type.", "error")
                 return redirect(request.url)
-            folder = os.path.join(app.root_path, "static", "images", "pages")
+            folder = os.path.join(app.config["UPLOADS_PATH"], "pages")
             os.makedirs(folder, exist_ok=True)
             filename = f"{slug}-block-{idx}{ext}"
             upload.save(os.path.join(folder, filename))
-            block_image = f"images/pages/{filename}"
+            block_image = f"uploads/pages/{filename}"
 
         if block_title or block_body or block_image:
             blocks.append(
@@ -2254,7 +2360,7 @@ def index():
             "Ethically raised Maine Coon kittens with loving socialization, "
             "health-focused care, and lifelong support."
         ),
-        meta_image=url_for("static", filename=hero_image),
+        meta_image=media_url(hero_image),
     )
 
 
@@ -2266,13 +2372,13 @@ def available_kittens():
         first = kittens[0]
         main_image = first.get("main_image") or "1.jpg"
         if first.get("folder"):
-            meta_image = f"images/{first['folder']}/{main_image}"
+            meta_image = kitten_image_url(first["folder"], main_image)
     return render_template(
         "available_kittens.html",
         kittens=kittens,
         meta_title="Available Maine Coon Kittens | Frostline Coons",
         meta_description="View available Maine Coon kittens, pricing, and details. Reserve or inquire today.",
-        meta_image=url_for("static", filename=meta_image),
+        meta_image=meta_image if meta_image.startswith("/") else media_url(meta_image),
     )
 
 
@@ -2281,17 +2387,23 @@ def kitten_details(kitten_id):
     kitten = fetch_kitten(kitten_id)
     if not kitten:
         abort(404)
+    sections = fetch_sections()
     main_image = kitten.get("main_image") or "1.jpg"
-    meta_image = f"images/{kitten['folder']}/{main_image}" if kitten.get("folder") else "images/hero_kitten.jpg"
+    meta_image = (
+        kitten_image_url(kitten["folder"], main_image)
+        if kitten.get("folder")
+        else media_url("images/hero_kitten.jpg")
+    )
     return render_template(
         "kitten_details.html",
         kitten=kitten,
+        sections=sections,
         reservation_deposit=app.config["RESERVATION_DEPOSIT"],
         meta_title=f"{kitten.get('name', 'Kitten')} | Frostline Coons",
         meta_description=kitten.get("description")
         or kitten.get("bio")
         or "Meet this Maine Coon kitten and learn about personality, care, and availability.",
-        meta_image=url_for("static", filename=meta_image),
+        meta_image=meta_image,
     )
 
 
@@ -2378,7 +2490,7 @@ def delivery():
         page=page,
         meta_title=page.get("meta_title") or page.get("title") or "Delivery & Arrival",
         meta_description=page.get("meta_description") or page.get("hero_body"),
-        meta_image=url_for("static", filename=page.get("hero_image") or "images/hero_delivery.jpg"),
+        meta_image=media_url(page.get("hero_image") or "images/hero_delivery.jpg"),
     )
 
 
@@ -2391,7 +2503,7 @@ def render_generic_page(slug):
         page=page,
         meta_title=page.get("meta_title") or page.get("title"),
         meta_description=page.get("meta_description") or page.get("hero_body"),
-        meta_image=url_for("static", filename=page.get("hero_image") or "images/hero_kitten.jpg"),
+        meta_image=media_url(page.get("hero_image") or "images/hero_kitten.jpg"),
     )
 
 
@@ -2418,7 +2530,7 @@ def blog_index():
         posts=posts,
         meta_title="Maine Coon Blog | Frostline Coons",
         meta_description="Maine Coon care guides, breed insights, and kitten tips from Frostline Coons.",
-        meta_image=url_for("static", filename="images/hero_kitten.jpg"),
+        meta_image=media_url("images/hero_kitten.jpg"),
     )
 
 
@@ -2433,7 +2545,7 @@ def blog_post(slug):
         post=post,
         meta_title=post.get("meta_title") or post.get("title") or "Maine Coon Blog",
         meta_description=post.get("meta_description") or post.get("excerpt"),
-        meta_image=url_for("static", filename=cover),
+        meta_image=media_url(cover),
         og_type="article",
     )
 
@@ -2472,6 +2584,11 @@ def robots():
     base_url = request.url_root.rstrip("/")
     content = "User-agent: *\nAllow: /\nSitemap: " + f"{base_url}/sitemap.xml\n"
     return Response(content, mimetype="text/plain")
+
+
+@app.route("/uploads/<path:filename>")
+def uploaded_file(filename):
+    return send_from_directory(app.config["UPLOADS_PATH"], filename)
 
 
 @app.route("/admin/login", methods=["GET", "POST"])
@@ -2593,7 +2710,7 @@ def admin_kittens_delete_image(kitten_id):
         flash("At least one image is required.", "error")
         return redirect(url_for("admin_kittens_edit", kitten_id=kitten_id))
 
-    folder_path = os.path.join(app.root_path, "static", "images", folder)
+    folder_path, _ = kitten_folder_paths(folder)
     path = os.path.join(folder_path, filename)
     try:
         os.remove(path)
@@ -2677,11 +2794,11 @@ def admin_sections():
                 if ext not in ALLOWED_IMAGE_EXTS:
                     flash("Unsupported image type for sections.", "error")
                     return redirect(url_for("admin_sections"))
-                folder = os.path.join(app.root_path, "static", "images", "sections")
+                folder = os.path.join(app.config["UPLOADS_PATH"], "sections")
                 os.makedirs(folder, exist_ok=True)
                 filename = f"{key}{ext}"
                 upload.save(os.path.join(folder, filename))
-                image = f"images/sections/{filename}"
+                image = f"uploads/sections/{filename}"
 
             conn.execute(
                 """

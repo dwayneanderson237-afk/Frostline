@@ -3,7 +3,7 @@
 
 {% set hero_image = page.hero_image or 'images/hero_delivery.jpg' %}
 <section class="delivery-hero" style="background: linear-gradient(to bottom, rgba(44,42,40,0.55), #f0ebe3),
-              url('{{ url_for('static', filename=hero_image) }}') center/cover no-repeat;">
+              url('{{ media_url(hero_image) }}') center/cover no-repeat;">
     <div class="hero-text">
         <h1>{{ page.hero_title }}</h1>
         <p>{{ page.hero_body }}</p>
@@ -33,7 +33,7 @@
             {% endfor %}
         </div>
         <div class="image">
-            <img src="{{ url_for('static', filename=block.image) }}" alt="{{ block.title }}">
+            <img src="{{ media_url(block.image) }}" alt="{{ block.title }}">
         </div>
     </div>
     {% endfor %}

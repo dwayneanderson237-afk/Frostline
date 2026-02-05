@@ -6,6 +6,11 @@
     {% set page_title = meta_title or "Frostline Coons" %}
     {% set page_description = meta_description or "Ethical, loving Maine Coon kittens raised with care, socialization, and lifelong support." %}
     {% set page_image = meta_image or url_for('static', filename='images/hero_kitten.jpg') %}
+    {% if page_image.startswith('http') %}
+      {% set og_image = page_image %}
+    {% else %}
+      {% set og_image = request.url_root.rstrip('/') ~ page_image %}
+    {% endif %}
     {% set canonical_url = canonical or request.url %}
     <title>{{ page_title }}</title>
     <meta name="description" content="{{ page_description }}">
@@ -14,7 +19,7 @@
     <meta property="og:description" content="{{ page_description }}">
     <meta property="og:type" content="{{ og_type or 'website' }}">
     <meta property="og:url" content="{{ canonical_url }}">
-    <meta property="og:image" content="{{ request.url_root.rstrip('/') }}{{ page_image }}">
+    <meta property="og:image" content="{{ og_image }}">
     <meta name="twitter:card" content="summary_large_image">
     {% block extra_meta %}{% endblock %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">

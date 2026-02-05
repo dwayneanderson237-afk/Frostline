@@ -13,7 +13,7 @@
     <h1>{{ post.title }}</h1>
     <p class="blog-post-meta">{{ post.published_at }}</p>
     {% if post.cover_image %}
-    <img src="{{ url_for('static', filename=post.cover_image) }}" alt="{{ post.title }}">
+    <img src="{{ media_url(post.cover_image) }}" alt="{{ post.title }}">
     {% endif %}
   </header>
 

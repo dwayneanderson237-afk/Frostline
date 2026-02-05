@@ -32,6 +32,14 @@
             <input type="number" name="price" value="{{ kitten.price if kitten else '' }}" step="0.01">
         </div>
         <div>
+            <label>Weight</label>
+            <input type="text" name="weight" value="{{ kitten.weight if kitten else '' }}" placeholder="e.g., 6.2 lbs">
+        </div>
+        <div>
+            <label>Registration</label>
+            <input type="text" name="registration" value="{{ kitten.registration if kitten else '' }}" placeholder="e.g., TICA">
+        </div>
+        <div>
             <label>Featured</label>
             <label class="admin-checkbox">
                 <input type="checkbox" name="featured" {% if kitten and kitten.featured %}checked{% endif %}>
@@ -91,7 +99,7 @@
     <div class="admin-gallery-grid">
         {% for img in kitten_images %}
         <div class="admin-gallery-item">
-            <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ img) }}" alt="{{ kitten.name }} image">
+            <img src="{{ kitten_image_url(kitten.folder, img) }}" alt="{{ kitten.name }} image">
             <div class="admin-gallery-actions">
                 {% if img == kitten.main_image %}
                 <span class="admin-badge">Main</span>

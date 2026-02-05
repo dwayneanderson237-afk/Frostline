@@ -4,7 +4,7 @@
 <div class="admin-header">
     <div>
         <h1>Site Content</h1>
-        <p>Edit Story, Health & Care, and Mission copy and images.</p>
+        <p>Edit homepage sections plus kitten detail content blocks.</p>
     </div>
 </div>
 
@@ -16,14 +16,20 @@
         <label>Title</label>
         <input type="text" name="{{ key }}_title" value="{{ section.title }}">
 
+        {% if key in ["travel", "health_check", "adoption_journey"] %}
+        <label>Body (one item per line — use "Title | Description" for cards/steps)</label>
+        {% else %}
         <label>Body (separate paragraphs with a blank line)</label>
+        {% endif %}
         <textarea name="{{ key }}_body" rows="6">{{ section.body }}</textarea>
 
+        {% if key not in ["travel", "health_check", "adoption_journey"] %}
         <label>Image Path</label>
         <input type="text" name="{{ key }}_image" value="{{ section.image }}">
 
         <label>Upload New Image</label>
         <input type="file" name="{{ key }}_image_upload" accept=".jpg,.jpeg,.png,.webp">
+        {% endif %}
     </div>
     {% endfor %}
 
