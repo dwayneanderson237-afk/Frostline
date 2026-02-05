@@ -1,0 +1,27 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>Pages</h1>
+        <p>Edit About, FAQs, and Contact content.</p>
+    </div>
+</div>
+
+<div class="admin-table">
+    <div class="admin-row admin-row-head">
+        <div>Title</div>
+        <div>Slug</div>
+        <div>Actions</div>
+    </div>
+    {% for page in pages %}
+    <div class="admin-row">
+        <div>{{ page.title }}</div>
+        <div>{{ page.slug }}</div>
+        <div class="admin-actions">
+            <a class="admin-link" href="{{ url_for('admin_page_edit', slug=page.slug) }}">Edit</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

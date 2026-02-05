@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% set hero_image = page.hero_image or 'images/hero_delivery.jpg' %}
+<section class="delivery-hero" style="background: linear-gradient(to bottom, rgba(44,42,40,0.55), #f0ebe3),
+              url('{{ url_for('static', filename=hero_image) }}') center/cover no-repeat;">
+    <div class="hero-text">
+        <h1>{{ page.hero_title }}</h1>
+        <p>{{ page.hero_body }}</p>
+        <a href="{{ url_for('available_kittens') }}" class="cta-btn">View Available Kittens</a>
+    </div>
+</section>
+
+<section class="delivery-steps">
+    <h2>What to Expect</h2>
+    <div class="delivery-cards">
+        {% for step in page.steps %}
+        <div class="delivery-card">
+            <h3>{{ loop.index }}. {{ step.title }}</h3>
+            <p>{{ step.body }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="magazine delivery-mag">
+    {% for block in page.blocks %}
+    <div class="mag-section {{ block.layout }} reveal">
+        <div class="text">
+            <h2>{{ block.title }}</h2>
+            {% for para in block.body.split('\n\n') %}
+            <p>{{ para }}</p>
+            {% endfor %}
+        </div>
+        <div class="image">
+            <img src="{{ url_for('static', filename=block.image) }}" alt="{{ block.title }}">
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="delivery-cta">
+    <h2>{{ page.cta_title }}</h2>
+    <p>{{ page.cta_body }}</p>
+    <a href="{{ page.cta_link }}" class="cta-btn">{{ page.cta_label }}</a>
+</section>
+
+{% endblock %}

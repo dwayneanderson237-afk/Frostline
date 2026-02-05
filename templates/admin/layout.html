@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frostline Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="admin-body">
+    <header class="admin-nav">
+        <div class="admin-brand">Frostline Admin</div>
+        <nav class="admin-links">
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_kittens') }}">Kittens</a>
+            <a href="{{ url_for('admin_testimonials') }}">Testimonials</a>
+            <a href="{{ url_for('admin_blog') }}">Blog</a>
+            <a href="{{ url_for('admin_sections') }}">Site Content</a>
+            <a href="{{ url_for('admin_delivery_page') }}">Delivery Page</a>
+            <a href="{{ url_for('admin_pages') }}">Pages</a>
+            <a href="{{ url_for('admin_inquiries') }}">Inquiries</a>
+            <a href="{{ url_for('index') }}">View Site</a>
+            <a href="{{ url_for('admin_logout') }}" class="danger">Logout</a>
+        </nav>
+        <button class="admin-menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+            &#9776;
+        </button>
+    </header>
+
+    <main class="admin-shell">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="admin-flashes">
+              {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+</html>

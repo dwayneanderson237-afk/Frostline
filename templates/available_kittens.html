@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="kittens-section">
+    <h2 style="text-align:center; margin-top:80px; font-size:2.5rem;">Available Kittens</h2>
+    <div class="kittens-grid">
+        {% for kitten in kittens %}
+        <div class="kitten-card">
+          <div class="kitten-image-wrap">
+            <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ (kitten.main_image or '1.jpg')) }}" alt="{{ kitten.name }}">
+
+            <span class="badge gender {{ kitten.gender|lower }}">
+              {{ kitten.gender }}
+            </span>
+
+            <span class="badge price">
+              ${{ kitten.price }}
+            </span>
+          </div>
+
+          <div class="kitten-card-body">
+            <h3>{{ kitten.name }}</h3>
+
+            <a href="{{ url_for('kitten_details', kitten_id=kitten.id) }}" class="view-btn">
+              View
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<section class="admin-hero">
+    <div>
+        <h1>Welcome back</h1>
+        <p>Manage kittens, testimonials, and site content in one place.</p>
+    </div>
+    <div class="admin-actions">
+        <a class="admin-btn primary" href="{{ url_for('admin_kittens_new') }}">Add Kitten</a>
+        <a class="admin-btn" href="{{ url_for('admin_testimonials_new') }}">Add Testimonial</a>
+    </div>
+</section>
+
+<div class="admin-stats">
+    <div class="admin-stat">
+        <span>Total Kittens</span>
+        <strong>{{ kitten_count }}</strong>
+    </div>
+    <div class="admin-stat">
+        <span>Testimonials</span>
+        <strong>{{ testimonial_count }}</strong>
+    </div>
+    <div class="admin-stat">
+        <span>Inquiries</span>
+        <strong>{{ inquiry_count }}</strong>
+    </div>
+</div>
+
+<section class="admin-panel">
+    <h2>Recent Inquiries</h2>
+    {% if recent_inquiries %}
+    <div class="admin-table">
+        <div class="admin-row admin-row-head">
+            <div>Name</div>
+            <div>Email</div>
+            <div>Message</div>
+            <div>Date</div>
+        </div>
+        {% for inquiry in recent_inquiries %}
+        <div class="admin-row">
+            <div>{{ inquiry.name }}</div>
+            <div>{{ inquiry.email }}</div>
+            <div>{{ inquiry.message }}</div>
+            <div>{{ inquiry.created_at }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="admin-empty">No inquiries yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

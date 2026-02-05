@@ -1,0 +1,31 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>Testimonials</h1>
+        <p>Keep social proof fresh and authentic.</p>
+    </div>
+    <a class="admin-btn primary" href="{{ url_for('admin_testimonials_new') }}">Add Testimonial</a>
+</div>
+
+<div class="admin-table">
+    <div class="admin-row admin-row-head">
+        <div>Author</div>
+        <div>Quote</div>
+        <div>Actions</div>
+    </div>
+    {% for testimonial in testimonials %}
+    <div class="admin-row">
+        <div>{{ testimonial.author }}</div>
+        <div>{{ testimonial.quote }}</div>
+        <div class="admin-actions">
+            <a class="admin-link" href="{{ url_for('admin_testimonials_edit', testimonial_id=testimonial.id) }}">Edit</a>
+            <form method="POST" action="{{ url_for('admin_testimonials_delete', testimonial_id=testimonial.id) }}">
+                <button type="submit" class="admin-link danger" onclick="return confirm('Delete this testimonial?')">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% set hero = sections.get('hero') %}
+{% set hero_image = hero.image if hero and hero.image else 'images/hero_kitten.jpg' %}
+<section class="hero" style="background: linear-gradient(to bottom, rgba(44,42,40,0.5), #f0ebe3),
+              url('{{ url_for('static', filename=hero_image) }}') center/cover no-repeat;">
+  <div class="hero-text">
+    <h1>{{ hero.title if hero else "Frostline Coons" }}</h1>
+    <p>
+      {{ hero.body if hero else "A cattery built on patience, ethics, and devotion. We don’t rush kittens into the world — we raise companions for life." }}
+    </p>
+    <a href="/available_kittens" class="cta-btn">View Available Kittens</a>
+  </div>
+</section>
+
+<section id="featured" class="featured-kittens">
+  <h2>Featured Kittens</h2>
+
+  <div class="horizontal-scroll">
+  {% for kitten in featured %}
+  <div class="kitten-card clickable"
+       onclick="window.location.href='{{ url_for('kitten_details', kitten_id=kitten.id) }}'">
+
+    <div class="kitten-image-wrap">
+      <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ (kitten.main_image or '1.jpg')) }}" alt="{{ kitten.name }}">
+
+      <span class="badge gender {{ kitten.gender|lower }}">
+        {{ kitten.gender }}
+      </span>
+
+      <span class="badge price">
+        ${{ kitten.price }}
+      </span>
+    </div>
+
+    <div class="kitten-card-body">
+      <h3>{{ kitten.name }}</h3>
+
+      <a href="{{ url_for('kitten_details', kitten_id=kitten.id) }}"
+         class="view-btn"
+         onclick="event.stopPropagation();">
+        View
+      </a>
+    </div>
+
+  </div>
+  {% endfor %}
+</div>
+
+</section>
+
+<section id="story" class="magazine">
+  {% set story = sections.get('story') %}
+  {% if story %}
+  <div class="mag-section left reveal">
+    <div class="text">
+      <h2>{{ story.title }}</h2>
+      {% for para in story.body.split('\n\n') %}
+      <p>{{ para }}</p>
+      {% endfor %}
+    </div>
+    <div class="image">
+      <img src="{{ url_for('static', filename=story.image) }}" alt="{{ story.title }}">
+    </div>
+  </div>
+  {% endif %}
+
+  {% set health = sections.get('health') %}
+  {% if health %}
+  <div id="health" class="mag-section right reveal">
+    <div class="text">
+      <h2>{{ health.title }}</h2>
+      {% for para in health.body.split('\n\n') %}
+      <p>{{ para }}</p>
+      {% endfor %}
+    </div>
+    <div class="image">
+      <img src="{{ url_for('static', filename=health.image) }}" alt="{{ health.title }}">
+    </div>
+  </div>
+  {% endif %}
+
+  {% set mission = sections.get('mission') %}
+  {% if mission %}
+  <div id="mission" class="mag-section left reveal">
+    <div class="text">
+      <h2>{{ mission.title }}</h2>
+      {% for para in mission.body.split('\n\n') %}
+      <p>{{ para }}</p>
+      {% endfor %}
+    </div>
+    <div class="image">
+      <img src="{{ url_for('static', filename=mission.image) }}" alt="{{ mission.title }}">
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<section id="testimonials" class="testimonials">
+  <h2>Families Speak</h2>
+
+  <div class="testimonial-track">
+    {% for t in testimonials %}
+    <div class="testimonial-card">
+      <img src="{{ url_for('static', filename=t.image) }}" alt="{{ t.author }}">
+      <p>
+        "{{ t.quote }}"
+      </p>
+      <span>— {{ t.author }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

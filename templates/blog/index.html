@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="blog-hero">
+  <div class="hero-text">
+    <h1>Maine Coon Blog</h1>
+    <p>Guides, care tips, and breed insights for happy, healthy Maine Coons.</p>
+  </div>
+</section>
+
+<section class="blog-list">
+  <div class="blog-grid">
+    {% for post in posts %}
+    <article class="blog-card">
+      <a href="{{ url_for('blog_post', slug=post.slug) }}">
+        <img src="{{ url_for('static', filename=post.cover_image or 'images/hero_kitten.jpg') }}" alt="{{ post.title }}">
+      </a>
+      <div class="blog-card-body">
+        <span class="blog-date">{{ post.published_at }}</span>
+        <h2><a href="{{ url_for('blog_post', slug=post.slug) }}">{{ post.title }}</a></h2>
+        <p>{{ post.excerpt }}</p>
+        <a class="view-btn" href="{{ url_for('blog_post', slug=post.slug) }}">Read More</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}

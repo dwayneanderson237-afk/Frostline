@@ -1,0 +1,29 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>{{ "Add Testimonial" if mode == "new" else "Edit Testimonial" }}</h1>
+        <p>Profile photo + short, authentic quote.</p>
+    </div>
+    <a class="admin-btn" href="{{ url_for('admin_testimonials') }}">Back to list</a>
+</div>
+
+<form method="POST" enctype="multipart/form-data" class="admin-form">
+    <label>Name</label>
+    <input type="text" name="author" value="{{ testimonial.author if testimonial else '' }}" required>
+
+    <label>Quote</label>
+    <textarea name="quote" rows="3" required>{{ testimonial.quote if testimonial else '' }}</textarea>
+
+    <label>Image Path (optional)</label>
+    <input type="text" name="image" value="{{ testimonial.image if testimonial else '' }}">
+
+    <label>Upload Profile Image</label>
+    <input type="file" name="image_upload" accept=".jpg,.jpeg,.png,.webp">
+
+    <button type="submit" class="admin-btn primary">
+        {{ "Create Testimonial" if mode == "new" else "Save Changes" }}
+    </button>
+</form>
+{% endblock %}

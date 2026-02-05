@@ -1,0 +1,32 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>Site Content</h1>
+        <p>Edit Story, Health & Care, and Mission copy and images.</p>
+    </div>
+</div>
+
+<form method="POST" enctype="multipart/form-data" class="admin-form">
+    {% for section in sections %}
+    {% set key = section.section_key %}
+    <div class="admin-section-card">
+        <h2>{{ section.title }}</h2>
+        <label>Title</label>
+        <input type="text" name="{{ key }}_title" value="{{ section.title }}">
+
+        <label>Body (separate paragraphs with a blank line)</label>
+        <textarea name="{{ key }}_body" rows="6">{{ section.body }}</textarea>
+
+        <label>Image Path</label>
+        <input type="text" name="{{ key }}_image" value="{{ section.image }}">
+
+        <label>Upload New Image</label>
+        <input type="file" name="{{ key }}_image_upload" accept=".jpg,.jpeg,.png,.webp">
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="admin-btn primary">Save Sections</button>
+</form>
+{% endblock %}

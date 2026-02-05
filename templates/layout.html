@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% set page_title = meta_title or "Frostline Coons" %}
+    {% set page_description = meta_description or "Ethical, loving Maine Coon kittens raised with care, socialization, and lifelong support." %}
+    {% set page_image = meta_image or url_for('static', filename='images/hero_kitten.jpg') %}
+    {% set canonical_url = canonical or request.url %}
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ page_description }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:description" content="{{ page_description }}">
+    <meta property="og:type" content="{{ og_type or 'website' }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ request.url_root.rstrip('/') }}{{ page_image }}">
+    <meta name="twitter:card" content="summary_large_image">
+    {% block extra_meta %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="{{ url_for('index') }}">Frostline Coons</a></div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('available_kittens') }}">Available Kittens</a></li>
+            <li class="nav-dropdown">
+                <a href="{{ url_for('index') }}#story">Info</a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url_for('index') }}#featured">Featured Kittens</a></li>
+                    <li><a href="{{ url_for('index') }}#story">Our Story</a></li>
+                    <li><a href="{{ url_for('index') }}#health">Health & Care</a></li>
+                    <li><a href="{{ url_for('index') }}#mission">Mission</a></li>
+                    <li><a href="{{ url_for('index') }}#testimonials">Testimonials</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('faqs') }}">FAQs</a></li>
+                    <li><a href="{{ url_for('delivery') }}">Delivery</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    <li><a href="{{ url_for('blog_index') }}">Blog</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false">
+            &#9776;
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('available_kittens') }}">Available Kittens</a>
+            <a href="{{ url_for('delivery') }}">Delivery</a>
+            <a href="{{ url_for('blog_index') }}">Blog</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+        <div class="social-icons">
+            <a href="mailto:info@frostlinecoons.com"><img src="{{ url_for('static', filename='images/icons/email.svg') }}" alt="Email"></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener"><img src="{{ url_for('static', filename='images/icons/facebook.svg') }}" alt="Facebook"></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener"><img src="{{ url_for('static', filename='images/icons/instagram.svg') }}" alt="Instagram"></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener"><img src="{{ url_for('static', filename='images/icons/twitter.svg') }}" alt="Twitter"></a>
+        </div>
+        <p>© 2026 Frostline Coons. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

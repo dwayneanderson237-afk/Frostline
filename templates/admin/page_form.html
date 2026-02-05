@@ -1,0 +1,65 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>Edit {{ page.title }}</h1>
+        <p>Update the hero, sections, and call-to-action for this page.</p>
+    </div>
+    <a class="admin-btn" href="{{ url_for('admin_pages') }}">Back to Pages</a>
+</div>
+
+<form method="POST" enctype="multipart/form-data" class="admin-form">
+    <label>Page Title</label>
+    <input type="text" name="title" value="{{ page.title }}">
+
+    <label>Meta Title</label>
+    <input type="text" name="meta_title" value="{{ page.meta_title }}">
+
+    <label>Meta Description</label>
+    <textarea name="meta_description" rows="3">{{ page.meta_description }}</textarea>
+
+    <label>Hero Title</label>
+    <input type="text" name="hero_title" value="{{ page.hero_title }}">
+
+    <label>Hero Body</label>
+    <textarea name="hero_body" rows="3">{{ page.hero_body }}</textarea>
+
+    <label>Hero Image Path</label>
+    <input type="text" name="hero_image" value="{{ page.hero_image }}">
+
+    <label>Upload New Hero Image</label>
+    <input type="file" name="hero_image_upload" accept=".jpg,.jpeg,.png,.webp">
+
+    <h2>Page Sections</h2>
+    {% for block in page.blocks %}
+    <div class="admin-section-card">
+        <label>Section {{ loop.index }} Title</label>
+        <input type="text" name="block_title_{{ loop.index }}" value="{{ block.title }}">
+        <label>Section {{ loop.index }} Body</label>
+        <textarea name="block_body_{{ loop.index }}" rows="4">{{ block.body }}</textarea>
+        <label>Section {{ loop.index }} Image Path</label>
+        <input type="text" name="block_image_{{ loop.index }}" value="{{ block.image }}">
+        <label>Upload New Image</label>
+        <input type="file" name="block_image_upload_{{ loop.index }}" accept=".jpg,.jpeg,.png,.webp">
+        <label>Layout</label>
+        <select name="block_layout_{{ loop.index }}">
+            <option value="left" {% if block.layout == 'left' %}selected{% endif %}>Text Left / Image Right</option>
+            <option value="right" {% if block.layout == 'right' %}selected{% endif %}>Text Right / Image Left</option>
+        </select>
+    </div>
+    {% endfor %}
+
+    <h2>CTA</h2>
+    <label>CTA Title</label>
+    <input type="text" name="cta_title" value="{{ page.cta_title }}">
+    <label>CTA Body</label>
+    <textarea name="cta_body" rows="3">{{ page.cta_body }}</textarea>
+    <label>CTA Button Label</label>
+    <input type="text" name="cta_label" value="{{ page.cta_label }}">
+    <label>CTA Link</label>
+    <input type="text" name="cta_link" value="{{ page.cta_link }}">
+
+    <button type="submit" class="admin-btn primary">Save Page</button>
+</form>
+{% endblock %}

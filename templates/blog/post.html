@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block extra_meta %}
+{% if post.keywords %}
+<meta name="keywords" content="{{ post.keywords }}">
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<article class="blog-post">
+  <header class="blog-post-header">
+    <h1>{{ post.title }}</h1>
+    <p class="blog-post-meta">{{ post.published_at }}</p>
+    {% if post.cover_image %}
+    <img src="{{ url_for('static', filename=post.cover_image) }}" alt="{{ post.title }}">
+    {% endif %}
+  </header>
+
+  <div class="blog-post-body">
+    {% for paragraph in post.content.split('\n\n') %}
+    <p>{{ paragraph }}</p>
+    {% endfor %}
+  </div>
+
+  <div class="blog-post-cta">
+    <h3>Ready to welcome a Maine Coon?</h3>
+    <p>Browse available kittens or reach out with questions about temperament and delivery.</p>
+    <a href="{{ url_for('available_kittens') }}" class="cta-btn">View Available Kittens</a>
+  </div>
+</article>
+
+{% endblock %}

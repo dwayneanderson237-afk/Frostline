@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Add New Kitten</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    <label>Name</label>
+    <input type="text" name="name" required>
+
+    <label>Gender</label>
+    <input type="text" name="gender" required>
+
+    <label>Price ($)</label>
+    <input type="number" name="price" required>
+
+    <label>Description</label>
+    <textarea name="description" required></textarea>
+
+    <label>Image</label>
+    <input type="file" name="image" required>
+
+    <button type="submit">Add Kitten</button>
+</form>
+{% endblock %}

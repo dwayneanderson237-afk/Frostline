@@ -1,0 +1,53 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>Inquiries</h1>
+        <p>Read incoming messages from the site.</p>
+    </div>
+</div>
+
+{% if inquiries %}
+<div class="admin-table">
+    <div class="admin-row admin-row-head">
+        <div>Kitten</div>
+        <div>Name</div>
+        <div>Email</div>
+        <div>Type</div>
+        <div>Status</div>
+        <div>Message</div>
+        <div>Date</div>
+        <div>Action</div>
+    </div>
+    {% for inquiry in inquiries %}
+    <div class="admin-row">
+        <div>{{ inquiry.kitten_name or '—' }}</div>
+        <div>{{ inquiry.name }}</div>
+        <div>{{ inquiry.email }}</div>
+        <div>{{ inquiry.inquiry_type or '—' }}</div>
+        <div>{{ inquiry.status or 'open' }}</div>
+        <div>
+            <div>{{ inquiry.message }}</div>
+            <div class="admin-hint">Phone: {{ inquiry.phone or '—' }}</div>
+            <div class="admin-hint">Delivery: {{ inquiry.delivery_type or '—' }}</div>
+            {% if inquiry.address %}
+            <div class="admin-hint">Address: {{ inquiry.address }}</div>
+            {% endif %}
+            <div class="admin-hint">Payment: {{ inquiry.payment_method or '—' }}</div>
+        </div>
+        <div>{{ inquiry.created_at }}</div>
+        <div>
+            <form method="POST" action="{{ url_for('admin_inquiries_toggle', inquiry_id=inquiry.id) }}">
+                <button type="submit" class="admin-link">
+                    {{ "Mark Open" if inquiry.status == 'fulfilled' else "Mark Fulfilled" }}
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="admin-empty">No inquiries yet.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>Kittens</h1>
+        <p>Manage profiles, pricing, and availability.</p>
+    </div>
+    <a class="admin-btn primary" href="{{ url_for('admin_kittens_new') }}">Add Kitten</a>
+</div>
+
+<div class="admin-table">
+    <div class="admin-row admin-row-head">
+        <div>Photo</div>
+        <div>Name</div>
+        <div>Gender</div>
+        <div>Price</div>
+        <div>Featured</div>
+        <div>Actions</div>
+    </div>
+    {% for kitten in kittens %}
+    <div class="admin-row">
+        <div>
+            <img class="admin-thumb" src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ (kitten.main_image or '1.jpg')) }}" alt="{{ kitten.name }}">
+        </div>
+        <div>{{ kitten.name }}</div>
+        <div>{{ kitten.gender }}</div>
+        <div>${{ "%.0f"|format(kitten.price) }}</div>
+        <div>{{ "Yes" if kitten.featured else "No" }}</div>
+        <div class="admin-actions">
+            <a class="admin-link" href="{{ url_for('admin_kittens_edit', kitten_id=kitten.id) }}">Edit</a>
+            <form method="POST" action="{{ url_for('admin_kittens_delete', kitten_id=kitten.id) }}">
+                <button type="submit" class="admin-link danger" onclick="return confirm('Delete this kitten?')">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

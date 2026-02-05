@@ -1,0 +1,115 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>{{ "Add Kitten" if mode == "new" else "Edit Kitten" }}</h1>
+        <p>Fill in all details to keep the site consistent.</p>
+    </div>
+    <a class="admin-btn" href="{{ url_for('admin_kittens') }}">Back to list</a>
+</div>
+
+<form method="POST" enctype="multipart/form-data" class="admin-form">
+    <div class="admin-grid">
+        <div>
+            <label>Name</label>
+            <input type="text" name="name" value="{{ kitten.name if kitten else '' }}" required>
+        </div>
+        <div>
+            <label>Age (months)</label>
+            <input type="number" name="age" value="{{ kitten.age if kitten else '' }}">
+        </div>
+        <div>
+            <label>Gender</label>
+            <input type="text" name="gender" value="{{ kitten.gender if kitten else '' }}">
+        </div>
+        <div>
+            <label>Personality</label>
+            <input type="text" name="personality" value="{{ kitten.personality if kitten else '' }}">
+        </div>
+        <div>
+            <label>Price</label>
+            <input type="number" name="price" value="{{ kitten.price if kitten else '' }}" step="0.01">
+        </div>
+        <div>
+            <label>Featured</label>
+            <label class="admin-checkbox">
+                <input type="checkbox" name="featured" {% if kitten and kitten.featured %}checked{% endif %}>
+                Show on homepage
+            </label>
+        </div>
+        <div>
+            <label>Availability</label>
+            <input type="text" name="availability" value="{{ kitten.availability if kitten else 'Available' }}">
+        </div>
+        <div>
+            <label>Folder (image folder)</label>
+            <input type="text" name="folder" value="{{ kitten.folder if kitten else '' }}">
+        </div>
+        <div>
+    <label>Image Count</label>
+    <input type="number" name="image_count" value="{{ kitten.image_count if kitten else '' }}">
+        </div>
+        <div>
+            <label>Color</label>
+            <input type="text" name="color" value="{{ kitten.color if kitten else '' }}">
+        </div>
+        <div>
+            <label>Coat</label>
+            <input type="text" name="coat" value="{{ kitten.coat if kitten else '' }}">
+        </div>
+        <div>
+            <label>Energy</label>
+            <input type="text" name="energy" value="{{ kitten.energy if kitten else '' }}">
+        </div>
+    </div>
+
+    <label>Bio</label>
+    <textarea name="bio" rows="4">{{ kitten.bio if kitten else '' }}</textarea>
+
+    <label>Health Details</label>
+    <textarea name="health_details" rows="3">{{ kitten.health_details if kitten else '' }}</textarea>
+
+    <label>Good With (comma or line separated)</label>
+    <textarea name="good_with" rows="2">{% if kitten %}{{ kitten.good_with|join(', ') }}{% endif %}</textarea>
+
+    <label>Highlights (one per line)</label>
+    <textarea name="highlights" rows="3">{% if kitten %}{{ kitten.highlights|join('\n') }}{% endif %}</textarea>
+
+    <label>Upload Gallery Images (JPG only)</label>
+    <input type="file" name="images" multiple accept=".jpg,.jpeg">
+
+    <button type="submit" class="admin-btn primary">
+        {{ "Create Kitten" if mode == "new" else "Save Changes" }}
+    </button>
+</form>
+
+{% if kitten_images and mode == "edit" %}
+<div class="admin-gallery">
+    <h3>Current Gallery</h3>
+    <p class="admin-hint">Choose a main image or remove extras.</p>
+    <div class="admin-gallery-grid">
+        {% for img in kitten_images %}
+        <div class="admin-gallery-item">
+            <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ img) }}" alt="{{ kitten.name }} image">
+            <div class="admin-gallery-actions">
+                {% if img == kitten.main_image %}
+                <span class="admin-badge">Main</span>
+                {% else %}
+                <form method="POST" action="{{ url_for('admin_kittens_set_main_image', kitten_id=kitten.id) }}">
+                    <input type="hidden" name="filename" value="{{ img }}">
+                    <button type="submit" class="admin-link">Set Main</button>
+                </form>
+                {% endif %}
+                <form method="POST" action="{{ url_for('admin_kittens_delete_image', kitten_id=kitten.id) }}">
+                    <input type="hidden" name="filename" value="{{ img }}">
+                    <button type="submit" class="admin-link danger" onclick="return confirm('Remove this image?')">Delete</button>
+                </form>
+            </div>
+            <span class="admin-filename">{{ img }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

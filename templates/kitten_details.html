@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="kitten-details" data-reservation-deposit="{{ reservation_deposit }}">
+    <div class="details-grid">
+        <div class="image-carousel">
+            <div class="gallery-main">
+                <img id="mainImage"
+                     src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ (kitten.main_image or '1.jpg')) }}"
+                     alt="{{ kitten.name }}">
+            </div>
+            <div class="gallery-thumbs">
+                {% if kitten.images %}
+                {% for img in kitten.images %}
+                <button class="gallery-thumb" type="button"
+                        data-full="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ img) }}">
+                    <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ img) }}"
+                         alt="{{ kitten.name }} thumbnail">
+                </button>
+                {% endfor %}
+                {% else %}
+                {% for i in range(1, kitten.image_count + 1) %}
+                <button class="gallery-thumb" type="button"
+                        data-full="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ i ~ '.jpg') }}">
+                    <img src="{{ url_for('static', filename='images/' ~ kitten.folder ~ '/' ~ i ~ '.jpg') }}"
+                         alt="{{ kitten.name }} thumbnail {{ i }}">
+                </button>
+                {% endfor %}
+                {% endif %}
+            </div>
+
+            <div id="kitten-form-section">
+                <div id="kittenFormContainer" class="kitten-form-container">
+                    <form id="kittenForm"></form>
+                </div>
+            </div>
+        </div>
+
+        <div class="kitten-info">
+            <div class="kitten-header">
+                <h2>{{ kitten.name }}</h2>
+                <div class="kitten-price">${{ kitten.price }}</div>
+            </div>
+
+            <p class="kitten-bio">{{ kitten.bio }}</p>
+
+            <div class="kitten-meta">
+                <div class="meta-item">
+                    <span>Age</span>
+                    <strong>{{ kitten.age }} months</strong>
+                </div>
+                <div class="meta-item">
+                    <span>Gender</span>
+                    <strong>{{ kitten.gender }}</strong>
+                </div>
+                <div class="meta-item">
+                    <span>Personality</span>
+                    <strong>{{ kitten.personality }}</strong>
+                </div>
+                <div class="meta-item">
+                    <span>Coat</span>
+                    <strong>{{ kitten.coat }}</strong>
+                </div>
+                <div class="meta-item">
+                    <span>Color</span>
+                    <strong>{{ kitten.color }}</strong>
+                </div>
+                <div class="meta-item">
+                    <span>Energy</span>
+                    <strong>{{ kitten.energy }}</strong>
+                </div>
+            </div>
+
+            <div class="kitten-chips">
+                {% for item in kitten.good_with %}
+                <span class="chip">{{ item }}</span>
+                {% endfor %}
+            </div>
+
+            <ul class="kitten-highlights">
+                {% for item in kitten.highlights %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+            <div class="kitten-buttons">
+                <button class="buy-btn" data-kit="{{ kitten.id }}" data-name="{{ kitten.name }}" data-price="{{ kitten.price }}">Buy</button>
+                <button class="reserve-btn" data-kit="{{ kitten.id }}" data-name="{{ kitten.name }}" data-price="{{ kitten.price }}">Reserve</button>
+            </div>
+
+            <div class="kitten-health">
+                <h3>Health & Care</h3>
+                <p>{{ kitten.health_details }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

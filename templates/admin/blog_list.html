@@ -1,0 +1,33 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>Blog</h1>
+        <p>Create and manage SEO‑optimized Maine Coon content.</p>
+    </div>
+    <a class="admin-btn primary" href="{{ url_for('admin_blog_new') }}">Add Blog Post</a>
+</div>
+
+<div class="admin-table">
+    <div class="admin-row admin-row-head">
+        <div>Title</div>
+        <div>Status</div>
+        <div>Published</div>
+        <div>Actions</div>
+    </div>
+    {% for post in posts %}
+    <div class="admin-row">
+        <div>{{ post.title }}</div>
+        <div>{{ post.status }}</div>
+        <div>{{ post.published_at }}</div>
+        <div class="admin-actions">
+            <a class="admin-link" href="{{ url_for('admin_blog_edit', post_id=post.id) }}">Edit</a>
+            <form method="POST" action="{{ url_for('admin_blog_delete', post_id=post.id) }}">
+                <button type="submit" class="admin-link danger" onclick="return confirm('Delete this post?')">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

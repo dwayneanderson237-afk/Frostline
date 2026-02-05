@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% set hero_image = page.hero_image or 'images/hero_kitten.jpg' %}
+<section class="delivery-hero" style="background: linear-gradient(to bottom, rgba(44,42,40,0.55), #f0ebe3),
+              url('{{ url_for('static', filename=hero_image) }}') center/cover no-repeat;">
+    <div class="hero-text">
+        <h1>{{ page.hero_title }}</h1>
+        <p>{{ page.hero_body }}</p>
+    </div>
+</section>
+
+<section class="magazine">
+    {% for block in page.blocks %}
+    <div class="mag-section {{ block.layout }} reveal">
+        <div class="text">
+            <h2>{{ block.title }}</h2>
+            {% for para in block.body.split('\n\n') %}
+            <p>{{ para }}</p>
+            {% endfor %}
+        </div>
+        <div class="image">
+            <img src="{{ url_for('static', filename=block.image) }}" alt="{{ block.title }}">
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="delivery-cta">
+    <h2>{{ page.cta_title }}</h2>
+    <p>{{ page.cta_body }}</p>
+    <a href="{{ page.cta_link }}" class="cta-btn">{{ page.cta_label }}</a>
+</section>
+
+{% endblock %}
