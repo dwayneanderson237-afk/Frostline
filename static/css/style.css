@@ -1781,6 +1781,14 @@ footer .footer-links a:hover {
   margin-bottom: 24px;
 }
 
+.admin-header .admin-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .admin-btn {
   display: inline-flex;
   align-items: center;

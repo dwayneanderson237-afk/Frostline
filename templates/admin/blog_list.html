@@ -6,7 +6,12 @@
         <h1>Blog</h1>
         <p>Create and manage SEO‑optimized Maine Coon content.</p>
     </div>
-    <a class="admin-btn primary" href="{{ url_for('admin_blog_new') }}">Add Blog Post</a>
+    <div class="admin-actions">
+        <form method="POST" action="{{ url_for('admin_blog_reseed') }}">
+            <button type="submit" class="admin-btn" onclick="return confirm('Replace all blog posts with the 50-post SEO library? This cannot be undone.')">Reseed 50 Posts</button>
+        </form>
+        <a class="admin-btn primary" href="{{ url_for('admin_blog_new') }}">Add Blog Post</a>
+    </div>
 </div>
 
 <div class="admin-table">

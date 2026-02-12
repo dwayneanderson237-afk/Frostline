@@ -61,16 +61,27 @@ DEFAULT_SEO_KEYWORDS = [
     "Maine Coon kittens for sale",
     "Maine Coon kitten for sale",
     "Maine Coon kittens near me",
+    "Maine Coon kitten near me",
+    "Maine Coon cats for sale",
     "Maine Coon breeder",
+    "Maine Coon breeder near me",
     "Maine Coon cattery",
+    "Maine Coon cattery near me",
     "buy Maine Coon kitten",
     "reserve Maine Coon kitten",
     "Maine Coon kittens available",
     "Maine Coon kittens for adoption",
     "purebred Maine Coon kittens",
     "TICA registered Maine Coon kittens",
+    "CFA registered Maine Coon kittens",
     "Maine Coon kittens delivery",
+    "Maine Coon kitten delivery",
+    "Maine Coon kitten shipping",
+    "Maine Coon kitten transport",
     "Maine Coon kittens health guarantee",
+    "Maine Coon breeder USA",
+    "Maine Coon kittens USA",
+    "Maine Coon kittens for sale USA",
 ]
 
 STATE_SERVICE_AREAS = [
@@ -2402,6 +2413,11 @@ def merge_keywords(base, extra=None):
     return ", ".join(normalize_keywords(merged))
 
 
+def load_seed_posts():
+    seed_posts = load_seed_posts()
+    return seed_posts
+
+
 def fetch_settings():
     conn = get_db()
     rows = conn.execute("SELECT key, value FROM site_settings").fetchall()
@@ -4386,6 +4402,68 @@ def admin_blog_delete(post_id):
     conn.commit()
     conn.close()
     flash("Blog post deleted.", "success")
+    return redirect(url_for("admin_blog"))
+
+
+@app.route("/admin/blog/reseed", methods=["POST"])
+@login_required
+def admin_blog_reseed():
+    seed_posts = load_seed_posts()
+    conn = get_db()
+    conn.execute("DELETE FROM blog_posts")
+
+    max_posts = 50
+    current_count = 0
+    for post in seed_posts:
+        if current_count >= max_posts:
+            break
+        payload = dict(post)
+        base_slug = slugify(payload["title"])
+        slug = ensure_unique_slug(conn, base_slug)
+        published_at = payload.get("published_at")
+
+        if published_at:
+            conn.execute(
+                """
+                INSERT INTO blog_posts
+                (title, slug, excerpt, content, cover_image, meta_title, meta_description, keywords, status, published_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'published', ?)
+                """,
+                (
+                    payload["title"],
+                    slug,
+                    payload.get("excerpt", ""),
+                    payload.get("content", ""),
+                    payload.get("cover_image", ""),
+                    payload.get("meta_title", ""),
+                    payload.get("meta_description", ""),
+                    payload.get("keywords", ""),
+                    published_at,
+                ),
+            )
+        else:
+            conn.execute(
+                """
+                INSERT INTO blog_posts
+                (title, slug, excerpt, content, cover_image, meta_title, meta_description, keywords, status)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'published')
+                """,
+                (
+                    payload["title"],
+                    slug,
+                    payload.get("excerpt", ""),
+                    payload.get("content", ""),
+                    payload.get("cover_image", ""),
+                    payload.get("meta_title", ""),
+                    payload.get("meta_description", ""),
+                    payload.get("keywords", ""),
+                ),
+            )
+        current_count += 1
+
+    conn.commit()
+    conn.close()
+    flash("Blog posts reseeded from the content library.", "success")
     return redirect(url_for("admin_blog"))
 
 # -------------------- RUN --------------------
