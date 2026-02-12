@@ -1,7 +1,9 @@
 import json
 import os
+import random
 import sqlite3
 import smtplib
+from datetime import datetime
 from functools import wraps
 from email.message import EmailMessage
 
@@ -31,11 +33,13 @@ app.config["SMTP_USE_TLS"] = os.environ.get("SMTP_USE_TLS", "true").lower() == "
 app.config["SMTP_USE_SSL"] = os.environ.get("SMTP_USE_SSL", "false").lower() == "true"
 app.config["SMTP_FROM"] = os.environ.get("SMTP_FROM", "info@frostlinecoons.com")
 app.config["SMTP_TO"] = os.environ.get("SMTP_TO", "info@frostlinecoons.com")
+app.config["GA_MEASUREMENT_ID"] = os.environ.get("GA_MEASUREMENT_ID", "")
 app.config["RESERVATION_DEPOSIT"] = float(os.environ.get("RESERVATION_DEPOSIT", "300"))
 app.config["MAX_CONTENT_LENGTH"] = 80 * 1024 * 1024
 app.config["UPLOADS_PATH"] = os.environ.get(
     "UPLOADS_PATH", os.path.join(app.root_path, "static", "uploads")
 )
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 60 * 60 * 24 * 30
 
 DATABASE = os.environ.get(
     "DATABASE_PATH", os.path.join(app.root_path, "frostline_coons.db")
@@ -44,7 +48,92 @@ ALLOWED_KITTEN_IMAGE_EXTS = {".jpg", ".jpeg"}
 ALLOWED_IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp"}
 ALLOWED_VIDEO_EXTS = {".mp4", ".webm", ".mov"}
 
+if app.config["UPLOADS_PATH"]:
+    os.makedirs(app.config["UPLOADS_PATH"], exist_ok=True)
+
+if DATABASE:
+    db_dir = os.path.dirname(DATABASE)
+    if db_dir:
+        os.makedirs(db_dir, exist_ok=True)
+
 # -------------------- DEFAULT CONTENT --------------------
+DEFAULT_SEO_KEYWORDS = [
+    "Maine Coon kittens for sale",
+    "Maine Coon kitten for sale",
+    "Maine Coon kittens near me",
+    "Maine Coon breeder",
+    "Maine Coon cattery",
+    "buy Maine Coon kitten",
+    "reserve Maine Coon kitten",
+    "Maine Coon kittens available",
+    "Maine Coon kittens for adoption",
+    "purebred Maine Coon kittens",
+    "TICA registered Maine Coon kittens",
+    "Maine Coon kittens delivery",
+    "Maine Coon kittens health guarantee",
+]
+
+STATE_SERVICE_AREAS = [
+    "Ohio",
+    "Texas",
+    "Florida",
+    "Tennessee",
+    "Kentucky",
+    "New York",
+]
+
+CITY_SERVICE_AREAS = [
+    "Columbus",
+    "Cleveland",
+    "Cincinnati",
+    "Austin",
+    "Dallas",
+    "Houston",
+    "San Antonio",
+    "Miami",
+    "Orlando",
+    "Tampa",
+    "Nashville",
+    "Memphis",
+    "Louisville",
+    "Lexington",
+    "New York City",
+    "Buffalo",
+]
+
+location_keywords = []
+for state in STATE_SERVICE_AREAS:
+    location_keywords.extend(
+        [
+            f"Maine Coon kittens for sale in {state}",
+            f"Maine Coon breeder in {state}",
+            f"Maine Coon kittens {state}",
+        ]
+    )
+
+for city in CITY_SERVICE_AREAS:
+    location_keywords.extend(
+        [
+            f"Maine Coon kittens for sale in {city}",
+            f"Maine Coon breeder in {city}",
+        ]
+    )
+
+DEFAULT_SEO_KEYWORDS.extend(location_keywords)
+
+DEFAULT_SETTINGS = {
+    "business_name": "Frostline Coons",
+    "reply_to_email": "hello@frostlinecoons.com",
+    "inquiry_email": "info@frostlinecoons.com",
+    "business_address": "123 Frostline Lane, Columbus, OH 43215",
+    "business_phone": "",
+    "seo_keywords": ", ".join(dict.fromkeys(DEFAULT_SEO_KEYWORDS)),
+    "service_areas": ", ".join(STATE_SERVICE_AREAS),
+    "ga_measurement_id": "",
+    "social_facebook": "https://facebook.com",
+    "social_instagram": "https://instagram.com",
+    "social_twitter": "https://twitter.com",
+}
 DEFAULT_KITTENS = [
     {
         "id": 1,
@@ -2285,6 +2374,51 @@ DEFAULT_BLOG_POSTS = [
 ]
 
 
+def normalize_keywords(value):
+    if not value:
+        return []
+    if isinstance(value, (list, tuple)):
+        items = value
+    else:
+        items = []
+        for chunk in str(value).replace("\n", ",").split(","):
+            if chunk.strip():
+                items.append(chunk.strip())
+    cleaned = []
+    seen = set()
+    for item in items:
+        key = item.strip().lower()
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        cleaned.append(item.strip())
+    return cleaned
+
+
+def merge_keywords(base, extra=None):
+    merged = []
+    merged.extend(normalize_keywords(base))
+    merged.extend(normalize_keywords(extra))
+    return ", ".join(normalize_keywords(merged))
+
+
+def fetch_settings():
+    conn = get_db()
+    rows = conn.execute("SELECT key, value FROM site_settings").fetchall()
+    conn.close()
+    settings = {row["key"]: row["value"] for row in rows}
+    for key, value in DEFAULT_SETTINGS.items():
+        if not settings.get(key):
+            settings[key] = value
+    if not settings.get("ga_measurement_id") and app.config.get("GA_MEASUREMENT_ID"):
+        settings["ga_measurement_id"] = app.config["GA_MEASUREMENT_ID"]
+    if not settings.get("inquiry_email") and app.config.get("SMTP_TO"):
+        settings["inquiry_email"] = app.config["SMTP_TO"]
+    if not settings.get("reply_to_email") and app.config.get("SMTP_FROM"):
+        settings["reply_to_email"] = app.config["SMTP_FROM"]
+    return settings
+
+
 def get_db():
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
@@ -2439,6 +2573,15 @@ def init_db():
             published_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+        """
+    )
+
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS site_settings (
+            key TEXT PRIMARY KEY,
+            value TEXT
         )
         """
     )
@@ -2615,6 +2758,17 @@ def seed_defaults(conn):
                 (page["slug"], *payload.values()),
             )
 
+    seed_posts = DEFAULT_BLOG_POSTS
+    seed_path = os.path.join(app.root_path, "data", "blog_posts.json")
+    if os.path.isfile(seed_path):
+        try:
+            with open(seed_path, "r", encoding="utf-8") as handle:
+                seed_posts = json.load(handle)
+        except json.JSONDecodeError:
+            seed_posts = DEFAULT_BLOG_POSTS
+    seed_posts = list(seed_posts or [])
+    random.Random(42).shuffle(seed_posts)
+
     existing_rows = {
         row["slug"]: row
         for row in conn.execute("SELECT slug, title FROM blog_posts").fetchall()
@@ -2626,7 +2780,7 @@ def seed_defaults(conn):
     }
     max_posts = 50
     current_count = len(existing_rows)
-    for post in DEFAULT_BLOG_POSTS:
+    for post in seed_posts:
         if current_count >= max_posts:
             break
         payload = dict(post)
@@ -2674,6 +2828,17 @@ def seed_defaults(conn):
                 ),
             )
         current_count += 1
+
+    existing_settings = {
+        row["key"]: row["value"]
+        for row in conn.execute("SELECT key, value FROM site_settings").fetchall()
+    }
+    for key, value in DEFAULT_SETTINGS.items():
+        if not existing_settings.get(key):
+            conn.execute(
+                "INSERT OR REPLACE INTO site_settings (key, value) VALUES (?, ?)",
+                (key, value),
+            )
 
 
 def decode_list(value):
@@ -2736,10 +2901,25 @@ def kitten_image_url(folder, filename):
 @app.context_processor
 def inject_media_helpers():
     sections = fetch_sections()
+    settings = fetch_settings()
+    service_areas = parse_list_text(settings.get("service_areas"))
+    social_links = [
+        link
+        for link in [
+            settings.get("social_facebook"),
+            settings.get("social_instagram"),
+            settings.get("social_twitter"),
+        ]
+        if link
+    ]
     return {
         "media_url": media_url,
         "kitten_image_url": kitten_image_url,
         "site_sections": sections,
+        "site_settings": settings,
+        "service_areas": service_areas,
+        "social_links": social_links,
+        "current_year": datetime.now().year,
     }
 
 
@@ -3442,18 +3622,25 @@ def send_inquiry_email(inquiry, kitten):
     if not app.config["SMTP_HOST"]:
         return
 
-    subject = f"New {inquiry['inquiry_type'].title()} Inquiry - {kitten.get('name', 'Kitten')}"
-    to_addr = app.config["SMTP_TO"]
+    settings = fetch_settings()
+    business_name = settings.get("business_name") or "Frostline Coons"
+    reply_to = settings.get("reply_to_email") or app.config["SMTP_FROM"]
+    to_addr = settings.get("inquiry_email") or app.config["SMTP_TO"]
     from_addr = app.config["SMTP_FROM"]
+
+    subject = f"New {inquiry['inquiry_type'].title()} Inquiry - {kitten.get('name', 'Kitten')}"
 
     total = f"${kitten.get('price', 0):.0f}"
     deposit = f"${inquiry.get('deposit_amount', 0):.0f}"
     balance = f"${inquiry.get('balance_due', 0):.0f}"
+    address = settings.get("business_address") or ""
+    phone = settings.get("business_phone") or ""
+    footer_bits = " • ".join([item for item in [address, phone, reply_to] if item])
     invoice_html = f"""
     <html>
     <body style="font-family: Arial, sans-serif; background:#f6f2ec; padding:24px;">
       <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:16px;padding:24px;">
-        <h2 style="margin-top:0;color:#2c2a28;">Frostline Coons — Inquiry Invoice</h2>
+        <h2 style="margin-top:0;color:#2c2a28;">{business_name} — Inquiry Invoice</h2>
         <p style="color:#4a453f;">New {inquiry['inquiry_type']} inquiry received.</p>
         <table style="width:100%;border-collapse:collapse;margin:16px 0;">
           <tr>
@@ -3486,6 +3673,7 @@ def send_inquiry_email(inquiry, kitten):
         <p style="margin:0;">Payment: {inquiry.get('payment_method') or '—'}</p>
         <p style="margin-top:16px;color:#4a453f;">Message:</p>
         <p style="margin:0;color:#2c2a28;">{inquiry['message'] or '—'}</p>
+        {f"<p style='margin-top:16px;font-size:13px;color:#6a6a6a;'>{footer_bits}</p>" if footer_bits else ""}
       </div>
     </body>
     </html>
@@ -3509,6 +3697,8 @@ def send_inquiry_email(inquiry, kitten):
     message["Subject"] = subject
     message["From"] = from_addr
     message["To"] = to_addr
+    if reply_to:
+        message["Reply-To"] = reply_to
     message.set_content(invoice_text)
     message.add_alternative(invoice_html, subtype="html")
 
@@ -3529,11 +3719,21 @@ def send_inquiry_email(inquiry, kitten):
 init_db()
 
 # -------------------- ROUTES --------------------
+@app.after_request
+def add_cache_headers(response):
+    if request.path.startswith("/static/") or request.path.startswith("/uploads/"):
+        response.headers["Cache-Control"] = "public, max-age=2592000"
+    elif request.path in ("/sitemap.xml", "/robots.txt"):
+        response.headers["Cache-Control"] = "public, max-age=3600"
+    return response
+
+
 @app.route("/")
 def index():
     featured = fetch_kittens(featured_only=True)
     testimonials = fetch_testimonials()
     sections = fetch_sections()
+    settings = fetch_settings()
     hero = sections.get("hero") if sections else None
     hero_image = hero.get("image") if hero and hero.get("image") else "images/hero_kitten.jpg"
     return render_template(
@@ -3546,6 +3746,10 @@ def index():
             "Ethically raised Maine Coon kittens with loving socialization, "
             "health-focused care, and lifelong support."
         ),
+        meta_keywords=merge_keywords(
+            settings.get("seo_keywords"),
+            "featured Maine Coon kittens, Maine Coon kittens raised with care",
+        ),
         meta_image=media_url(hero_image),
     )
 
@@ -3554,11 +3758,16 @@ def index():
 def available_kittens():
     kittens = fetch_kittens()[:12]
     meta_image = kittens[0].get("card_image_url") if kittens else media_url("images/hero_kitten.jpg")
+    settings = fetch_settings()
     return render_template(
         "available_kittens.html",
         kittens=kittens,
         meta_title="Available Maine Coon Kittens | Frostline Coons",
         meta_description="View available Maine Coon kittens, pricing, and details. Reserve or inquire today.",
+        meta_keywords=merge_keywords(
+            settings.get("seo_keywords"),
+            "available Maine Coon kittens, reserve Maine Coon kitten, buy Maine Coon kitten",
+        ),
         meta_image=meta_image,
     )
 
@@ -3569,6 +3778,7 @@ def kitten_details(kitten_id):
     if not kitten:
         abort(404)
     sections = fetch_sections()
+    settings = fetch_settings()
     meta_image = kitten.get("card_image_url") or media_url("images/hero_kitten.jpg")
     return render_template(
         "kitten_details.html",
@@ -3579,6 +3789,14 @@ def kitten_details(kitten_id):
         meta_description=kitten.get("description")
         or kitten.get("bio")
         or "Meet this Maine Coon kitten and learn about personality, care, and availability.",
+        meta_keywords=merge_keywords(
+            settings.get("seo_keywords"),
+            [
+                kitten.get("name", "Maine Coon kitten"),
+                f"{kitten.get('name', 'Maine Coon kitten')} for sale",
+                "Maine Coon kitten details",
+            ],
+        ),
         meta_image=meta_image,
     )
 
@@ -3663,11 +3881,16 @@ def delivery():
     page = fetch_page("delivery")
     if not page:
         abort(404)
+    settings = fetch_settings()
     return render_template(
         "delivery.html",
         page=page,
         meta_title=page.get("meta_title") or page.get("title") or "Delivery & Arrival",
         meta_description=page.get("meta_description") or page.get("hero_body"),
+        meta_keywords=merge_keywords(
+            settings.get("seo_keywords"),
+            "Maine Coon kitten delivery, kitten transport, airport pickup",
+        ),
         meta_image=media_url(page.get("hero_image") or "images/hero_delivery.jpg"),
     )
 
@@ -3676,11 +3899,16 @@ def render_generic_page(slug):
     page = fetch_page(slug)
     if not page:
         abort(404)
+    settings = fetch_settings()
     return render_template(
         "page.html",
         page=page,
         meta_title=page.get("meta_title") or page.get("title"),
         meta_description=page.get("meta_description") or page.get("hero_body"),
+        meta_keywords=merge_keywords(
+            settings.get("seo_keywords"),
+            page.get("meta_title") or page.get("title"),
+        ),
         meta_image=media_url(page.get("hero_image") or "images/hero_kitten.jpg"),
     )
 
@@ -3703,11 +3931,16 @@ def contact():
 @app.route("/blog")
 def blog_index():
     posts = fetch_blog_posts()
+    settings = fetch_settings()
     return render_template(
         "blog/index.html",
         posts=posts,
         meta_title="Maine Coon Blog | Frostline Coons",
         meta_description="Maine Coon care guides, breed insights, and kitten tips from Frostline Coons.",
+        meta_keywords=merge_keywords(
+            settings.get("seo_keywords"),
+            "Maine Coon blog, Maine Coon care guides, kitten tips",
+        ),
         meta_image=media_url("images/hero_kitten.jpg"),
     )
 
@@ -3717,12 +3950,14 @@ def blog_post(slug):
     post = fetch_blog_post_by_slug(slug)
     if not post or post.get("status") != "published":
         abort(404)
+    settings = fetch_settings()
     cover = post.get("cover_image") or "images/hero_kitten.jpg"
     return render_template(
         "blog/post.html",
         post=post,
         meta_title=post.get("meta_title") or post.get("title") or "Maine Coon Blog",
         meta_description=post.get("meta_description") or post.get("excerpt"),
+        meta_keywords=merge_keywords(settings.get("seo_keywords"), post.get("keywords")),
         meta_image=media_url(cover),
         og_type="article",
     )
@@ -3997,6 +4232,45 @@ def admin_sections():
     sections = {row["section_key"]: dict(row) for row in rows}
     ordered = [sections[key["key"]] for key in DEFAULT_SECTIONS if key["key"] in sections]
     return render_template("admin/sections.html", sections=ordered)
+
+
+@app.route("/admin/settings", methods=["GET", "POST"])
+@login_required
+def admin_settings():
+    settings = fetch_settings()
+    if request.method == "POST":
+        updates = {
+            "business_name": request.form.get("business_name", "").strip(),
+            "reply_to_email": request.form.get("reply_to_email", "").strip(),
+            "inquiry_email": request.form.get("inquiry_email", "").strip(),
+            "business_address": request.form.get("business_address", "").strip(),
+            "business_phone": request.form.get("business_phone", "").strip(),
+            "seo_keywords": request.form.get("seo_keywords", "").strip(),
+            "service_areas": request.form.get("service_areas", "").strip(),
+            "ga_measurement_id": request.form.get("ga_measurement_id", "").strip(),
+            "social_facebook": request.form.get("social_facebook", "").strip(),
+            "social_instagram": request.form.get("social_instagram", "").strip(),
+            "social_twitter": request.form.get("social_twitter", "").strip(),
+        }
+
+        conn = get_db()
+        for key, value in updates.items():
+            if value == "":
+                value = DEFAULT_SETTINGS.get(key, "")
+            conn.execute(
+                """
+                INSERT INTO site_settings (key, value)
+                VALUES (?, ?)
+                ON CONFLICT(key) DO UPDATE SET value = excluded.value
+                """,
+                (key, value),
+            )
+        conn.commit()
+        conn.close()
+        flash("Settings updated.", "success")
+        return redirect(url_for("admin_settings"))
+
+    return render_template("admin/settings.html", settings=settings)
 
 
 @app.route("/admin/inquiries")

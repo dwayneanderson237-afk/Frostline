@@ -8,7 +8,7 @@
         {% set availability_key = kitten.availability|lower %}
         <div class="kitten-card{% if availability_key != 'available' %} status-{{ availability_key }}{% endif %}">
           <div class="kitten-image-wrap">
-            <img src="{{ kitten.card_image_url }}" alt="{{ kitten.name }}">
+            <img src="{{ kitten.card_image_url }}" alt="{{ kitten.name }}" loading="lazy" decoding="async">
 
             <span class="badge gender {{ kitten.gender|lower }}">
               {{ kitten.gender }}

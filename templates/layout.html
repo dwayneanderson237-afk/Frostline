@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% set page_title = meta_title or "Frostline Coons" %}
+    {% set settings = site_settings or {} %}
+    {% set site_name = settings.get('business_name') or "Frostline Coons" %}
+    {% set page_title = meta_title or site_name %}
     {% set page_description = meta_description or "Ethical, loving Maine Coon kittens raised with care, socialization, and lifelong support." %}
     {% set page_image = meta_image or url_for('static', filename='images/hero_kitten.jpg') %}
+    {% set page_keywords = meta_keywords or settings.get('seo_keywords') %}
     {% if page_image.startswith('http') %}
       {% set og_image = page_image %}
     {% else %}
@@ -14,13 +17,21 @@
     {% set canonical_url = canonical or request.url %}
     <title>{{ page_title }}</title>
     <meta name="description" content="{{ page_description }}">
+    {% if page_keywords %}
+    <meta name="keywords" content="{{ page_keywords }}">
+    {% endif %}
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ canonical_url }}">
     <meta property="og:title" content="{{ page_title }}">
     <meta property="og:description" content="{{ page_description }}">
     <meta property="og:type" content="{{ og_type or 'website' }}">
     <meta property="og:url" content="{{ canonical_url }}">
     <meta property="og:image" content="{{ og_image }}">
+    <meta property="og:site_name" content="{{ site_name }}">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ page_description }}">
+    <meta name="twitter:image" content="{{ og_image }}">
     {% block extra_meta %}{% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +49,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Frostline Coons",
+      "name": {{ site_name|tojson }},
       "url": {{ request.url_root.rstrip('/')|tojson }}{% if org_logo %},
       "logo": {{ org_logo|tojson }}{% endif %}
     }
@@ -47,10 +58,41 @@
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Frostline Coons",
+      "name": {{ site_name|tojson }},
       "url": {{ request.url_root.rstrip('/')|tojson }}
     }
     </script>
+    {% set business_address = settings.get('business_address') %}
+    {% set business_phone = settings.get('business_phone') %}
+    {% set reply_to_email = settings.get('reply_to_email') %}
+    {% if business_address or business_phone or reply_to_email or service_areas %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PetStore",
+      "name": {{ site_name|tojson }},
+      "url": {{ request.url_root.rstrip('/')|tojson }}{% if org_logo %},
+      "logo": {{ org_logo|tojson }}{% endif %}{% if reply_to_email %},
+      "email": {{ reply_to_email|tojson }}{% endif %}{% if business_phone %},
+      "telephone": {{ business_phone|tojson }}{% endif %}{% if business_address %},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": {{ business_address|tojson }}
+      }{% endif %}{% if service_areas %},
+      "areaServed": {{ service_areas|tojson }}{% endif %}{% if social_links %},
+      "sameAs": {{ social_links|tojson }}{% endif %}
+    }
+    </script>
+    {% endif %}
+    {% if settings.get('ga_measurement_id') %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.get('ga_measurement_id') }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ settings.get('ga_measurement_id') }}');
+    </script>
+    {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
@@ -62,7 +104,7 @@
                 {% if logo and logo.image %}
                 <img src="{{ media_url(logo.image) }}" alt="{{ logo.title or 'Frostline Coons' }}">
                 {% else %}
-                <span>Frostline Coons</span>
+                <span>{{ site_name }}</span>
                 {% endif %}
             </a>
         </div>
@@ -102,13 +144,20 @@
             <a href="{{ url_for('blog_index') }}">Blog</a>
             <a href="{{ url_for('contact') }}">Contact</a>
         </div>
+        {% set footer_email = settings.get('reply_to_email') or "info@frostlinecoons.com" %}
         <div class="social-icons">
-            <a href="mailto:info@frostlinecoons.com"><img src="{{ url_for('static', filename='images/icons/email.svg') }}" alt="Email"></a>
-            <a href="https://facebook.com" target="_blank" rel="noopener"><img src="{{ url_for('static', filename='images/icons/facebook.svg') }}" alt="Facebook"></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener"><img src="{{ url_for('static', filename='images/icons/instagram.svg') }}" alt="Instagram"></a>
-            <a href="https://twitter.com" target="_blank" rel="noopener"><img src="{{ url_for('static', filename='images/icons/twitter.svg') }}" alt="Twitter"></a>
+            <a href="mailto:{{ footer_email }}"><img src="{{ url_for('static', filename='images/icons/email.svg') }}" alt="Email"></a>
+            {% if settings.get('social_facebook') %}
+            <a href="{{ settings.get('social_facebook') }}" target="_blank" rel="noopener"><img src="{{ url_for('static', filename='images/icons/facebook.svg') }}" alt="Facebook"></a>
+            {% endif %}
+            {% if settings.get('social_instagram') %}
+            <a href="{{ settings.get('social_instagram') }}" target="_blank" rel="noopener"><img src="{{ url_for('static', filename='images/icons/instagram.svg') }}" alt="Instagram"></a>
+            {% endif %}
+            {% if settings.get('social_twitter') %}
+            <a href="{{ settings.get('social_twitter') }}" target="_blank" rel="noopener"><img src="{{ url_for('static', filename='images/icons/twitter.svg') }}" alt="Twitter"></a>
+            {% endif %}
         </div>
-        <p>© 2026 Frostline Coons. All Rights Reserved.</p>
+        <p>© {{ current_year }} {{ site_name }}. All Rights Reserved.</p>
     </footer>
 </body>
 </html>

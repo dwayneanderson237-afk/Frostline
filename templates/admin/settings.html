@@ -1,0 +1,59 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="admin-header">
+    <div>
+        <h1>Site Settings</h1>
+        <p>Update business details, SEO defaults, and analytics.</p>
+    </div>
+</div>
+
+<form method="POST" class="admin-form">
+    <div class="admin-section-card">
+        <h2>Business Details</h2>
+        <label>Business Name</label>
+        <input type="text" name="business_name" value="{{ settings.get('business_name','') }}">
+
+        <label>Reply-To Email</label>
+        <input type="email" name="reply_to_email" value="{{ settings.get('reply_to_email','') }}">
+
+        <label>Inquiry Notification Email</label>
+        <input type="email" name="inquiry_email" value="{{ settings.get('inquiry_email','') }}">
+
+        <label>Business Address</label>
+        <input type="text" name="business_address" value="{{ settings.get('business_address','') }}">
+
+        <label>Business Phone (optional)</label>
+        <input type="text" name="business_phone" value="{{ settings.get('business_phone','') }}">
+    </div>
+
+    <div class="admin-section-card">
+        <h2>SEO Defaults</h2>
+        <label>SEO Keywords (comma or line separated)</label>
+        <textarea name="seo_keywords" rows="6">{{ settings.get('seo_keywords','') }}</textarea>
+
+        <label>Service Areas (comma or line separated)</label>
+        <textarea name="service_areas" rows="3">{{ settings.get('service_areas','') }}</textarea>
+    </div>
+
+    <div class="admin-section-card">
+        <h2>Analytics</h2>
+        <label>GA4 Measurement ID (e.g. G-XXXXXXXXXX)</label>
+        <input type="text" name="ga_measurement_id" value="{{ settings.get('ga_measurement_id','') }}">
+    </div>
+
+    <div class="admin-section-card">
+        <h2>Social Links</h2>
+        <label>Facebook</label>
+        <input type="text" name="social_facebook" value="{{ settings.get('social_facebook','') }}">
+
+        <label>Instagram</label>
+        <input type="text" name="social_instagram" value="{{ settings.get('social_instagram','') }}">
+
+        <label>Twitter / X</label>
+        <input type="text" name="social_twitter" value="{{ settings.get('social_twitter','') }}">
+    </div>
+
+    <button type="submit" class="admin-btn primary">Save Settings</button>
+</form>
+{% endblock %}

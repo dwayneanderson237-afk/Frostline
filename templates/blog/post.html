@@ -1,9 +1,6 @@
 {% extends "layout.html" %}
 
 {% block extra_meta %}
-{% if post.keywords %}
-<meta name="keywords" content="{{ post.keywords }}">
-{% endif %}
 {% set org_logo = "" %}
 {% if site_sections and site_sections.get('logo') and site_sections.get('logo').image %}
     {% set logo_path = media_url(site_sections.get('logo').image) %}
@@ -22,11 +19,11 @@
   "image": [{{ og_image|tojson }}],
   "author": {
     "@type": "Organization",
-    "name": "Frostline Coons"
+    "name": {{ (site_settings.get('business_name') or 'Frostline Coons')|tojson }}
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Frostline Coons"{% if org_logo %},
+    "name": {{ (site_settings.get('business_name') or 'Frostline Coons')|tojson }}{% if org_logo %},
     "logo": {
       "@type": "ImageObject",
       "url": {{ org_logo|tojson }}
@@ -48,7 +45,7 @@
     <h1>{{ post.title }}</h1>
     <p class="blog-post-meta">{{ post.published_at }}</p>
     {% if post.cover_image %}
-    <img src="{{ media_url(post.cover_image) }}" alt="{{ post.title }}">
+    <img src="{{ media_url(post.cover_image) }}" alt="{{ post.title }}" loading="lazy" decoding="async">
     {% endif %}
   </header>
 

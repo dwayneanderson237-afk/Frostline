@@ -31,7 +31,7 @@
        onclick="window.location.href='{{ url_for('kitten_details', kitten_id=kitten.id) }}'">
 
     <div class="kitten-image-wrap">
-      <img src="{{ kitten.card_image_url }}" alt="{{ kitten.name }}">
+      <img src="{{ kitten.card_image_url }}" alt="{{ kitten.name }}" loading="lazy" decoding="async">
 
       <span class="badge gender {{ kitten.gender|lower }}">
         {{ kitten.gender }}
@@ -75,7 +75,7 @@
       {% endfor %}
     </div>
     <div class="image">
-      <img src="{{ media_url(story.image) }}" alt="{{ story.title }}">
+      <img src="{{ media_url(story.image) }}" alt="{{ story.title }}" loading="lazy" decoding="async">
     </div>
   </div>
   {% endif %}
@@ -90,7 +90,7 @@
       {% endfor %}
     </div>
     <div class="image">
-      <img src="{{ media_url(health.image) }}" alt="{{ health.title }}">
+      <img src="{{ media_url(health.image) }}" alt="{{ health.title }}" loading="lazy" decoding="async">
     </div>
   </div>
   {% endif %}
@@ -105,7 +105,7 @@
       {% endfor %}
     </div>
     <div class="image">
-      <img src="{{ media_url(mission.image) }}" alt="{{ mission.title }}">
+      <img src="{{ media_url(mission.image) }}" alt="{{ mission.title }}" loading="lazy" decoding="async">
     </div>
   </div>
   {% endif %}
@@ -117,7 +117,7 @@
   <div class="testimonial-track">
     {% for t in testimonials %}
     <div class="testimonial-card">
-      <img src="{{ media_url(t.image) }}" alt="{{ t.author }}">
+      <img src="{{ media_url(t.image) }}" alt="{{ t.author }}" loading="lazy" decoding="async">
       <p>
         "{{ t.quote }}"
       </p>

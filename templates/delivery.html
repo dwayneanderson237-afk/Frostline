@@ -33,7 +33,7 @@
             {% endfor %}
         </div>
         <div class="image">
-            <img src="{{ media_url(block.image) }}" alt="{{ block.title }}">
+            <img src="{{ media_url(block.image) }}" alt="{{ block.title }}" loading="lazy" decoding="async">
         </div>
     </div>
     {% endfor %}
