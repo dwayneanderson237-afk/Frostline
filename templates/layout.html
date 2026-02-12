@@ -22,6 +22,9 @@
     <meta property="og:image" content="{{ og_image }}">
     <meta name="twitter:card" content="summary_large_image">
     {% block extra_meta %}{% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
     {% set org_logo = "" %}
     {% if site_sections and site_sections.get('logo') and site_sections.get('logo').image %}
       {% set logo_path = media_url(site_sections.get('logo').image) %}

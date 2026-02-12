@@ -9,7 +9,7 @@
   <div class="hero-slides">
     {% for slide in hero_slides if slide %}
     <div class="hero-slide{% if loop.first %} is-active{% endif %}"
-         style="background-image: linear-gradient(to bottom, rgba(44,42,40,0.28), rgba(240,235,227,0.68)),
+         style="background-image: linear-gradient(to bottom, rgba(15,27,43,0.35), rgba(243,246,251,0.7)),
                 url('{{ media_url(slide.image or 'images/hero_kitten.jpg') }}');">
       <div class="hero-text">
         <h1>{{ slide.title }}</h1>
