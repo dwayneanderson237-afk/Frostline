@@ -1,4 +1,18 @@
 {% extends "layout.html" %}
+{% block extra_meta %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Maine Coon Blog",
+  "url": {{ canonical_url|tojson }},
+  "publisher": {
+    "@type": "Organization",
+    "name": "Frostline Coons"
+  }
+}
+</script>
+{% endblock %}
 {% block content %}
 
 <section class="blog-hero">

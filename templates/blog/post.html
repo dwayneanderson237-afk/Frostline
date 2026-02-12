@@ -4,6 +4,41 @@
 {% if post.keywords %}
 <meta name="keywords" content="{{ post.keywords }}">
 {% endif %}
+{% set org_logo = "" %}
+{% if site_sections and site_sections.get('logo') and site_sections.get('logo').image %}
+    {% set logo_path = media_url(site_sections.get('logo').image) %}
+    {% if logo_path.startswith('http') %}
+        {% set org_logo = logo_path %}
+    {% else %}
+        {% set org_logo = request.url_root.rstrip('/') ~ logo_path %}
+    {% endif %}
+{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ post.title|tojson }},
+  "description": {{ (post.meta_description or post.excerpt or "")|tojson }},
+  "image": [{{ og_image|tojson }}],
+  "author": {
+    "@type": "Organization",
+    "name": "Frostline Coons"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Frostline Coons"{% if org_logo %},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ org_logo|tojson }}
+    }{% endif %}
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ canonical_url|tojson }}
+  },
+  "datePublished": {{ post.published_at|tojson }}
+}
+</script>
 {% endblock %}
 
 {% block content %}
@@ -18,8 +53,16 @@
   </header>
 
   <div class="blog-post-body">
-    {% for paragraph in post.content.split('\n\n') %}
-    <p>{{ paragraph }}</p>
+    {% for block in post.content.split('\n\n') %}
+      {% if block.strip() %}
+        {% if block.startswith('## ') %}
+          <h2>{{ block[3:] }}</h2>
+        {% elif block.startswith('### ') %}
+          <h3>{{ block[4:] }}</h3>
+        {% else %}
+          <p>{{ block }}</p>
+        {% endif %}
+      {% endif %}
     {% endfor %}
   </div>
 

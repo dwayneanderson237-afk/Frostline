@@ -22,6 +22,32 @@
     <meta property="og:image" content="{{ og_image }}">
     <meta name="twitter:card" content="summary_large_image">
     {% block extra_meta %}{% endblock %}
+    {% set org_logo = "" %}
+    {% if site_sections and site_sections.get('logo') and site_sections.get('logo').image %}
+      {% set logo_path = media_url(site_sections.get('logo').image) %}
+      {% if logo_path.startswith('http') %}
+        {% set org_logo = logo_path %}
+      {% else %}
+        {% set org_logo = request.url_root.rstrip('/') ~ logo_path %}
+      {% endif %}
+    {% endif %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Frostline Coons",
+      "url": {{ request.url_root.rstrip('/')|tojson }}{% if org_logo %},
+      "logo": {{ org_logo|tojson }}{% endif %}
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Frostline Coons",
+      "url": {{ request.url_root.rstrip('/')|tojson }}
+    }
+    </script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>

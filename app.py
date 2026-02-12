@@ -738,76 +738,235 @@ DEFAULT_PAGES = [
 DEFAULT_BLOG_POSTS = [
     {
         "title": "Maine Coon Temperament: What to Expect at Home",
-        "excerpt": "Meet the gentle giant personality Maine Coons are known for, plus how to support their social, loyal nature at home.",
+        "excerpt": "A buyer-focused look at Maine Coon temperament, daily routines, and how to match the right personality to your home.",
         "content": (
-            "Maine Coons are famous for their calm, people‑oriented temperament. They tend to follow family members from room to room, "
-            "communicating with soft chirps and trills rather than loud meows.\n\n"
-            "Most Maine Coons enjoy being near you without demanding constant attention. They’re affectionate but independent, "
-            "making them a great fit for busy homes that still want a bonded companion.\n\n"
-            "To bring out their best personality, focus on daily interactive play, predictable routines, and gentle handling."
+            "Maine Coons are often called gentle giants, but their temperament is more nuanced than a single phrase. "
+            "They are typically social, curious, and steady, with a style that fits families who want a bonded companion "
+            "without constant clinginess. Knowing what to expect helps you choose the right kitten and build a calm start.\n\n"
+            "## Social but not demanding\n\n"
+            "Most Maine Coons prefer to be near their people rather than on top of them. "
+            "You will often see a kitten follow you from room to room, settle nearby, and check in with soft trills. "
+            "This is a breed that enjoys companionship, but it also respects quiet time.\n\n"
+            "A confident kitten will explore new spaces, then return to you for reassurance. "
+            "That pattern is a strong sign of a balanced temperament: curious, friendly, and secure.\n\n"
+            "## Play style and energy balance\n\n"
+            "Maine Coons are playful without being frantic. They enjoy interactive play, puzzle feeders, and climbing, "
+            "but they are usually content to relax afterward. Two to three short play sessions per day is ideal. "
+            "If your household is active, a slightly higher energy kitten can be a great match.\n\n"
+            "### Signs of a confident, stable temperament\n\n"
+            "Look for kittens that approach new people with relaxed curiosity, recover quickly after a startle, "
+            "and can settle calmly after play. These behaviors often predict an easy transition to a new home.\n\n"
+            "## Communication and body language\n\n"
+            "Maine Coons are known for chirps, trills, and soft conversational sounds. "
+            "They also communicate with body language: a gently raised tail signals confidence, "
+            "slow blinks show comfort, and a relaxed posture indicates trust. "
+            "Learning these cues helps you respond calmly and build a stronger bond.\n\n"
+            "## How temperament is shaped\n\n"
+            "Genetics play a role, but early handling and routine matter just as much. "
+            "Kittens who are gently handled, exposed to normal household sounds, and given predictable routines "
+            "tend to become calmer adults. Ask your breeder how the litter is socialized and what the daily routine looks like.\n\n"
+            "## Temperament with kids and other pets\n\n"
+            "Maine Coons usually do well with respectful children and gentle pets. "
+            "Slow introductions and a safe retreat space make a big difference. "
+            "Teach kids to use soft voices and gentle hands, and keep early interactions short and positive.\n\n"
+            "## Questions to ask before you reserve\n\n"
+            "To match temperament, ask about each kitten's energy level, response to handling, and play preferences. "
+            "Ask whether the kitten seeks attention or prefers independent play. "
+            "These small details help you choose a kitten that fits your home.\n\n"
+            "## The first week at home\n\n"
+            "Temperament shines during the first week. A quiet starter room, consistent meals, and short play sessions "
+            "help your kitten feel secure. Avoid overwhelming the kitten with visitors or large spaces immediately. "
+            "When the routine is calm, Maine Coons typically settle quickly and show their affectionate side.\n\n"
+            "A Maine Coon's temperament is a blend of gentle confidence and social curiosity. "
+            "When you match that temperament to your lifestyle, the result is a steady, loyal companion for years to come."
         ),
         "meta_title": "Maine Coon Temperament Guide | Frostline Coons",
-        "meta_description": "Learn what the Maine Coon temperament is really like, from their affectionate nature to how they bond with families.",
+        "meta_description": "Learn what Maine Coon temperament is really like and how to choose the right personality match for your home.",
         "keywords": "Maine Coon temperament, Maine Coon personality, gentle giant cat",
-        "cover_image": "images/hero_kitten.jpg"
+        "cover_image": "https://source.unsplash.com/1600x900/?maine%20coon,cat&sig=101"
     },
     {
         "title": "How Big Do Maine Coons Get? Growth Stages Explained",
-        "excerpt": "A clear look at Maine Coon growth stages, how long they take to mature, and how to support healthy development.",
+        "excerpt": "A detailed growth guide for Maine Coons, from early kitten months to full adult size.",
         "content": (
-            "Maine Coons grow more slowly than most breeds, often maturing over 3–5 years. It’s normal for them to look lanky "
-            "in the early months before they fill out.\n\n"
-            "Healthy growth depends on balanced nutrition, joint‑friendly activity, and consistent vet care. Avoid overfeeding, "
-            "and aim for steady weight gain rather than sudden jumps.\n\n"
-            "Your kitten’s growth rate will vary by genetics and lifestyle, but patience is key — the gentle giant takes time."
+            "Maine Coons are famous for their size, but they also grow at a slower pace than most breeds. "
+            "Understanding the growth timeline helps you plan nutrition, space, and expectations without rushing development.\n\n"
+            "## The long growth timeline\n\n"
+            "Most Maine Coons continue growing for three to five years. "
+            "The first year brings the most visible change in height and length, while years two and three focus on filling out "
+            "with muscle and a fuller coat. This slow growth is normal and healthy for the breed.\n\n"
+            "## Growth stages at a glance\n\n"
+            "### 0 to 4 months\n\n"
+            "Rapid growth, high energy, and frequent meals. This stage builds the foundation for bones and joints. "
+            "Expect a curious, energetic kitten who wants to climb and explore.\n\n"
+            "### 4 to 9 months\n\n"
+            "This is the lanky stage. Kittens often look tall and lean before their chest and frame fill out. "
+            "Consistent nutrition and steady play help them build healthy muscle.\n\n"
+            "### 9 to 18 months\n\n"
+            "The body starts to fill out, and the coat becomes thicker. "
+            "You may notice more width across the chest and shoulders.\n\n"
+            "### 18 months to 3 years\n\n"
+            "This stage is about slow, steady maturity. The cat continues to gain muscle and develop the classic Maine Coon build.\n\n"
+            "## Size ranges and variation\n\n"
+            "Adult size varies by genetics, gender, and activity. Males are often larger, but there is a wide range. "
+            "Healthy size is more important than a specific number. "
+            "Focus on steady, balanced growth rather than chasing a scale target.\n\n"
+            "## Nutrition that supports healthy growth\n\n"
+            "Large-breed kittens benefit from high-quality protein and balanced minerals. "
+            "Avoid rapid weight gain from overfeeding, which can stress joints. "
+            "A consistent feeding schedule with measured portions helps maintain steady growth.\n\n"
+            "## Activity and joint support\n\n"
+            "Maine Coons are athletic and enjoy climbing. "
+            "Provide sturdy cat trees and interactive play, but avoid excessive high-impact jumping for very young kittens. "
+            "Short, frequent play sessions are better than a single long session.\n\n"
+            "## Monitoring growth at home\n\n"
+            "Use a pet scale or a bathroom scale with a carrier to track weight monthly. "
+            "Watch overall body condition: you should feel a slight rib outline without excess padding. "
+            "If growth seems too fast or too slow, consult your vet for guidance.\n\n"
+            "## When to ask your vet\n\n"
+            "If your kitten loses weight, shows low appetite, or seems unusually lethargic, check in with your vet. "
+            "Early evaluation prevents small issues from becoming bigger problems.\n\n"
+            "Maine Coons grow into their size with time. "
+            "A patient, steady approach to nutrition and activity produces the healthiest, most confident adult."
         ),
         "meta_title": "Maine Coon Size & Growth | Frostline Coons",
-        "meta_description": "Discover how big Maine Coons get and what their growth timeline looks like from kitten to adult.",
+        "meta_description": "Learn the Maine Coon growth timeline, size ranges, and how to support healthy development.",
         "keywords": "Maine Coon size, Maine Coon growth, how big do Maine Coons get",
-        "cover_image": "images/story.jpg"
+        "cover_image": "https://images.pexels.com/photos/236366/pexels-photo-236366.jpeg?cs=srgb&dl=pexels-pixabay-236366.jpg&fm=jpg"
     },
     {
         "title": "Maine Coon Grooming Routine: Brushes, Baths, and Mats",
-        "excerpt": "Keep the coat healthy and tangle‑free with a simple grooming routine built for Maine Coons.",
+        "excerpt": "A complete grooming routine for Maine Coons, including tools, schedules, and mat prevention.",
         "content": (
-            "A Maine Coon’s coat is long, plush, and designed to shed — so gentle, regular grooming is essential. "
-            "Use a wide‑tooth comb for the undercoat and a slicker brush for the topcoat.\n\n"
-            "Focus on friction areas like the chest, belly, and behind the legs. Short, calm sessions work best, "
-            "especially for kittens learning the routine.\n\n"
-            "Baths are rarely needed, but an occasional warm bath can help during seasonal sheds or after messy adventures."
+            "Maine Coons have a long, luxurious coat designed for cold climates, which means grooming is part of the routine. "
+            "The goal is not perfection, but comfort: prevent mats, reduce shedding, and keep your kitten relaxed during handling.\n\n"
+            "## The essential grooming tools\n\n"
+            "### Wide-tooth comb\n\n"
+            "A comb reaches the undercoat and helps prevent tangles near the skin. "
+            "Use it first to separate fur before brushing.\n\n"
+            "### Slicker brush\n\n"
+            "A slicker brush smooths the topcoat and removes loose hair. "
+            "Use gentle, short strokes to avoid pulling.\n\n"
+            "### Dematting tool (optional)\n\n"
+            "For stubborn mats, a dematting tool can help, but use it carefully and sparingly. "
+            "If a mat is close to the skin, seek a professional groomer.\n\n"
+            "## A weekly grooming schedule\n\n"
+            "For most Maine Coons, two to three grooming sessions per week are enough. "
+            "During seasonal sheds, increase frequency to keep the coat comfortable. "
+            "Short sessions of five to ten minutes are easier for kittens than one long session.\n\n"
+            "## Focus areas for mat prevention\n\n"
+            "Friction areas are the most common mat locations: the chest ruff, belly, armpits, and behind the legs. "
+            "These spots need extra attention, especially during spring and fall sheds.\n\n"
+            "## Bathing: when and how\n\n"
+            "Most Maine Coons do not need frequent baths. "
+            "A bath is helpful after a messy adventure or during heavy seasonal shedding. "
+            "Use warm water, a gentle cat shampoo, and a calm, slow approach. "
+            "Dry thoroughly with a towel and a low-heat dryer if your kitten tolerates it.\n\n"
+            "## Nail trims and basic hygiene\n\n"
+            "Trim nails every two to four weeks, and handle paws gently during grooming to build trust. "
+            "Check ears for debris and wipe with a soft, damp cotton pad if needed.\n\n"
+            "## Training your kitten to enjoy grooming\n\n"
+            "Start with very short sessions and reward calm behavior with treats. "
+            "Let your kitten sniff the tools before you begin. "
+            "Consistency matters more than speed; slow and steady builds a positive routine.\n\n"
+            "## Common mistakes to avoid\n\n"
+            "Avoid brushing too aggressively or forcing long sessions. "
+            "Mats are easier to prevent than to remove, so regular light grooming is better than occasional heavy grooming.\n\n"
+            "A simple, consistent routine keeps the Maine Coon coat healthy and beautiful. "
+            "Grooming also becomes a bonding ritual that helps your kitten feel secure."
         ),
         "meta_title": "Maine Coon Grooming Tips | Frostline Coons",
-        "meta_description": "Learn the best grooming routine for Maine Coons, including brushing tools, mat prevention, and bath tips.",
+        "meta_description": "A full Maine Coon grooming routine with tools, schedules, and mat prevention tips.",
         "keywords": "Maine Coon grooming, Maine Coon brush, long-haired cat grooming",
-        "cover_image": "images/health.jpg"
+        "cover_image": "https://images.pexels.com/photos/460785/pexels-photo-460785.jpeg?cs=srgb&dl=pexels-pixabay-460785.jpg&fm=jpg"
     },
     {
         "title": "Kitten‑Proofing Your Home for a Maine Coon",
-        "excerpt": "Prepare your home for a curious, climbing kitten with practical, safety‑first tips.",
+        "excerpt": "A room-by-room kitten-proofing plan designed for large, curious Maine Coon kittens.",
         "content": (
-            "Maine Coon kittens are bold explorers. Secure cords, remove small swallowable items, and block off tight hiding spaces.\n\n"
-            "Provide safe vertical spaces like sturdy cat trees and wall shelves so your kitten can climb without risk.\n\n"
-            "A calm starter room helps ease the transition and prevents overstimulation during the first few days."
+            "Maine Coon kittens are bold, athletic, and curious. "
+            "A safe home setup protects your kitten and reduces stress during the first weeks. "
+            "This room-by-room guide focuses on real-life hazards and smart fixes.\n\n"
+            "## Start with a quiet starter room\n\n"
+            "Choose a small room with a litter box, food, water, and a cozy bed. "
+            "This gives your kitten a calm place to settle before exploring the full home. "
+            "Keep the door closed at first to avoid overwhelm.\n\n"
+            "## Living room safety\n\n"
+            "Secure loose cords and power strips, and block access behind entertainment centers. "
+            "Remove small swallowable items like rubber bands or hair ties. "
+            "Stabilize tall furniture that could wobble if climbed.\n\n"
+            "## Kitchen precautions\n\n"
+            "Keep countertops clear of food scraps and sharp objects. "
+            "Use child-safe latches on lower cabinets if you store cleaners or plastic bags. "
+            "Ensure trash cans have secure lids.\n\n"
+            "## Bathroom and laundry areas\n\n"
+            "Always close toilet lids and keep cleaning products out of reach. "
+            "Check laundry machines before use, as kittens love warm hiding spaces. "
+            "Secure loose strings from towels or bath mats.\n\n"
+            "## Bedrooms and closets\n\n"
+            "Store strings, cords, and small accessories in drawers. "
+            "Make sure window screens are secure and keep windows closed or limited. "
+            "Offer a soft resting spot to discourage climbing on shelves.\n\n"
+            "## Stairs, balconies, and outdoor access\n\n"
+            "Use gates if needed for very young kittens, and avoid any unprotected balcony access. "
+            "Maine Coons are excellent climbers, so safety barriers are essential.\n\n"
+            "## Safe enrichment instead of risky exploration\n\n"
+            "Provide a sturdy cat tree, scratching posts, and interactive toys. "
+            "When kittens have safe outlets for climbing and play, they are less likely to explore hazards.\n\n"
+            "## The first week checklist\n\n"
+            "Keep the environment quiet, limit visitors, and let your kitten explore gradually. "
+            "A slow, calm start builds confidence and reduces unwanted behaviors.\n\n"
+            "Kitten-proofing is not about making your home perfect. "
+            "It is about removing the biggest risks and giving your Maine Coon a safe, confident start."
         ),
         "meta_title": "Kitten Proofing for Maine Coons | Frostline Coons",
-        "meta_description": "Make your home safe for a Maine Coon kitten with simple, effective kitten‑proofing strategies.",
+        "meta_description": "Room-by-room kitten-proofing tips to create a safe home for Maine Coon kittens.",
         "keywords": "kitten proofing, Maine Coon kitten home, cat safety tips",
-        "cover_image": "images/hero_home.jpg"
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20home&sig=102"
     },
     {
         "title": "Feeding a Maine Coon Kitten: Schedule and Nutrition Tips",
-        "excerpt": "A balanced feeding plan to support steady growth, strong joints, and a healthy coat.",
+        "excerpt": "A practical feeding plan for Maine Coon kittens, with schedules, nutrition goals, and portion guidance.",
         "content": (
-            "Maine Coon kittens need nutrient‑dense meals divided into smaller feedings throughout the day. "
-            "Quality protein is essential for growth and muscle development.\n\n"
-            "Look for kitten‑specific formulas with balanced calcium and phosphorus to support bone growth. "
-            "Avoid rapid weight gain by keeping portions consistent.\n\n"
-            "Hydration matters too — encourage water intake with fresh bowls and occasional wet food."
+            "Feeding a Maine Coon kitten is about steady growth, strong joints, and long-term health. "
+            "This breed grows slowly, so consistent nutrition matters more than rapid weight gain.\n\n"
+            "## Nutrition priorities\n\n"
+            "Look for high-quality protein, balanced fats, and the right mineral ratio for growing bones. "
+            "Kitten-specific formulas are designed for development and are the safest base diet.\n\n"
+            "## Feeding schedule by age\n\n"
+            "### 8 to 12 weeks\n\n"
+            "Offer four small meals per day. "
+            "This keeps energy stable and supports digestion.\n\n"
+            "### 3 to 6 months\n\n"
+            "Move to three meals per day. "
+            "Keep portions consistent and monitor energy levels.\n\n"
+            "### 6 to 12 months\n\n"
+            "Most kittens do well with two to three meals per day. "
+            "Adjust portions based on body condition rather than weight alone.\n\n"
+            "## Wet food, dry food, or both\n\n"
+            "A combination can work well. Wet food supports hydration and can be easier to digest, "
+            "while dry food offers convenience and helps with routine. "
+            "Choose high-quality options either way.\n\n"
+            "## Hydration matters\n\n"
+            "Fresh water should be available at all times. "
+            "Water fountains can encourage drinking and support coat health.\n\n"
+            "## Treats and extras\n\n"
+            "Keep treats minimal and use them for training or grooming rewards. "
+            "Avoid dairy and high-salt human foods. "
+            "If you want supplements, ask your vet first.\n\n"
+            "## Transitioning foods safely\n\n"
+            "If you change foods, do it over 7 to 10 days by slowly increasing the new food ratio. "
+            "Monitor digestion and reduce speed if stools change.\n\n"
+            "## Monitoring healthy growth\n\n"
+            "Check body condition regularly. You should feel a light rib outline but not see sharp bones. "
+            "Steady growth is the goal, not rapid size.\n\n"
+            "A consistent, balanced feeding plan sets the foundation for a healthy adult Maine Coon. "
+            "If you are unsure about portions, your vet can help you fine-tune the schedule."
         ),
         "meta_title": "Maine Coon Kitten Feeding Guide | Frostline Coons",
-        "meta_description": "Learn how to feed a Maine Coon kitten with the right schedule, portions, and nutrition for healthy growth.",
+        "meta_description": "Maine Coon kitten feeding guide with schedules, nutrition goals, and hydration tips.",
         "keywords": "Maine Coon kitten food, feeding schedule, Maine Coon nutrition",
-        "cover_image": "images/health2.jpg"
+        "cover_image": "https://images.pexels.com/photos/96900/pexels-photo-96900.jpeg?cs=srgb&dl=pexels-dan-wheeler-96900.jpg&fm=jpg"
     },
     {
         "title": "Maine Coon vs. Other Breeds: Is the Gentle Giant Right for You?",
@@ -1290,6 +1449,838 @@ DEFAULT_BLOG_POSTS = [
         "meta_description": "Tips for carrier training a Maine Coon kitten to reduce stress during vet visits.",
         "keywords": "cat carrier training, Maine Coon vet visit, kitten travel",
         "cover_image": "images/hero_delivery.jpg"
+    },
+    {
+        "title": "How to Reserve a Maine Coon Kitten Online: A Step-by-Step Buyer Guide",
+        "excerpt": "A clear, buyer-focused guide to reserving a Maine Coon kitten with confidence and zero surprises.",
+        "content": (
+            "If you are ready to bring home a Maine Coon kitten, a calm and transparent reservation process matters. "
+            "The goal is to match the right kitten to the right home while keeping timing and expectations clear.\n\n"
+            "## Step 1: Check availability and timing\n\n"
+            "Start by reviewing which kittens are marked available and the timeline for homegoing. "
+            "A good breeder shares realistic timing, not rushed promises.\n\n"
+            "## Step 2: Share your home details\n\n"
+            "Expect to answer questions about your household, lifestyle, and other pets. "
+            "This helps ensure the kitten matches your energy level and routine.\n\n"
+            "## Step 3: Review health and socialization notes\n\n"
+            "Ask for vaccination records, wellness checks, and notes on personality. "
+            "These details help you prepare the right care plan from day one.\n\n"
+            "## Step 4: Choose delivery or pickup\n\n"
+            "Decide between local pickup, ground transport, or airport pickup based on your location. "
+            "Plan the handoff so your kitten arrives calm and secure.\n\n"
+            "## Step 5: Prepare your home\n\n"
+            "Set up a quiet starter room, food and water, and a large litter box. "
+            "A stable routine helps your kitten settle quickly.\n\n"
+            "A good reservation process should feel clear, respectful, and organized. "
+            "When everything is laid out from the start, you can focus on the joy of welcoming your new companion."
+        ),
+        "meta_title": "How to Reserve a Maine Coon Kitten | Frostline Coons",
+        "meta_description": "Step-by-step guide to reserving a Maine Coon kitten with clear timing, health details, and delivery planning.",
+        "keywords": "reserve Maine Coon kitten, Maine Coon reservation, buy Maine Coon kitten",
+        "cover_image": "https://source.unsplash.com/1600x900/?maine%20coon,cat&sig=1"
+    },
+    {
+        "title": "Maine Coon Kittens in Ohio: Delivery, Airport Pickup, and Local Prep",
+        "excerpt": "A practical Ohio-focused guide to timing, transport, and preparing your home for a Maine Coon kitten.",
+        "content": (
+            "Ohio families love Maine Coons for their calm temperament and family-friendly nature. "
+            "Whether you are in Columbus, Cleveland, or Cincinnati, planning ahead makes the arrival smooth.\n\n"
+            "## Plan the handoff that fits your city\n\n"
+            "Some families prefer local pickup while others choose ground delivery or airport pickup. "
+            "The right option depends on distance, schedule, and comfort level.\n\n"
+            "## Build a cozy starter space\n\n"
+            "Ohio winters can be chilly, so a warm starter room with soft bedding is ideal. "
+            "Keep the litter box close and reduce noise for the first few days.\n\n"
+            "## Focus on early routine\n\n"
+            "Feeding at consistent times and short play sessions help a kitten feel safe. "
+            "A steady routine matters more than a large space at first.\n\n"
+            "## Expect a gentle transition\n\n"
+            "Most Maine Coon kittens adapt quickly when the environment is calm. "
+            "Give your kitten time to explore at their own pace.\n\n"
+            "Ohio is a great place for a Maine Coon to thrive with indoor enrichment, window perches, and climbing areas. "
+            "A simple, steady setup supports a confident start."
+        ),
+        "meta_title": "Ohio Maine Coon Kittens | Frostline Coons",
+        "meta_description": "Ohio guide for Maine Coon kitten delivery, airport pickup, and home preparation tips.",
+        "keywords": "Maine Coon kittens Ohio, Ohio Maine Coon breeder, Maine Coon delivery Ohio",
+        "cover_image": "https://images.pexels.com/photos/7542156/pexels-photo-7542156.jpeg?cs=srgb&dl=pexels-kh-ali-li-7542156.jpg&fm=jpg"
+    },
+    {
+        "title": "Maine Coon Kittens in Texas: Heat-Smart Care and Arrival Planning",
+        "excerpt": "Texas-ready tips for transport, cooling, and a comfortable first week with your Maine Coon kitten.",
+        "content": (
+            "Texas homes are a great fit for Maine Coons when you plan for warm weather and indoor comfort. "
+            "From Dallas to Houston to Austin, preparation makes the arrival easy.\n\n"
+            "## Choose a low-stress arrival plan\n\n"
+            "Coordinate pickup or delivery during cooler parts of the day. "
+            "A calm handoff and stable carrier setup help reduce stress.\n\n"
+            "## Keep the home cool and hydrated\n\n"
+            "Offer fresh water in multiple locations and keep indoor temperatures steady. "
+            "Long-haired cats do best when overheating is avoided.\n\n"
+            "## Build vertical play space\n\n"
+            "Texas homes often have room for tall cat trees and shelves. "
+            "These let your kitten climb and feel confident without outdoor risks.\n\n"
+            "## Start with a gentle routine\n\n"
+            "A quiet starter room, small meals, and calm play sessions support a healthy transition. "
+            "Consistency matters more than speed.\n\n"
+            "With a heat-smart plan and a stable routine, Maine Coon kittens settle beautifully in Texas. "
+            "Comfort and calm are the keys to a smooth first week."
+        ),
+        "meta_title": "Texas Maine Coon Kittens | Frostline Coons",
+        "meta_description": "Texas guide for Maine Coon kitten delivery, heat-smart care, and arrival prep.",
+        "keywords": "Maine Coon kittens Texas, Texas Maine Coon breeder, Maine Coon delivery Texas",
+        "cover_image": "https://images.pexels.com/photos/35192272/pexels-photo-35192272.jpeg?cs=srgb&dl=pexels-mov-frame-288922282-35192272.jpg&fm=jpg"
+    },
+    {
+        "title": "Maine Coon Kittens in Florida: Humidity, Coat Care, and Safe Transport",
+        "excerpt": "Florida-specific guidance for transport timing, coat care, and a calm arrival.",
+        "content": (
+            "Florida’s warmth and humidity are manageable with the right indoor setup. "
+            "Maine Coons thrive when their coat and hydration are supported.\n\n"
+            "## Plan transport with comfort in mind\n\n"
+            "Schedule delivery or airport pickup during cooler hours. "
+            "Keep a breathable carrier and a soft, familiar blanket ready.\n\n"
+            "## Manage coat comfort in humidity\n\n"
+            "Regular brushing helps reduce trapped heat and keeps the coat airy. "
+            "A clean coat helps your kitten stay comfortable in Florida’s climate.\n\n"
+            "## Keep water accessible\n\n"
+            "Multiple water bowls or a fountain encourage steady hydration. "
+            "Hydration supports coat health and energy.\n\n"
+            "## Ease into the first week\n\n"
+            "Begin with a quiet room, small meals, and short play. "
+            "A slow start leads to confident exploration.\n\n"
+            "Florida homes can be perfect for Maine Coons with cool indoor air and enrichment. "
+            "A calm arrival plan is the best first step."
+        ),
+        "meta_title": "Florida Maine Coon Kittens | Frostline Coons",
+        "meta_description": "Florida guide for Maine Coon kitten delivery, coat care, and humidity-friendly setup.",
+        "keywords": "Maine Coon kittens Florida, Florida Maine Coon breeder, Maine Coon delivery Florida",
+        "cover_image": "https://images.pexels.com/photos/8942602/pexels-photo-8942602.jpeg?cs=srgb&dl=pexels-matteo-12850205-8942602.jpg&fm=jpg"
+    },
+    {
+        "title": "Maine Coon Kittens in Tennessee: Family Homes, Temperament, and Pickup Options",
+        "excerpt": "Tennessee-focused tips for choosing the right kitten and planning a calm arrival.",
+        "content": (
+            "Tennessee families love Maine Coons for their gentle temperament and playful nature. "
+            "Whether you are near Nashville, Knoxville, or Memphis, preparation keeps things smooth.\n\n"
+            "## Match personality to your household\n\n"
+            "Ask about each kitten’s energy level and social style. "
+            "A calm kitten can be ideal for quieter homes, while playful kittens suit active families.\n\n"
+            "## Choose a pickup or delivery option\n\n"
+            "Local pickup is great if you are close, while delivery helps when distance is longer. "
+            "Either way, a calm handoff reduces stress.\n\n"
+            "## Build a safe starter space\n\n"
+            "A quiet room with food, water, litter, and a cozy bed helps a kitten settle. "
+            "Keep the space calm for the first few days.\n\n"
+            "## Support gentle bonding\n\n"
+            "Short play sessions and predictable routines help trust grow quickly. "
+            "Most Maine Coons respond well to consistent care.\n\n"
+            "With a thoughtful arrival plan and a stable routine, Tennessee homes are a wonderful fit. "
+            "The right preparation makes the transition feel easy."
+        ),
+        "meta_title": "Tennessee Maine Coon Kittens | Frostline Coons",
+        "meta_description": "Tennessee guide to Maine Coon kitten temperament, pickup options, and home prep.",
+        "keywords": "Maine Coon kittens Tennessee, Tennessee Maine Coon breeder, Maine Coon delivery Tennessee",
+        "cover_image": "https://images.pexels.com/photos/31566261/pexels-photo-31566261.jpeg?cs=srgb&dl=pexels-valeriya-310343202-31566261.jpg&fm=jpg"
+    },
+    {
+        "title": "Maine Coon Kittens in Kentucky: A Practical Buying Checklist",
+        "excerpt": "A Kentucky buyer’s checklist for health records, delivery planning, and the first week home.",
+        "content": (
+            "Kentucky families often look for a calm, affectionate breed that fits a family home. "
+            "Maine Coons are a strong match when the process is clear and organized.\n\n"
+            "## Review health documentation\n\n"
+            "Ask for vaccination notes, wellness checks, and a clear care summary. "
+            "These records help you plan the first vet visit.\n\n"
+            "## Confirm timing and transport\n\n"
+            "Whether you choose pickup or delivery, align the schedule with your family’s routine. "
+            "A calm arrival leads to a smoother transition.\n\n"
+            "## Prepare the starter essentials\n\n"
+            "Set up a quiet room, a large litter box, and a few toys. "
+            "A simple environment feels safer than a busy one.\n\n"
+            "## Build early bonding habits\n\n"
+            "Short, gentle play sessions help trust grow. "
+            "Let your kitten explore without pressure.\n\n"
+            "Kentucky homes can be an excellent fit for Maine Coons. "
+            "A clear checklist keeps the process stress-free."
+        ),
+        "meta_title": "Kentucky Maine Coon Kittens | Frostline Coons",
+        "meta_description": "Kentucky guide to buying a Maine Coon kitten, including health checks and arrival prep.",
+        "keywords": "Maine Coon kittens Kentucky, Kentucky Maine Coon breeder, Maine Coon delivery Kentucky",
+        "cover_image": "https://images.pexels.com/photos/33008526/pexels-photo-33008526.jpeg?cs=srgb&dl=pexels-nadiye-odabasi-388149131-33008526.jpg&fm=jpg"
+    },
+    {
+        "title": "Maine Coon Kittens in New York: Apartment Living and Enrichment",
+        "excerpt": "How to raise a Maine Coon in New York with smart space planning and daily enrichment.",
+        "content": (
+            "New York homes and apartments can still be perfect for a Maine Coon with the right setup. "
+            "The key is vertical space and a consistent routine.\n\n"
+            "## Maximize vertical space\n\n"
+            "Tall cat trees and wall shelves provide climbing outlets without needing a large footprint. "
+            "Window perches add light and daily stimulation.\n\n"
+            "## Keep a calm starter zone\n\n"
+            "A quiet starter room helps your kitten settle before exploring the whole apartment. "
+            "Small spaces feel safer at first.\n\n"
+            "## Choose a low-stress arrival option\n\n"
+            "Airport pickup or ground delivery can work well in the city if scheduled carefully. "
+            "Plan the handoff for a calm, low-traffic time.\n\n"
+            "## Build a steady routine\n\n"
+            "Consistent feeding and play times help your kitten feel secure in a busy environment. "
+            "Routine is your best tool in a fast-paced city.\n\n"
+            "New York can be a wonderful home for a Maine Coon with the right enrichment. "
+            "Vertical space and calm routines are the winning formula."
+        ),
+        "meta_title": "New York Maine Coon Kittens | Frostline Coons",
+        "meta_description": "New York guide to raising Maine Coon kittens in apartments with enrichment and smart space planning.",
+        "keywords": "Maine Coon kittens New York, New York Maine Coon breeder, Maine Coon apartment living",
+        "cover_image": "https://images.pexels.com/photos/8145383/pexels-photo-8145383.jpeg?cs=srgb&dl=pexels-odin-8145383.jpg&fm=jpg"
+    },
+    {
+        "title": "What to Ask Before You Reserve a Maine Coon Kitten",
+        "excerpt": "A buyer-focused question list that protects your family and your future kitten.",
+        "content": (
+            "A great reservation experience starts with clear, respectful communication. "
+            "The right questions help you understand care, timing, and the kitten’s personality.\n\n"
+            "## Ask about health checks and records\n\n"
+            "Request vaccination schedules, wellness checks, and any genetic screening notes. "
+            "Clear documentation shows consistent care.\n\n"
+            "## Ask about daily routine\n\n"
+            "Learn what the kitten eats, how often they play, and their sleep schedule. "
+            "Matching routines makes the transition smoother.\n\n"
+            "## Ask about socialization\n\n"
+            "Find out how the kitten responds to handling, kids, and other pets. "
+            "This helps you choose the right match.\n\n"
+            "## Ask about delivery and pickup\n\n"
+            "Clarify transport options and timelines so you can plan ahead. "
+            "A thoughtful handoff helps reduce stress.\n\n"
+            "The best breeders welcome questions and answer with care. "
+            "A calm, transparent process is the foundation of a great match."
+        ),
+        "meta_title": "Questions Before Reserving a Maine Coon | Frostline Coons",
+        "meta_description": "Top questions to ask before reserving a Maine Coon kitten, from health checks to socialization.",
+        "keywords": "reserve Maine Coon kitten, questions to ask breeder, Maine Coon buyer guide",
+        "cover_image": "https://source.unsplash.com/1600x900/?maine%20coon,kitten&sig=2"
+    },
+    {
+        "title": "Health Checks for Maine Coon Kittens: What Responsible Breeders Provide",
+        "excerpt": "A clear overview of health checks and care details you should expect before bringing a kitten home.",
+        "content": (
+            "Health checks are about more than a single vet visit. "
+            "They include consistent records, vaccines, and a clear care summary.\n\n"
+            "## Vaccination and parasite prevention\n\n"
+            "Your kitten should have age-appropriate vaccines and deworming notes. "
+            "A written schedule helps you plan future care.\n\n"
+            "## Wellness checks and observations\n\n"
+            "Breeders should share notes on appetite, energy, and overall behavior. "
+            "These details help your vet continue care smoothly.\n\n"
+            "## Transparent documentation\n\n"
+            "Clear records show how the kitten was cared for and monitored. "
+            "This builds confidence and reduces uncertainty.\n\n"
+            "## Ongoing support\n\n"
+            "A responsible breeder remains available for questions after the kitten goes home. "
+            "That support can make the first weeks easier.\n\n"
+            "Good health records are a sign of good care. "
+            "They protect your kitten and give your family peace of mind."
+        ),
+        "meta_title": "Maine Coon Kitten Health Checks | Frostline Coons",
+        "meta_description": "What health checks and records you should expect before buying or reserving a Maine Coon kitten.",
+        "keywords": "Maine Coon health checks, kitten vet records, responsible breeder",
+        "cover_image": "https://images.pexels.com/photos/35494087/pexels-photo-35494087.jpeg?cs=srgb&dl=pexels-alexander-gray-1924221403-35494087.jpg&fm=jpg"
+    },
+    {
+        "title": "Adoption Journey Explained: 4 Steps From Inquiry to Home",
+        "excerpt": "A simple four-step adoption journey so you know exactly what to expect.",
+        "content": (
+            "A clear adoption journey makes the process calm and predictable. "
+            "Here is a simple four-step flow that keeps everything organized.\n\n"
+            "## Step 1: Inquiry and fit\n\n"
+            "Share your household details and preferences so you can be matched thoughtfully. "
+            "This helps align personality and lifestyle.\n\n"
+            "## Step 2: Reservation and planning\n\n"
+            "Once a match is confirmed, reserve your kitten and confirm timing. "
+            "This step keeps expectations clear.\n\n"
+            "## Step 3: Preparation\n\n"
+            "Set up a starter room, gather supplies, and review care notes. "
+            "Preparation makes the first week feel easy.\n\n"
+            "## Step 4: Homecoming\n\n"
+            "Choose pickup or delivery and complete the handoff calmly. "
+            "A steady routine helps your kitten settle in quickly.\n\n"
+            "The adoption journey should feel supportive and clear. "
+            "A simple structure helps everyone feel confident."
+        ),
+        "meta_title": "Maine Coon Adoption Journey | Frostline Coons",
+        "meta_description": "Four clear steps from inquiry to home for adopting a Maine Coon kitten.",
+        "keywords": "Maine Coon adoption journey, reserve kitten, Maine Coon process",
+        "cover_image": "https://source.unsplash.com/1600x900/?long%20haired%20cat&sig=3"
+    },
+    {
+        "title": "Delivery vs Airport Pickup: Choosing the Safest Option for Your Kitten",
+        "excerpt": "Compare delivery and airport pickup so you can choose the safest, calmest option.",
+        "content": (
+            "Choosing how your kitten arrives is a big decision. "
+            "The best option depends on distance, timing, and your comfort level.\n\n"
+            "## Ground delivery\n\n"
+            "Ground transport can be a calm option for shorter distances. "
+            "It allows for steady, careful travel without airport changes.\n\n"
+            "## Airport pickup\n\n"
+            "Airport pickup works well for long distances when timing is coordinated. "
+            "A quick, calm handoff keeps stress low.\n\n"
+            "## Consider your schedule\n\n"
+            "Choose an option that fits your availability so the handoff is smooth. "
+            "Your kitten benefits from a calm, unhurried transition.\n\n"
+            "## Plan the first hour home\n\n"
+            "Bring a quiet carrier, water, and a soft blanket. "
+            "A gentle first hour makes a big difference.\n\n"
+            "Both options can be safe with proper planning. "
+            "The goal is a calm, secure arrival."
+        ),
+        "meta_title": "Delivery vs Airport Pickup for Maine Coons | Frostline Coons",
+        "meta_description": "Compare Maine Coon kitten delivery and airport pickup to choose the safest option.",
+        "keywords": "Maine Coon delivery, airport pickup kitten, kitten transport",
+        "cover_image": "https://images.pexels.com/photos/10626405/pexels-photo-10626405.jpeg?cs=srgb&dl=pexels-just-dry-10626405.jpg&fm=jpg"
+    },
+    {
+        "title": "Preparing a Large Breed Kitten: Space Planning for Maine Coons",
+        "excerpt": "A practical home setup guide for large-breed kittens that need room to climb and stretch.",
+        "content": (
+            "Maine Coons are large-breed cats with a strong need for space and vertical movement. "
+            "Planning the environment early prevents stress and keeps behavior positive.\n\n"
+            "## Choose large essentials\n\n"
+            "Oversized litter boxes, sturdy scratchers, and tall cat trees are must-haves. "
+            "These basics match their size from the start.\n\n"
+            "## Create vertical routes\n\n"
+            "Shelves, perches, and cat trees give your kitten safe climbing options. "
+            "Vertical space can matter more than floor space.\n\n"
+            "## Build a calm starter room\n\n"
+            "Start small with a quiet room and expand access slowly. "
+            "This keeps the transition smooth and controlled.\n\n"
+            "## Keep routines consistent\n\n"
+            "Set feeding and play times so your kitten feels secure. "
+            "Consistency builds confidence.\n\n"
+            "A thoughtful setup makes a large-breed kitten feel at home quickly. "
+            "Space planning is one of the best gifts you can give."
+        ),
+        "meta_title": "Large Breed Kitten Setup | Frostline Coons",
+        "meta_description": "Home setup guide for large-breed Maine Coon kittens with space, climbing, and routine tips.",
+        "keywords": "large breed kitten setup, Maine Coon home, Maine Coon space needs",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20family&sig=4"
+    },
+    {
+        "title": "Maine Coon Temperament With Kids: Building Gentle Bonds",
+        "excerpt": "How to create safe, affectionate relationships between children and Maine Coon kittens.",
+        "content": (
+            "Maine Coons are known for a calm, affectionate nature that often pairs well with kids. "
+            "The best outcomes come from gentle handling and predictable routines.\n\n"
+            "## Teach calm interaction\n\n"
+            "Show children how to use quiet voices and soft hands. "
+            "Short, supervised visits build trust quickly.\n\n"
+            "## Create a safe retreat\n\n"
+            "Give your kitten a quiet space where they can rest. "
+            "This prevents overstimulation and keeps interactions positive.\n\n"
+            "## Use play as bonding\n\n"
+            "Wand toys and gentle games are ideal for kids. "
+            "Play creates positive associations without rough handling.\n\n"
+            "## Keep routines steady\n\n"
+            "Consistent feeding and play times help your kitten feel secure. "
+            "Security leads to affectionate behavior.\n\n"
+            "With calm guidance, Maine Coons often become wonderful family companions. "
+            "Gentle routines make the bond stronger."
+        ),
+        "meta_title": "Maine Coon Kittens and Kids | Frostline Coons",
+        "meta_description": "Tips for raising Maine Coon kittens with kids and creating gentle, safe bonds.",
+        "keywords": "Maine Coon kids, family cat, Maine Coon temperament",
+        "cover_image": "https://images.pexels.com/photos/16371569/pexels-photo-16371569.jpeg?cs=srgb&dl=pexels-anastasia-dervene-498671576-16371569.jpg&fm=jpg"
+    },
+    {
+        "title": "Male vs Female Maine Coons: Personality Differences and Home Fit",
+        "excerpt": "A balanced look at common temperament trends so you can choose the right fit.",
+        "content": (
+            "Every kitten is unique, but there are gentle trends that can help you decide. "
+            "The best choice is the one that fits your lifestyle and home energy.\n\n"
+            "## Male temperament trends\n\n"
+            "Males are often described as playful, social, and easygoing. "
+            "Many enjoy interactive play and frequent attention.\n\n"
+            "## Female temperament trends\n\n"
+            "Females can be a bit more independent while still affectionate. "
+            "They often form strong bonds once trust is built.\n\n"
+            "## Focus on individual personality\n\n"
+            "Ask about each kitten’s behavior, energy, and social style. "
+            "Personality matters more than gender alone.\n\n"
+            "## Match to your routine\n\n"
+            "Choose the kitten that best fits your daily rhythm and household. "
+            "A good match makes the transition smoother.\n\n"
+            "Gender can help guide your choice, but personality should lead the decision. "
+            "A thoughtful match creates long-term harmony."
+        ),
+        "meta_title": "Male vs Female Maine Coons | Frostline Coons",
+        "meta_description": "Compare male and female Maine Coon temperament trends to choose the right fit.",
+        "keywords": "male vs female Maine Coon, Maine Coon personality, choosing a kitten",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20grooming&sig=5"
+    },
+    {
+        "title": "Socialization in the First 12 Weeks: Why It Matters",
+        "excerpt": "Early socialization shapes confidence, bonding, and long-term behavior.",
+        "content": (
+            "The first 12 weeks are a critical window for building confidence and trust. "
+            "Gentle handling and positive exposure shape long-term behavior.\n\n"
+            "## Handling and touch\n\n"
+            "Regular, gentle handling helps kittens feel safe with people. "
+            "This creates calm, affectionate adults.\n\n"
+            "## Sounds and environment\n\n"
+            "Exposure to normal household sounds helps reduce fear later. "
+            "Consistency is more important than intensity.\n\n"
+            "## People and routines\n\n"
+            "Meeting different people and routines helps kittens adapt. "
+            "A predictable rhythm keeps stress low.\n\n"
+            "## Carry socialization forward\n\n"
+            "Continue gentle exposure after your kitten comes home. "
+            "Short, positive experiences keep confidence growing.\n\n"
+            "Good socialization is one of the best gifts you can give a Maine Coon. "
+            "It supports trust, calmness, and deep bonding."
+        ),
+        "meta_title": "Maine Coon Socialization Guide | Frostline Coons",
+        "meta_description": "Why early socialization matters and how it shapes Maine Coon kitten behavior.",
+        "keywords": "Maine Coon socialization, kitten socialization, early handling",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20carrier&sig=6"
+    },
+    {
+        "title": "Feeding Plan for the First Year: Maine Coon Growth Without Overfeeding",
+        "excerpt": "A first-year feeding guide focused on steady growth, joint support, and healthy energy.",
+        "content": (
+            "Maine Coons grow slowly, so the goal is steady development rather than rapid weight gain. "
+            "A balanced feeding plan supports bone health and energy.\n\n"
+            "## Choose kitten-specific nutrition\n\n"
+            "Look for high-quality protein and balanced minerals. "
+            "Large-breed kittens benefit from steady, controlled growth.\n\n"
+            "## Keep a consistent schedule\n\n"
+            "Smaller meals throughout the day help digestion and energy. "
+            "A consistent schedule also supports routine.\n\n"
+            "## Monitor body condition\n\n"
+            "Check for steady weight gain without excess. "
+            "Ask your vet if you are unsure about portions.\n\n"
+            "## Hydration matters\n\n"
+            "Fresh water and occasional wet food support hydration. "
+            "Hydration also helps coat and skin health.\n\n"
+            "A steady, balanced feeding plan helps your Maine Coon grow strong and healthy. "
+            "Consistency is the most important ingredient."
+        ),
+        "meta_title": "Maine Coon First-Year Feeding Plan | Frostline Coons",
+        "meta_description": "Feeding plan for Maine Coon kittens focused on steady growth and healthy development.",
+        "keywords": "Maine Coon feeding plan, kitten nutrition, large breed kitten food",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20play&sig=7"
+    },
+    {
+        "title": "Grooming Plan for Busy Families: Keep the Coat Healthy Year-Round",
+        "excerpt": "A simple, realistic grooming routine that fits busy schedules and long coats.",
+        "content": (
+            "Long coats can stay healthy with a simple, consistent routine. "
+            "Short, calm sessions work better than long grooming marathons.\n\n"
+            "## Focus on friction areas\n\n"
+            "Chest, belly, and behind the legs are the most common spots for tangles. "
+            "A quick daily check prevents mats from forming.\n\n"
+            "## Use the right tools\n\n"
+            "Start with a wide-tooth comb and finish with a slicker brush. "
+            "Gentle pressure keeps grooming stress-free.\n\n"
+            "## Keep sessions short\n\n"
+            "Five to ten minutes a few times a week is usually enough. "
+            "Consistency matters more than length.\n\n"
+            "## Add a calm reward\n\n"
+            "Treats or quiet praise help your kitten associate grooming with comfort. "
+            "This makes future sessions easier.\n\n"
+            "Busy families can maintain a healthy coat with a steady, simple routine. "
+            "Small habits make a big difference."
+        ),
+        "meta_title": "Maine Coon Grooming Routine for Busy Families | Frostline Coons",
+        "meta_description": "A simple grooming plan to keep Maine Coon coats healthy without long sessions.",
+        "keywords": "Maine Coon grooming routine, long hair cat grooming, coat care",
+        "cover_image": "https://images.pexels.com/photos/8942614/pexels-photo-8942614.jpeg?cs=srgb&dl=pexels-matteo-12850205-8942614.jpg&fm=jpg"
+    },
+    {
+        "title": "Introducing a Maine Coon to a Resident Cat: A Calm Timeline",
+        "excerpt": "A calm, structured timeline for introducing a new kitten to your resident cat.",
+        "content": (
+            "Introducing cats is all about patience and slow steps. "
+            "A calm timeline reduces stress for both pets.\n\n"
+            "## Start with scent swapping\n\n"
+            "Let each cat explore the other’s scent using blankets or toys. "
+            "This builds familiarity without pressure.\n\n"
+            "## Use a visual barrier\n\n"
+            "A baby gate or cracked door allows safe visual contact. "
+            "Keep sessions short and positive.\n\n"
+            "## Increase time gradually\n\n"
+            "Extend sessions only when both cats remain calm. "
+            "Rushing can create setbacks.\n\n"
+            "## Support each cat’s confidence\n\n"
+            "Provide separate resources like litter boxes and food. "
+            "This prevents competition while they adjust.\n\n"
+            "A slow, calm introduction leads to the best long-term relationship. "
+            "Patience is the key to harmony."
+        ),
+        "meta_title": "Introduce a Maine Coon to Another Cat | Frostline Coons",
+        "meta_description": "Step-by-step timeline for introducing a Maine Coon kitten to a resident cat.",
+        "keywords": "introducing cats, Maine Coon and other cats, cat introduction timeline",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20portrait&sig=8"
+    },
+    {
+        "title": "The Best Toys and Enrichment for Intelligent Maine Coons",
+        "excerpt": "Keep Maine Coons engaged with smart play, puzzle feeders, and climbing challenges.",
+        "content": (
+            "Maine Coons are intelligent and curious, so enrichment is essential. "
+            "Variety keeps boredom away and supports healthy energy.\n\n"
+            "## Interactive play\n\n"
+            "Wand toys, feather teasers, and chase games are excellent daily options. "
+            "Short sessions throughout the day work best.\n\n"
+            "## Puzzle feeders\n\n"
+            "Food puzzles turn mealtime into mental enrichment. "
+            "This slows eating and engages the mind.\n\n"
+            "## Climbing and perches\n\n"
+            "Vertical space lets Maine Coons explore safely indoors. "
+            "Tall trees and shelves are great for large breeds.\n\n"
+            "## Rotate and refresh\n\n"
+            "Rotate toys weekly to keep interest high. "
+            "New textures and sounds keep play exciting.\n\n"
+            "A thoughtful enrichment plan keeps Maine Coons happy and confident. "
+            "Daily play is one of the best investments you can make."
+        ),
+        "meta_title": "Best Toys for Maine Coons | Frostline Coons",
+        "meta_description": "Best toys and enrichment ideas for Maine Coons, including puzzles and climbing setups.",
+        "keywords": "Maine Coon toys, cat enrichment, puzzle feeders",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20sleeping&sig=9"
+    },
+    {
+        "title": "Understanding a Breeder Contract and Health Guarantee (Plain-English Guide)",
+        "excerpt": "A simple, buyer-friendly overview of what breeder contracts and guarantees typically include.",
+        "content": (
+            "A breeder contract should feel clear and reasonable, not confusing. "
+            "It exists to protect both your kitten and the breeder’s standards.\n\n"
+            "## Health guarantees\n\n"
+            "Health guarantees often outline a time period for initial vet checks. "
+            "They usually explain what happens if a serious issue is discovered.\n\n"
+            "## Care expectations\n\n"
+            "Contracts may require routine vet care, proper nutrition, and safe housing. "
+            "These expectations are common and support the kitten’s long-term health.\n\n"
+            "## Return and rehome policies\n\n"
+            "Some breeders ask to be contacted if rehoming is ever needed. "
+            "This keeps the kitten safe and accounted for.\n\n"
+            "## Ask for clarity\n\n"
+            "If any section is unclear, ask questions before you sign. "
+            "A responsible breeder will explain everything in plain language.\n\n"
+            "A good contract should feel straightforward and fair. "
+            "Clear expectations help create a smooth adoption experience."
+        ),
+        "meta_title": "Breeder Contract and Health Guarantee Guide | Frostline Coons",
+        "meta_description": "Plain-English guide to breeder contracts and health guarantees for Maine Coon kittens.",
+        "keywords": "Maine Coon contract, health guarantee, buying a Maine Coon kitten",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20home&sig=10"
+    },
+    {
+        "title": "Maine Coon Kitten Buyer Checklist: 10 Things to Confirm",
+        "excerpt": "A buyer-ready checklist to confirm health, socialization, and delivery details before you reserve.",
+        "content": (
+            "A clear checklist helps you move from interest to confident purchase. "
+            "Use this list to confirm the essentials before you reserve.\n\n"
+            "## Health records and wellness notes\n\n"
+            "Confirm vaccinations, deworming, and wellness observations are documented. "
+            "Clear records show consistent care.\n\n"
+            "## Temperament and socialization\n\n"
+            "Ask how the kitten responds to handling, people, and other pets. "
+            "Personality fit matters as much as appearance.\n\n"
+            "## Food and routine\n\n"
+            "Learn what the kitten is currently eating and the daily schedule. "
+            "Matching routines eases the transition.\n\n"
+            "## Delivery or pickup plan\n\n"
+            "Clarify timing, handoff details, and what to bring on arrival day. "
+            "A smooth handoff reduces stress.\n\n"
+            "A simple checklist makes the process feel organized and calm. "
+            "Clear details lead to a confident homecoming."
+        ),
+        "meta_title": "Maine Coon Kitten Buyer Checklist | Frostline Coons",
+        "meta_description": "Buyer checklist for reserving a Maine Coon kitten, covering health, socialization, and delivery.",
+        "keywords": "Maine Coon buyer checklist, reserve Maine Coon kitten, buy Maine Coon",
+        "cover_image": "https://source.unsplash.com/1600x900/?maine%20coon,kitten&sig=11"
+    },
+    {
+        "title": "When Are Maine Coon Kittens Ready to Go Home?",
+        "excerpt": "A calm, practical guide to readiness, socialization, and planning the right homegoing time.",
+        "content": (
+            "Homegoing timing depends on readiness, not just age. "
+            "The goal is a confident kitten who eats well, uses the litter box, and handles routine life.\n\n"
+            "## Physical readiness\n\n"
+            "Kittens should be steady on solid food and gaining weight consistently. "
+            "A healthy routine signals they are ready for a new home.\n\n"
+            "## Social confidence\n\n"
+            "Well-socialized kittens respond calmly to gentle handling and new sounds. "
+            "Confidence now makes transitions easier later.\n\n"
+            "## Health checks complete\n\n"
+            "Vaccinations and wellness checks should be documented and up to date. "
+            "Clear records help your vet continue care.\n\n"
+            "## Plan the transition\n\n"
+            "A quiet starter room and familiar food help your kitten settle quickly. "
+            "Preparation is a key part of readiness.\n\n"
+            "A responsible timeline prioritizes your kitten’s health and confidence. "
+            "That patience creates a smoother, calmer homecoming."
+        ),
+        "meta_title": "When Maine Coon Kittens Go Home | Frostline Coons",
+        "meta_description": "Learn when Maine Coon kittens are ready to go home, including health and socialization readiness.",
+        "keywords": "when do Maine Coon kittens go home, Maine Coon homegoing, kitten readiness",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20nap&sig=12"
+    },
+    {
+        "title": "Room-by-Room Kitten Proofing for Maine Coons",
+        "excerpt": "A practical, room-by-room guide to making your home safe for a curious Maine Coon kitten.",
+        "content": (
+            "Maine Coon kittens are bold explorers, so a room-by-room check makes the home safer. "
+            "Focus on reducing hazards while keeping the space engaging.\n\n"
+            "## Living room\n\n"
+            "Secure cords, remove small swallowable items, and stabilize tall furniture. "
+            "Add a sturdy scratcher to redirect attention.\n\n"
+            "## Kitchen and dining\n\n"
+            "Keep counters clear of food scraps and secure trash lids. "
+            "Block access to tight gaps behind appliances.\n\n"
+            "## Bedrooms and bathrooms\n\n"
+            "Close toilet lids, remove strings or small objects, and keep medications secured. "
+            "Offer a quiet resting place for downtime.\n\n"
+            "## Stairways and balconies\n\n"
+            "Use baby gates if needed and avoid open balcony access. "
+            "Safety comes first for a climbing kitten.\n\n"
+            "A quick room-by-room check prevents common accidents. "
+            "It also gives your kitten a calmer, safer environment to explore."
+        ),
+        "meta_title": "Kitten Proofing for Maine Coons | Frostline Coons",
+        "meta_description": "Room-by-room kitten proofing tips for Maine Coon homes, focused on safety and calm transitions.",
+        "keywords": "kitten proofing, Maine Coon home safety, kitten proofing checklist",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20window&sig=13"
+    },
+    {
+        "title": "Maine Coon Training Basics: Litter, Scratching, and Recall",
+        "excerpt": "Simple training foundations that build good habits without stress.",
+        "content": (
+            "Training a Maine Coon kitten is about consistency, not force. "
+            "Short, positive sessions build trust and reliable habits.\n\n"
+            "## Litter habits\n\n"
+            "Use a large, low-entry litter box and keep it very clean. "
+            "Most Maine Coons learn quickly with a consistent location.\n\n"
+            "## Scratching routines\n\n"
+            "Offer multiple scratching textures and place them near favorite areas. "
+            "Reward your kitten for using the scratcher.\n\n"
+            "## Gentle recall\n\n"
+            "Use the kitten’s name and a treat to build a positive response. "
+            "Short sessions keep training fun.\n\n"
+            "## Keep it positive\n\n"
+            "Avoid punishment and focus on gentle redirection. "
+            "Positive reinforcement builds lifelong trust.\n\n"
+            "Simple training basics make daily life easier for both kitten and family. "
+            "Calm consistency is the secret."
+        ),
+        "meta_title": "Maine Coon Training Basics | Frostline Coons",
+        "meta_description": "Training basics for Maine Coon kittens: litter, scratching, and gentle recall.",
+        "keywords": "Maine Coon training, kitten training, litter training Maine Coon",
+        "cover_image": "https://images.pexels.com/photos/96973/pexels-photo-96973.jpeg?cs=srgb&dl=pexels-dan-wheeler-96973.jpg&fm=jpg"
+    },
+    {
+        "title": "Understanding Maine Coon Registration and Paperwork",
+        "excerpt": "A plain-language guide to registration, pedigrees, and what the paperwork means.",
+        "content": (
+            "Registration paperwork helps document lineage and recordkeeping. "
+            "It is useful for families who value pedigree transparency.\n\n"
+            "## What registration shows\n\n"
+            "Registration typically lists lineage details and breeder information. "
+            "It is not a health guarantee, but it does offer clarity.\n\n"
+            "## How to read the paperwork\n\n"
+            "Ask about any unfamiliar terms and confirm the kitten’s registered name. "
+            "Keep documents organized for future reference.\n\n"
+            "## Why it matters to buyers\n\n"
+            "For many buyers, registration adds confidence in lineage and breeding standards. "
+            "It is one more layer of transparency.\n\n"
+            "If registration matters to you, ask about it early. "
+            "Clear paperwork supports a smooth adoption experience."
+        ),
+        "meta_title": "Maine Coon Registration Guide | Frostline Coons",
+        "meta_description": "Plain-language guide to Maine Coon registration, pedigrees, and paperwork.",
+        "keywords": "Maine Coon registration, TICA Maine Coon, CFA Maine Coon",
+        "cover_image": "https://images.pexels.com/photos/31566260/pexels-photo-31566260.jpeg?cs=srgb&dl=pexels-valeriya-310343202-31566260.jpg&fm=jpg"
+    },
+    {
+        "title": "Why Maine Coons Need Large Litter Boxes (And How to Set Them Up)",
+        "excerpt": "Size matters for comfort and clean habits. Here is a simple setup guide.",
+        "content": (
+            "Maine Coons are larger than most cats, so standard litter boxes can feel cramped. "
+            "A proper setup supports consistent habits and reduces mess.\n\n"
+            "## Choose the right size\n\n"
+            "Look for oversized boxes with low entry and high sides. "
+            "Large boxes reduce accidents and stress.\n\n"
+            "## Pick a low-dust litter\n\n"
+            "Unscented, fine-grain litter is usually best for kittens. "
+            "Keep the box clean to encourage use.\n\n"
+            "## Place boxes strategically\n\n"
+            "Quiet, accessible locations work best. "
+            "Avoid noisy areas or tight corners.\n\n"
+            "## Keep a simple routine\n\n"
+            "Daily scooping and weekly refreshes keep things clean. "
+            "Consistency builds good habits.\n\n"
+            "A comfortable litter setup is one of the easiest ways to reduce stress. "
+            "It helps your kitten feel secure from day one."
+        ),
+        "meta_title": "Large Litter Box Setup for Maine Coons | Frostline Coons",
+        "meta_description": "Why Maine Coons need large litter boxes and how to set up a comfortable litter area.",
+        "keywords": "large litter box Maine Coon, Maine Coon litter setup, cat litter box size",
+        "cover_image": "https://images.pexels.com/photos/5701041/pexels-photo-5701041.jpeg?cs=srgb&dl=pexels-arkadyes-5701041.jpg&fm=jpg"
+    },
+    {
+        "title": "Grooming Tools Checklist for Maine Coons",
+        "excerpt": "The essential tools for long coats, plus how to use them without stress.",
+        "content": (
+            "The right tools make grooming calmer and more effective. "
+            "A small, consistent routine is better than long sessions.\n\n"
+            "## Wide-tooth comb\n\n"
+            "Use a comb to detangle the undercoat and prevent mats. "
+            "Work slowly through friction areas.\n\n"
+            "## Slicker brush\n\n"
+            "A slicker brush smooths the topcoat and removes loose hair. "
+            "Use gentle pressure and short strokes.\n\n"
+            "## Grooming wipes\n\n"
+            "Wipes are helpful for quick cleanups and sensitive areas. "
+            "They are not a replacement for brushing.\n\n"
+            "## Make it positive\n\n"
+            "Offer treats and keep sessions short. "
+            "Positive routines build long-term comfort.\n\n"
+            "A simple tool kit covers most grooming needs for Maine Coons. "
+            "Consistency keeps the coat healthy year-round."
+        ),
+        "meta_title": "Maine Coon Grooming Tools | Frostline Coons",
+        "meta_description": "Essential grooming tools for Maine Coons and how to use them safely.",
+        "keywords": "Maine Coon grooming tools, slicker brush, long hair cat grooming",
+        "cover_image": "https://images.pexels.com/photos/33695311/pexels-photo-33695311.jpeg?cs=srgb&dl=pexels-khang-huy-210723629-33695311.jpg&fm=jpg"
+    },
+    {
+        "title": "Understanding Kitten Body Language: Signals You Can Trust",
+        "excerpt": "Learn the calm, everyday signals that show comfort, stress, or curiosity.",
+        "content": (
+            "Maine Coon kittens communicate with posture, tail position, and slow blinks. "
+            "Reading these signals builds trust and prevents stress.\n\n"
+            "## Relaxed signals\n\n"
+            "Soft eyes, slow blinks, and a gently held tail indicate comfort. "
+            "This is a great time for gentle play.\n\n"
+            "## Overstimulated signals\n\n"
+            "Tail flicks, wide eyes, or sudden stillness can signal stress. "
+            "Give space and keep things calm.\n\n"
+            "## Curious signals\n\n"
+            "Forward ears and a relaxed stance show curiosity. "
+            "Encourage exploration without pressure.\n\n"
+            "## Respond with patience\n\n"
+            "Let your kitten lead interactions and avoid forcing contact. "
+            "Patience builds confidence quickly.\n\n"
+            "Understanding body language creates a stronger bond. "
+            "It helps your kitten feel safe in every interaction."
+        ),
+        "meta_title": "Kitten Body Language Guide | Frostline Coons",
+        "meta_description": "Learn how to read Maine Coon kitten body language and respond with calm confidence.",
+        "keywords": "kitten body language, Maine Coon behavior, cat signals",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20eyes&sig=16"
+    },
+    {
+        "title": "Cat Tree and Climbing Setup for Maine Coons",
+        "excerpt": "A climbing setup guide for large, athletic Maine Coon kittens.",
+        "content": (
+            "Maine Coons thrive with vertical space. "
+            "A strong climbing setup builds confidence and prevents boredom.\n\n"
+            "## Choose sturdy materials\n\n"
+            "Look for wide platforms, thick posts, and stable bases. "
+            "Large cats need extra support.\n\n"
+            "## Add multiple levels\n\n"
+            "Multiple perches let your kitten climb and rest at different heights. "
+            "This satisfies natural instincts.\n\n"
+            "## Place near natural light\n\n"
+            "Window views add enrichment and calm observation time. "
+            "A perch by a window is a favorite.\n\n"
+            "## Combine with play\n\n"
+            "Pair the tree with interactive toys for daily activity. "
+            "Short sessions keep energy balanced.\n\n"
+            "A good climbing setup is a daily enrichment tool. "
+            "It supports a happy, confident Maine Coon."
+        ),
+        "meta_title": "Cat Tree Setup for Maine Coons | Frostline Coons",
+        "meta_description": "How to build a safe, sturdy climbing setup for Maine Coons with cat trees and perches.",
+        "keywords": "Maine Coon cat tree, climbing setup, large cat furniture",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20tree&sig=14"
+    },
+    {
+        "title": "Feeding Transitions: Switching Your Maine Coon Kitten’s Food Safely",
+        "excerpt": "A calm, step-by-step approach to changing foods without upsetting digestion.",
+        "content": (
+            "Food changes should be gradual to protect digestion. "
+            "Slow transitions help kittens adjust smoothly.\n\n"
+            "## Start with a blend\n\n"
+            "Mix small amounts of the new food into the current food. "
+            "Increase the new ratio over several days.\n\n"
+            "## Watch appetite and stool\n\n"
+            "Monitor energy and digestion during the transition. "
+            "Slow down if you see signs of sensitivity.\n\n"
+            "## Keep portions consistent\n\n"
+            "Do not change portion size while switching foods. "
+            "Consistency reduces stress on the system.\n\n"
+            "## Prioritize hydration\n\n"
+            "Fresh water and a bit of wet food can support digestion. "
+            "Hydration helps during any diet change.\n\n"
+            "A slow, steady transition keeps your kitten comfortable. "
+            "Consistency is the safest approach."
+        ),
+        "meta_title": "Switching Maine Coon Kitten Food | Frostline Coons",
+        "meta_description": "How to switch Maine Coon kitten food safely with a gradual, low-stress transition.",
+        "keywords": "switch kitten food, Maine Coon nutrition, kitten feeding transition",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20food&sig=15"
+    },
+    {
+        "title": "Apartment Enrichment for Maine Coons: Small-Space Solutions",
+        "excerpt": "Smart enrichment ideas for Maine Coons living in apartments or smaller homes.",
+        "content": (
+            "Small spaces can still support big, confident cats. "
+            "The key is vertical space and daily engagement.\n\n"
+            "## Go vertical\n\n"
+            "Shelves, perches, and tall trees create climbing space without adding clutter. "
+            "Vertical routes make a small space feel large.\n\n"
+            "## Add daily play\n\n"
+            "Short, consistent play sessions reduce boredom. "
+            "Interactive toys are ideal for apartments.\n\n"
+            "## Use window views\n\n"
+            "Window perches provide stimulation and calm observation time. "
+            "This is especially helpful in city apartments.\n\n"
+            "## Rotate toys weekly\n\n"
+            "New textures and sounds keep interest high. "
+            "Rotation prevents boredom.\n\n"
+            "Apartment living can be a perfect fit with a thoughtful setup. "
+            "Small-space enrichment keeps Maine Coons happy."
+        ),
+        "meta_title": "Apartment Enrichment for Maine Coons | Frostline Coons",
+        "meta_description": "Small-space enrichment ideas for Maine Coons in apartments, including vertical space and play.",
+        "keywords": "Maine Coon apartment, cat enrichment small space, apartment cat setup",
+        "cover_image": "https://source.unsplash.com/1600x900/?cat%20window&sig=17"
+    },
+    {
+        "title": "Pickup Day Travel Kit: What to Bring When Your Kitten Comes Home",
+        "excerpt": "A simple travel kit checklist for pickup day or airport handoff.",
+        "content": (
+            "A prepared travel kit makes pickup day calmer for everyone. "
+            "A few essentials go a long way.\n\n"
+            "## Secure carrier\n\n"
+            "Bring a sturdy carrier with a soft blanket. "
+            "Familiar textures help your kitten relax.\n\n"
+            "## Water and wipes\n\n"
+            "Bring water and a small bowl for longer trips. "
+            "Pet-safe wipes are helpful for quick cleanups.\n\n"
+            "## Snacks and comfort items\n\n"
+            "A small treat can help during transitions. "
+            "Keep the environment quiet and steady.\n\n"
+            "## Plan the first hour\n\n"
+            "Head straight to the prepared starter room and keep things calm. "
+            "A quiet arrival sets the tone.\n\n"
+            "A simple travel kit reduces stress and keeps pickup day smooth. "
+            "Preparation helps your kitten settle quickly."
+        ),
+        "meta_title": "Kitten Pickup Day Travel Kit | Frostline Coons",
+        "meta_description": "What to bring on pickup day for a Maine Coon kitten, from carriers to comfort items.",
+        "keywords": "kitten pickup day, kitten travel kit, Maine Coon delivery prep",
+        "cover_image": "https://images.pexels.com/photos/12217163/pexels-photo-12217163.jpeg?cs=srgb&dl=pexels-anna-12217163.jpg&fm=jpg"
     }
 ]
 
@@ -1624,10 +2615,47 @@ def seed_defaults(conn):
                 (page["slug"], *payload.values()),
             )
 
-    blog_count = conn.execute("SELECT COUNT(*) FROM blog_posts").fetchone()[0]
-    if blog_count == 0:
-        for post in DEFAULT_BLOG_POSTS:
-            slug = ensure_unique_slug(conn, slugify(post["title"]))
+    existing_rows = {
+        row["slug"]: row
+        for row in conn.execute("SELECT slug, title FROM blog_posts").fetchall()
+    }
+    existing_titles = {
+        (row["title"] or "").strip().lower()
+        for row in existing_rows.values()
+        if row.get("title")
+    }
+    max_posts = 50
+    current_count = len(existing_rows)
+    for post in DEFAULT_BLOG_POSTS:
+        if current_count >= max_posts:
+            break
+        payload = dict(post)
+        base_slug = slugify(payload["title"])
+        if base_slug in existing_rows or payload["title"].strip().lower() in existing_titles:
+            continue
+        slug = ensure_unique_slug(conn, base_slug)
+        published_at = payload.get("published_at")
+
+        if published_at:
+            conn.execute(
+                """
+                INSERT INTO blog_posts
+                (title, slug, excerpt, content, cover_image, meta_title, meta_description, keywords, status, published_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'published', ?)
+                """,
+                (
+                    payload["title"],
+                    slug,
+                    payload["excerpt"],
+                    payload["content"],
+                    payload["cover_image"],
+                    payload["meta_title"],
+                    payload["meta_description"],
+                    payload["keywords"],
+                    published_at,
+                ),
+            )
+        else:
             conn.execute(
                 """
                 INSERT INTO blog_posts
@@ -1635,16 +2663,17 @@ def seed_defaults(conn):
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'published')
                 """,
                 (
-                    post["title"],
+                    payload["title"],
                     slug,
-                    post["excerpt"],
-                    post["content"],
-                    post["cover_image"],
-                    post["meta_title"],
-                    post["meta_description"],
-                    post["keywords"],
+                    payload["excerpt"],
+                    payload["content"],
+                    payload["cover_image"],
+                    payload["meta_title"],
+                    payload["meta_description"],
+                    payload["keywords"],
                 ),
             )
+        current_count += 1
 
 
 def decode_list(value):
@@ -1829,6 +2858,8 @@ def safe_json_load(value, default):
         return json.loads(value)
     except json.JSONDecodeError:
         return default
+
+
 
 
 def fetch_page(slug):
