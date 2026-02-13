@@ -18,12 +18,19 @@
   --color-border: rgba(15, 27, 43, 0.12);
   --shadow-soft: 0 20px 50px rgba(15, 27, 43, 0.12);
   --shadow-deep: 0 28px 70px rgba(15, 27, 43, 0.16);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-bg-strong: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(143, 211, 255, 0.28);
+  --glass-shadow: 0 18px 50px rgba(15, 27, 43, 0.18);
+  --glass-blur: 16px;
+  --glass-dark-bg: rgba(12, 20, 32, 0.72);
+  --glass-dark-border: rgba(143, 211, 255, 0.2);
 }
 
 body {
   margin: 0;
   font-family: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--color-bg);
+  background: linear-gradient(180deg, #f3f6fb 0%, #eef4fb 45%, #f8fbff 100%);
   color: var(--color-ink);
   line-height: 1.7;
 }
@@ -38,6 +45,32 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   letter-spacing: 0.02em;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.15);
+  position: relative;
+}
+
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
 /* -------------------- NAVBAR -------------------- */
 .navbar {
   position: sticky;
@@ -47,14 +80,17 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   justify-content: space-between;
   align-items: center;
   padding: 15px 10%;
-  background: rgba(15,27,43,0.88);
-  backdrop-filter: blur(10px);
+  background: var(--glass-dark-bg);
+  border-bottom: 1px solid var(--glass-dark-border);
+  backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: 0 16px 40px rgba(4, 10, 20, 0.35);
   transition: all 0.4s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(15,27,43,0.96);
+  background: rgba(10, 18, 30, 0.9);
   padding: 10px 10%;
+  box-shadow: 0 18px 46px rgba(4, 10, 20, 0.4);
 }
 
 .navbar .logo {
@@ -115,11 +151,13 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   position: absolute;
   top: calc(100% + 10px);
   left: 0;
-  background: rgba(15,27,43,0.98);
+  background: rgba(10, 18, 30, 0.88);
+  border: 1px solid rgba(143, 211, 255, 0.15);
   border-radius: 12px;
   padding: 10px 0;
   min-width: 200px;
   box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  backdrop-filter: blur(14px) saturate(1.15);
   z-index: 2000;
   list-style: none;
   margin: 0;
@@ -264,16 +302,17 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   display: inline-block;
   padding: 14px 28px;
   border-radius: 999px;
-  background: var(--color-cta);
+  background: linear-gradient(135deg, var(--color-cta), #2a8bdb);
   color: #f7fbff;
   font-weight: 600;
   text-decoration: none;
+  box-shadow: 0 16px 34px rgba(27, 122, 207, 0.35);
   transition: all 0.3s ease;
 }
 
 .cta-btn:hover {
   transform: scale(1.05);
-  background: var(--color-cta-hover);
+  background: linear-gradient(135deg, var(--color-cta-hover), #1b7ac0);
 }
 
 /* -------------------- DELIVERY PAGE -------------------- */
@@ -283,7 +322,7 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   align-items: center;
   padding: 0 10%;
   background: linear-gradient(to bottom, rgba(15,27,43,0.6), #f3f6fb),
-              url("/static/images/hero_delivery.jpg") center/cover no-repeat;
+              url("https://images.unsplash.com/photo-1533413924355-a5797409980e?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000") center/cover no-repeat;
 }
 
 .delivery-hero .hero-text {
@@ -306,10 +345,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 }
 
 .delivery-card {
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 22px;
   padding: 22px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .delivery-card h3 {
@@ -319,10 +360,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 .delivery-cta {
   padding: 80px 10%;
   text-align: center;
-  background: var(--color-ice);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
   margin: 60px 10% 0;
   border-radius: 26px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .delivery-cta h2 {
@@ -356,7 +399,7 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   align-items: center;
   padding: 0 10%;
   background: linear-gradient(to bottom, rgba(15,27,43,0.55), #f3f6fb),
-              url("/static/images/hero_kitten.jpg") center/cover no-repeat;
+              url("https://images.unsplash.com/photo-1570101654776-8b5aede7eff7?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000") center/cover no-repeat;
 }
 
 .blog-list {
@@ -370,10 +413,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 }
 
 .blog-card {
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
   display: flex;
   flex-direction: column;
 }
@@ -445,8 +490,10 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   margin-top: 40px;
   padding: 24px;
   border-radius: 20px;
-  background: var(--color-ice);
-  box-shadow: var(--shadow-soft);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
   text-align: center;
 }
 
@@ -491,10 +538,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   display: flex;
   align-items: center;
   gap: 70px;
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 28px;
-  padding: 32px 36px;
-  box-shadow: var(--shadow-soft);
+  padding: 34px 38px;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .mag-section .text,
@@ -589,10 +638,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   .mag-section .text {
     order: 1;
     width: 100%;
-    background: var(--color-surface);
+    background: var(--glass-bg-strong);
     border-radius: 22px 22px 12px 12px;
     padding: 22px;
-    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
   }
 
   .mag-section.in-view .text,
@@ -621,7 +672,7 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 
 /* -------------------- FEATURED KITTENS -------------------- */
 .featured-kittens {
-  padding: 80px 10% 110px;
+  padding: 70px 10% 100px;
 }
 
 .featured-kittens h2 {
@@ -648,8 +699,8 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 
 .kitten-card {
   min-width: calc(25% - 15px); /* show 4 at a time */
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 20px;
   overflow: hidden;
   scroll-snap-align: start;
@@ -658,6 +709,7 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   height: 360px;
   display: flex;
   flex-direction: column;
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 @media screen and (max-width: 900px) {
@@ -737,8 +789,9 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   gap: 10px;
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(143, 211, 255, 0.25);
+  backdrop-filter: blur(12px) saturate(1.1);
 }
 
 .kitten-card-body h3 {
@@ -892,12 +945,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 }
 
 .kitten-info {
-  background: rgba(255,255,255,0.94);
+  background: var(--glass-bg-strong);
   border-radius: 30px;
   padding: 34px;
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-deep);
-  backdrop-filter: blur(6px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.15);
   display: flex;
   flex-direction: column;
 }
@@ -963,10 +1016,11 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 }
 
 .meta-item {
-  background: var(--color-ice);
+  background: rgba(255,255,255,0.75);
   border-radius: 14px;
   padding: 10px 12px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px) saturate(1.1);
 }
 
 .meta-item span {
@@ -1069,9 +1123,10 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   max-width: 1200px;
   padding: 24px;
   border-radius: 26px;
-  background: rgba(255,255,255,0.88);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-soft);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .parents-section .panel-header {
@@ -1202,11 +1257,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 }
 
 .kitten-panel {
-  background: rgba(255,255,255,0.94);
+  background: var(--glass-bg-strong);
   border-radius: 26px;
   padding: 28px;
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-deep);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .panel-header h3 {
@@ -1226,11 +1282,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 }
 
 .travel-card {
-  background: var(--color-ice);
+  background: rgba(255,255,255,0.7);
   border-radius: 18px;
   padding: 16px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--glass-border);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px) saturate(1.1);
 }
 
 .travel-card h4 {
@@ -1277,10 +1334,11 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  background: rgba(232,223,210,0.65);
+  background: rgba(255,255,255,0.7);
   border-radius: 18px;
   padding: 16px 18px;
-  border: 1px solid rgba(44, 42, 40, 0.1);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px) saturate(1.1);
 }
 
 .journey-step h4 {
@@ -1388,10 +1446,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 
 
 .form-inner {
-  background: var(--color-surface);
+  background: var(--glass-bg-strong);
   padding: 50px;
   border-radius: 30px;
-  box-shadow: var(--shadow-deep);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
   animation: slideUp 0.6s ease forwards;
 }
 
@@ -1427,10 +1487,11 @@ h1, h2, h3, h4, .logo span, .admin-brand {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-bottom: 14px;
-  background: var(--color-ice);
+  background: rgba(255,255,255,0.7);
   border-radius: 14px;
   padding: 12px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px) saturate(1.1);
 }
 
 .reservation-summary span {
@@ -1458,11 +1519,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 .pay-option {
   padding: 12px 18px;
   border-radius: 999px;
-  background: var(--color-surface);
+  background: rgba(255,255,255,0.75);
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--color-ink);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px) saturate(1.1);
 }
 
 .pay-option.active {
@@ -1485,7 +1547,7 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 
 /* -------------------- TESTIMONIALS -------------------- */
 .testimonials {
-  padding: 90px 10% 100px;
+  padding: 70px 10% 100px;
 }
 
 .testimonials h2 {
@@ -1502,10 +1564,12 @@ h1, h2, h3, h4, .logo span, .admin-brand {
 .testimonial-card {
   width: 100%;
   min-width: 0;
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 20px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
   text-align: center;
 }
 
@@ -1546,8 +1610,9 @@ footer {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding: 40px 10%;
-  background: var(--color-primary);
+  padding: 34px 10%;
+  background: rgba(10, 18, 30, 0.95);
+  border-top: 1px solid rgba(143, 211, 255, 0.18);
   color: var(--color-snow);
 }
 
@@ -1725,10 +1790,12 @@ footer .footer-links a:hover {
 }
 
 .admin-stat {
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 18px;
   padding: 18px;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .admin-quick-grid {
@@ -1743,12 +1810,13 @@ footer .footer-links a:hover {
   gap: 6px;
   padding: 14px;
   border-radius: 16px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   text-decoration: none;
   color: var(--color-ink);
   font-weight: 700;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .admin-card-link span {
@@ -1825,15 +1893,19 @@ footer .footer-links a:hover {
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 16px;
   align-items: center;
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   padding: 16px;
   border-radius: 16px;
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .admin-row-head {
   background: transparent;
   font-weight: 700;
   padding: 0 8px 8px;
+  border: none;
+  box-shadow: none;
 }
 
 .admin-actions form {
@@ -1864,10 +1936,12 @@ footer .footer-links a:hover {
 }
 
 .admin-form {
-  background: var(--color-surface);
+  background: var(--glass-bg-strong);
   padding: 26px;
   border-radius: 20px;
-  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1902,10 +1976,11 @@ footer .footer-links a:hover {
 }
 
 .admin-section-card {
-  background: var(--color-surface);
+  background: var(--glass-bg);
   padding: 18px;
   border-radius: 18px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -1928,15 +2003,16 @@ footer .footer-links a:hover {
 }
 
 .admin-gallery-item {
-  background: var(--color-surface);
+  background: var(--glass-bg);
   border-radius: 14px;
   padding: 10px;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--glass-border);
   display: flex;
   flex-direction: column;
   gap: 8px;
   align-items: flex-start;
   font-size: 0.85rem;
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .admin-gallery-item img {
@@ -1970,10 +2046,12 @@ footer .footer-links a:hover {
 }
 
 .admin-panel {
-  background: var(--color-surface);
+  background: var(--glass-bg);
   padding: 22px;
   border-radius: 20px;
-  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .admin-empty {
@@ -1989,12 +2067,14 @@ footer .footer-links a:hover {
 }
 
 .admin-login-card {
-  background: var(--color-surface);
+  background: var(--glass-bg-strong);
   padding: 32px;
   border-radius: 22px;
   width: 100%;
   max-width: 420px;
-  box-shadow: var(--shadow-deep);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.1);
 }
 
 .admin-flashes {
@@ -2137,6 +2217,8 @@ footer .footer-links a:hover {
   font-weight: 700;
   color: white;
   backdrop-filter: blur(6px);
+  box-shadow: 0 10px 20px rgba(15, 27, 43, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .badge.gender {

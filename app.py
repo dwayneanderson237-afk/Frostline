@@ -145,6 +145,41 @@ DEFAULT_SETTINGS = {
     "social_instagram": "https://instagram.com",
     "social_twitter": "https://twitter.com",
 }
+
+UNSPLASH_HERO_KITTEN = "https://images.unsplash.com/photo-1570101654776-8b5aede7eff7?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
+UNSPLASH_SILVER_COON = "https://images.unsplash.com/photo-1551197600-d3782114566e?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
+UNSPLASH_TRAVEL_CARRIER = "https://images.unsplash.com/photo-1533413924355-a5797409980e?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
+UNSPLASH_TRAVEL_CRATE = "https://images.unsplash.com/photo-1677847627380-0926540997ae?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
+UNSPLASH_HOME_COUCH = "https://images.unsplash.com/photo-1721244696639-29e296c17f49?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
+UNSPLASH_CONTACT_LAPTOP = "https://images.unsplash.com/photo-1726221439120-686ea1ccf9aa?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
+UNSPLASH_GROOMING = "https://images.unsplash.com/photo-1760130291264-cf83815f0c05?fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
+UNSPLASH_HANDS_KITTEN = "https://images.unsplash.com/photo-1569013279783-1c1f3a057657?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
+UNSPLASH_MOM_KITTEN = "https://images.unsplash.com/photo-1662389320977-c7bebc5be186?fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.0.3&q=60&w=3000"
+UNSPLASH_KITTEN_BLANKET = "https://images.unsplash.com/photo-1738427758680-61737ec8593c?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000"
+
+TESTIMONIAL_IMAGE_LIBRARY = [
+    "https://images.unsplash.com/photo-1565855422076-c01c7620137b?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+    "https://images.unsplash.com/photo-1568914882731-5bf24aa2a994?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+    "https://images.unsplash.com/photo-1488234548165-b2ec9b6d7a24?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+    "https://images.unsplash.com/photo-1569240134835-c20b283158e3?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+    "https://images.unsplash.com/photo-1534399315465-2b91232de345?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+    "https://images.unsplash.com/photo-1527585743534-7113e3211270?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+    "https://images.unsplash.com/photo-1743369671728-f3488e99caf3?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+    "https://images.unsplash.com/photo-1544264796-acfb69e05b37?fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=3000",
+]
+
+BLOG_COVER_IMAGES = [
+    UNSPLASH_HERO_KITTEN,
+    UNSPLASH_SILVER_COON,
+    UNSPLASH_HOME_COUCH,
+    UNSPLASH_TRAVEL_CARRIER,
+    UNSPLASH_TRAVEL_CRATE,
+    UNSPLASH_GROOMING,
+    UNSPLASH_HANDS_KITTEN,
+    UNSPLASH_MOM_KITTEN,
+    UNSPLASH_KITTEN_BLANKET,
+    UNSPLASH_CONTACT_LAPTOP,
+]
 DEFAULT_KITTENS = [
     {
         "id": 1,
@@ -504,42 +539,42 @@ DEFAULT_TESTIMONIALS = [
     {
         "author": "Ava Martinez",
         "quote": "Our kitten arrived confident and social. The care and communication were incredible.",
-        "image": "images/doherty.jpg"
+        "image": TESTIMONIAL_IMAGE_LIBRARY[0]
     },
     {
         "author": "Jordan Wells",
         "quote": "Sweet temperament and beautiful coat. We felt supported from day one.",
-        "image": "images/fluffy.jpg"
+        "image": TESTIMONIAL_IMAGE_LIBRARY[1]
     },
     {
         "author": "Priya Mehta",
         "quote": "Healthy, playful, and already attached to our family. Best decision we made.",
-        "image": "images/jack.jpg"
+        "image": TESTIMONIAL_IMAGE_LIBRARY[2]
     },
     {
         "author": "Ethan Nguyen",
         "quote": "The most gentle kitten. Calm with kids and so easy to handle.",
-        "image": "images/misty.jpg"
+        "image": TESTIMONIAL_IMAGE_LIBRARY[3]
     },
     {
         "author": "Ella Carter",
         "quote": "The temperament matching was spot on. Our kitten fits us perfectly.",
-        "image": "images/nono.jpg"
+        "image": TESTIMONIAL_IMAGE_LIBRARY[4]
     },
     {
         "author": "Marcus Patel",
         "quote": "Clear health records and a smooth process. We felt confident the whole time.",
-        "image": "images/kanashi-7NcdSLcRTq8-unsplash.jpg"
+        "image": TESTIMONIAL_IMAGE_LIBRARY[5]
     },
     {
         "author": "Zoe Rivera",
         "quote": "Playful, affectionate, and incredibly smart. Our home feels complete now.",
-        "image": "images/bee-felten-leidel-DkYlK2vyuZg-unsplash.jpg"
+        "image": TESTIMONIAL_IMAGE_LIBRARY[6]
     },
     {
         "author": "Samira Khan",
         "quote": "The kitten settled in within days. Loving, curious, and full of personality.",
-        "image": "images/bobbi-wu-UN6uVzke__g-unsplash.jpg"
+        "image": TESTIMONIAL_IMAGE_LIBRARY[7]
     }
 ]
 
@@ -557,19 +592,19 @@ DEFAULT_SECTIONS = [
             "A cattery built on patience, ethics, and devotion. "
             "We don’t rush kittens into the world — we raise companions for life."
         ),
-        "image": "images/hero_kitten.jpg"
+        "image": UNSPLASH_HERO_KITTEN
     },
     {
         "key": "hero_slide_2",
         "title": "Raised for Real Homes",
         "body": "Daily handling, gentle routines, and confident temperaments built from the very start.",
-        "image": "images/hero_home.jpg"
+        "image": UNSPLASH_HOME_COUCH
     },
     {
         "key": "hero_slide_3",
         "title": "Safe Travel, Calm Arrivals",
         "body": "Thoughtful travel planning by ground or air, with comfort and communication throughout.",
-        "image": "images/hero_delivery.jpg"
+        "image": UNSPLASH_TRAVEL_CARRIER
     },
     {
         "key": "story",
@@ -585,7 +620,7 @@ DEFAULT_SECTIONS = [
             "temperaments that thrive in real homes. We want families to "
             "meet a kitten whose personality already feels like a perfect fit."
         ),
-        "image": "images/story.jpg"
+        "image": UNSPLASH_HANDS_KITTEN
     },
     {
         "key": "health",
@@ -599,7 +634,7 @@ DEFAULT_SECTIONS = [
             "of milestones, vaccines, and behavioral development so you "
             "can feel confident from the first day home."
         ),
-        "image": "images/health.jpg"
+        "image": UNSPLASH_GROOMING
     },
     {
         "key": "mission",
@@ -614,7 +649,7 @@ DEFAULT_SECTIONS = [
             "thoughtful practices, ethical standards, and cats that are healthy, "
             "confident, and deeply social."
         ),
-        "image": "images/mission.jpg"
+        "image": UNSPLASH_SILVER_COON
     },
     {
         "key": "travel",
@@ -666,7 +701,7 @@ DEFAULT_PAGES = [
             "From pickup to your front door (or airport handoff), our process is structured, calm, and kitten-first. "
             "We offer safe ground transport and carefully coordinated air travel with clear communication at every step."
         ),
-        "hero_image": "images/hero_delivery.jpg",
+        "hero_image": UNSPLASH_TRAVEL_CARRIER,
         "steps": [
             {
                 "title": "Preparation",
@@ -685,25 +720,25 @@ DEFAULT_PAGES = [
             {
                 "title": "Pickup & Preparation",
                 "body": "Each journey begins with a calm pickup routine. Kittens receive a final wellness check, hydration, and a familiar scent item to reduce stress.",
-                "image": "images/care.jpg",
+                "image": UNSPLASH_KITTEN_BLANKET,
                 "layout": "left"
             },
             {
                 "title": "Ground Transport",
                 "body": "Ground transport is ideal for regional deliveries. Our carriers are temperature controlled and routed for minimal time on the road.",
-                "image": "images/health2.jpg",
+                "image": UNSPLASH_TRAVEL_CARRIER,
                 "layout": "right"
             },
             {
                 "title": "Air Transport & Airport Pickup",
                 "body": "For longer distances, we coordinate air travel with trusted couriers and pet-safe airline policies with a smooth airport handoff.",
-                "image": "images/her.jpg",
+                "image": UNSPLASH_TRAVEL_CRATE,
                 "layout": "left"
             },
             {
                 "title": "Arrival at Home",
                 "body": "We recommend a quiet room for the first day with water, food, and a soft bed. Let your kitten explore slowly and set their pace.",
-                "image": "images/hero_home.jpg",
+                "image": UNSPLASH_HOME_COUCH,
                 "layout": "right"
             }
         ],
@@ -722,7 +757,7 @@ DEFAULT_PAGES = [
             "We raise Maine Coons with patience, transparency, and deep respect for the breed. "
             "Every kitten is socialized, nurtured, and matched carefully to the right home."
         ),
-        "hero_image": "images/story.jpg",
+        "hero_image": UNSPLASH_SILVER_COON,
         "steps": [],
         "blocks": [
             {
@@ -731,7 +766,7 @@ DEFAULT_PAGES = [
                     "We focus on small, carefully planned litters so each kitten receives daily handling and enrichment. "
                     "Health testing, clear communication, and ethical practices guide every decision."
                 ),
-                "image": "images/mission.jpg",
+                "image": UNSPLASH_MOM_KITTEN,
                 "layout": "left"
             },
             {
@@ -740,7 +775,7 @@ DEFAULT_PAGES = [
                     "Kittens are introduced to grooming, gentle handling, and everyday household sounds early. "
                     "This helps them grow into calm, confident companions."
                 ),
-                "image": "images/health.jpg",
+                "image": UNSPLASH_KITTEN_BLANKET,
                 "layout": "right"
             },
             {
@@ -749,7 +784,7 @@ DEFAULT_PAGES = [
                     "We stay connected with families after pickup or delivery. "
                     "From feeding tips to temperament guidance, we’re here for you."
                 ),
-                "image": "images/hero_home.jpg",
+                "image": UNSPLASH_HOME_COUCH,
                 "layout": "left"
             }
         ],
@@ -767,7 +802,7 @@ DEFAULT_PAGES = [
         "hero_body": (
             "Everything you need to know about our process, kitten care, and delivery options."
         ),
-        "hero_image": "images/health2.jpg",
+        "hero_image": UNSPLASH_HERO_KITTEN,
         "steps": [],
         "blocks": [
             {
@@ -776,7 +811,7 @@ DEFAULT_PAGES = [
                     "Kittens typically go home after they are fully weaned, socialized, and cleared by the vet. "
                     "We prioritize health and confidence over speed."
                 ),
-                "image": "images/care.jpg",
+                "image": UNSPLASH_KITTEN_BLANKET,
                 "layout": "left"
             },
             {
@@ -785,7 +820,7 @@ DEFAULT_PAGES = [
                     "Yes. We provide ground transport and air travel options depending on location and timing. "
                     "All deliveries are planned with the kitten’s comfort in mind."
                 ),
-                "image": "images/hero_delivery.jpg",
+                "image": UNSPLASH_TRAVEL_CARRIER,
                 "layout": "right"
             },
             {
@@ -794,7 +829,7 @@ DEFAULT_PAGES = [
                     "Set up a quiet starter room with food, water, litter, and a cozy bed. "
                     "We provide a transition guide with each kitten."
                 ),
-                "image": "images/hero_home.jpg",
+                "image": UNSPLASH_HOME_COUCH,
                 "layout": "left"
             }
         ],
@@ -812,19 +847,19 @@ DEFAULT_PAGES = [
         "hero_body": (
             "We respond quickly and personally. Tell us about your home, your timeline, and the kitten you’re looking for."
         ),
-        "hero_image": "images/hero_kitten.jpg",
+        "hero_image": UNSPLASH_CONTACT_LAPTOP,
         "steps": [],
         "blocks": [
             {
                 "title": "Email",
                 "body": "info@frostlinecoons.com — We respond within 24–48 hours.",
-                "image": "images/about1.jpg",
+                "image": UNSPLASH_CONTACT_LAPTOP,
                 "layout": "left"
             },
             {
                 "title": "Delivery Questions",
                 "body": "Let us know your location and preferred timing. We’ll recommend the safest transport option.",
-                "image": "images/hero_delivery.jpg",
+                "image": UNSPLASH_TRAVEL_CARRIER,
                 "layout": "right"
             }
         ],
@@ -2706,6 +2741,22 @@ def seed_defaults(conn):
                 "INSERT INTO testimonials (author, quote, image) VALUES (?, ?, ?)",
                 (item["author"], item["quote"], item["image"]),
             )
+    testimonial_rows = conn.execute(
+        "SELECT id, author, image FROM testimonials ORDER BY id"
+    ).fetchall()
+    author_image_map = {item["author"]: item["image"] for item in DEFAULT_TESTIMONIALS}
+    for index, row in enumerate(testimonial_rows):
+        current_image = row["image"] or ""
+        if current_image and not is_local_image(current_image):
+            continue
+        desired_image = author_image_map.get(row["author"]) or TESTIMONIAL_IMAGE_LIBRARY[
+            index % len(TESTIMONIAL_IMAGE_LIBRARY)
+        ]
+        if desired_image and desired_image != current_image:
+            conn.execute(
+                "UPDATE testimonials SET image = ? WHERE id = ?",
+                (desired_image, row["id"]),
+            )
 
     existing_sections = {
         row["section_key"]: row
@@ -2719,8 +2770,9 @@ def seed_defaults(conn):
                 updates["title"] = section["title"]
             if not row["body"]:
                 updates["body"] = section["body"]
-            if not row["image"]:
-                updates["image"] = section["image"]
+            if section.get("image"):
+                if not row["image"] or is_local_image(row["image"]):
+                    updates["image"] = section["image"]
             if updates:
                 set_clause = ", ".join([f"{k}=?" for k in updates.keys()])
                 conn.execute(
@@ -2760,6 +2812,17 @@ def seed_defaults(conn):
             for key, value in payload.items():
                 if not row[key]:
                     updates[key] = value
+            if payload.get("hero_image"):
+                current_hero = row.get("hero_image") if isinstance(row, dict) else row["hero_image"]
+                if current_hero and is_local_image(current_hero):
+                    updates["hero_image"] = payload["hero_image"]
+            try:
+                existing_blocks = json.loads(row["blocks_json"] or "[]")
+            except json.JSONDecodeError:
+                existing_blocks = []
+            changed, updated_blocks = update_blocks_with_defaults(existing_blocks, page["blocks"])
+            if changed:
+                updates["blocks_json"] = json.dumps(updated_blocks)
             if updates:
                 set_clause = ", ".join([f"{k}=?" for k in updates.keys()])
                 conn.execute(
@@ -2845,6 +2908,20 @@ def seed_defaults(conn):
             )
         current_count += 1
 
+    blog_rows = conn.execute(
+        "SELECT id, cover_image FROM blog_posts ORDER BY id"
+    ).fetchall()
+    for index, row in enumerate(blog_rows):
+        current_image = row["cover_image"] or ""
+        if current_image and not is_local_image(current_image):
+            continue
+        desired_image = BLOG_COVER_IMAGES[index % len(BLOG_COVER_IMAGES)]
+        if desired_image and desired_image != current_image:
+            conn.execute(
+                "UPDATE blog_posts SET cover_image = ? WHERE id = ?",
+                (desired_image, row["id"]),
+            )
+
     existing_settings = {
         row["key"]: row["value"]
         for row in conn.execute("SELECT key, value FROM site_settings").fetchall()
@@ -2878,6 +2955,12 @@ def is_external_url(value):
     return value.startswith("http://") or value.startswith("https://")
 
 
+def is_local_image(value):
+    if not value:
+        return False
+    return value.startswith("images/") or value.startswith("static/") or value.startswith("/static/")
+
+
 def media_url(path):
     if not path:
         return ""
@@ -2890,6 +2973,22 @@ def media_url(path):
     if path.startswith("uploads/"):
         return url_for("uploaded_file", filename=path[len("uploads/"):])
     return url_for("static", filename=path)
+
+
+def update_blocks_with_defaults(existing_blocks, default_blocks):
+    if not isinstance(existing_blocks, list):
+        return False, existing_blocks
+    changed = False
+    for index, block in enumerate(existing_blocks):
+        if index >= len(default_blocks):
+            break
+        if not isinstance(block, dict):
+            continue
+        default_image = default_blocks[index].get("image")
+        if default_image and (not block.get("image") or is_local_image(block.get("image", ""))):
+            block["image"] = default_image
+            changed = True
+    return changed, existing_blocks
 
 
 def kitten_folder_paths(folder):
